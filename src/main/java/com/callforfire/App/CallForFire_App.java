@@ -1,27 +1,31 @@
 package com.callforfire.App;
 
+import com.callforfire.GameEngines.OptionHandler;
+import com.callforfire.GameEngines.PlayerEngine;
+import com.callforfire.GameEngines.SupportEngines.MessageReader;
 import com.callforfire.GameEngines.TextParser;
 
 import java.util.List;
 
 //This is where all our of our game engines and logic will run from
 public class CallForFire_App {
-    private TextParser textParser;
-    private String currentLocation;
+    private final TextParser textParser = new TextParser();
+    private final PlayerEngine playerEngine = new PlayerEngine();
+    private final OptionHandler optionHandler = new OptionHandler();
 
-    // TODO: Build and add the TextParser Here
-
-    // TODO: Build and add the OptionReader Here
 
 
     // Methods
     public void run() {
         // Game logic to run the game goes in here
-       List<String> parsedInput = textParser.getActionNoun();
-       System.out.println(parsedInput);
+        System.out.println("Your Location: " + playerEngine.getCurrentLocation());
+
+        List<String> parsedInput = textParser.getUserString();
+        MessageReader.printMessage(parsedInput);
     }
 
     public void intialize() {
         // TODO: Build the splash screen and credits in here, follow dev ops for more clear instruction
     }
+
 }
