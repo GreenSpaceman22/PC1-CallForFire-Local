@@ -1,5 +1,7 @@
 package com.callforfire.GameEngines.SupportEngines;
 
+import com.callforfire.GameEngines.OptionHandler;
+
 import java.util.List;
 
 public class MessageReader {
@@ -10,7 +12,7 @@ public class MessageReader {
         if(actionNoun.size() < 2) {
             System.out.println("You " + actionNoun.get(0) + " somewhere");
         } else {
-            System.out.println("You " + actionNoun.get(0) + " " + actionNoun.get(1));
+            System.out.println("You " + actionNoun.get(0) + " " + actionNoun.get(1) + " to the " + OptionHandler.getLocationName());
         }
     }
 }

@@ -26,9 +26,8 @@ public class TextParser {
     }
 
     public void promptUser() {
-        String userInput = prompter.prompt(">");
+        String userInput = prompter.prompt(">").toLowerCase();
         setUserInput(userInput);
-        System.out.println(userInput);
     }
 
     public void parseUserInput() {
