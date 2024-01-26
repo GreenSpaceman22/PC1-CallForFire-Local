@@ -1,6 +1,7 @@
 package com.callforfire.GameEngines;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -32,7 +33,7 @@ public class TextParser {
         String[] words = userInput.split("\\s+");
 
         // Add the words to the parsedWords list
-        for (String word : words) parsedWords.add(word);
+        parsedWords.addAll(Arrays.asList(words));
     }
 
     // Getters/Setters
