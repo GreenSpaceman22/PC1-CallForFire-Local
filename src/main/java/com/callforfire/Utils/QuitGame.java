@@ -1,7 +1,6 @@
 package com.callforfire.Utils;
 
-
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class QuitGame {
@@ -10,7 +9,7 @@ public class QuitGame {
     private static String answer;
 
     // method to quit the game using the parsedText list passed in from the GameEngine
-    public static void confirmAndQuitGame(ArrayList<String> parsedText) {
+    public static void confirmAndQuitGame(List<String> parsedText) {
         // Check each word to see if it matches "quit"
         for (String word : parsedText) {
             if (word == "quit") {
