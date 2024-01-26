@@ -15,20 +15,19 @@ public class TextParser {
     // Methods
 
     // Get the action and noun of the users input, this will be the main method of this class
-    public List<String> getUserString() {
+    public List<String> getUserString(OptionHandler optionHandler) {
         promptUser();
 
         parseUserInput();
 
-        parseActionAndNoun();
+        parseActionAndNoun(optionHandler);
 
         return actionNoun;
     }
 
     public void promptUser() {
-        String userInput = prompter.prompt(">");
+        String userInput = prompter.prompt(">").toLowerCase();
         setUserInput(userInput);
-        System.out.println(userInput);
     }
 
     public void parseUserInput() {
@@ -39,8 +38,8 @@ public class TextParser {
         parsedWords.addAll(Arrays.asList(words));
     }
 
-    public void parseActionAndNoun() {
-        // TODO: Update this to use the synonym checker
+    public void parseActionAndNoun(OptionHandler optionHandler) {
+        // TODO: Update this to use the synonym checker, this should also set the properties of OptionHandler before we get over there I.E (isGet, isFire, isMove)
         actionNoun.addAll(this.getParsedWords());
     }
 

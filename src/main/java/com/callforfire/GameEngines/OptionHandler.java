@@ -6,14 +6,15 @@ public class OptionHandler {
     private boolean fire;
     private boolean talkOrLook;
     private String actionResponse; // This should be set to whatever verb the user passed based on the booleans above after reading the JSON
+    private static String locationChoice = "north"; // This should be set if move is 'True', then read the JSON with this String
+    private static String locationName = "Firing Point";
+    private static String character = "Joe Snuffy";
+    private static String item = "broken mortar tube";
 
-    private String locationChoice = "north"; // This should be set if move is 'True', then read the JSON with this String
     // Methods
     public void run() {
 
     }
-
-
 
 
     public static void returnOptionFromJsonLocation(String location) {
@@ -59,5 +60,37 @@ public class OptionHandler {
 
     public void setTalkOrLook(boolean talkOrLook) {
         this.talkOrLook = talkOrLook;
+    }
+
+    public static String getLocationChoice() {
+        return locationChoice;
+    }
+
+    public static void setLocationChoice(String locationChoice) {
+        OptionHandler.locationChoice = locationChoice;
+    }
+
+    public static String getLocationName() {
+        return locationName;
+    }
+
+    public static void setLocationName(String locationName) {
+        OptionHandler.locationName = locationName;
+    }
+
+    public static String getCharacter() {
+        return character;
+    }
+
+    public static void setCharacter(String character) {
+        OptionHandler.character = character;
+    }
+
+    public static String getItem() {
+        return item;
+    }
+
+    public static void setItem(String item) {
+        OptionHandler.item = item;
     }
 }
