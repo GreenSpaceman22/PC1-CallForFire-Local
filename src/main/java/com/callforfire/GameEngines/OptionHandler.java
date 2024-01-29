@@ -1,5 +1,7 @@
 package com.callforfire.GameEngines;
 
+import com.callforfire.Utils.InvalidCommand;
+
 import com.apps.util.Console;
 import com.callforfire.GameEngines.SupportEngines.MessageReader;
 
@@ -11,6 +13,8 @@ public class OptionHandler {
     private boolean fire;
     private boolean talkOrLook;
     private String actionResponse; // This should be set to whatever verb the user passed based on the booleans above after reading the JSON
+    private List<String> actionNoun = new TextParser().getActionNoun();
+    private List<String> nouns = new getJSONObject("nouns"); // intent is to get a list of all nouns from the JSON file
     private static String locationChoice = "north"; // This should be set if move is 'True', then read the JSON with this String
     private static String locationName = "Firing Point";
     private static String character = "Joe Snuffy";
@@ -82,6 +86,18 @@ public class OptionHandler {
         return false;
     }
 
+    // List<String> actionNoun passed from TextParser
+    // actionNoun[0] is the verb and actionNoun[1] is the noun
+    public void doLook(List<String> actionNoun) {
+        String noun  = actionNoun.get(1);
+        // check and see if noun is in the JSON list of nouns; if not give invalid command
+        if (!nouns.contains(noun)) {
+            InvalidCommand.showInvalidCommand(actionNoun);
+        }
+        else {
+            System.out.println("\nYou take a closer look and see that " + noun + " is here");
+        }
+    }
 
     // Getters/Setters
     public boolean isGet() {
