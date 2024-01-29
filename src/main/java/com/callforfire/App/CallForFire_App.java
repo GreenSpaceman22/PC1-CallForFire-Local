@@ -1,5 +1,7 @@
 package com.callforfire.App;
 
+import com.apps.util.Console;
+import com.apps.util.Prompter;
 import com.callforfire.GameEngines.OptionHandler;
 import com.callforfire.GameEngines.PlayerEngine;
 import com.callforfire.GameEngines.SupportEngines.MessageReader;
@@ -21,9 +23,8 @@ public class CallForFire_App {
         intialize();
         // Game logic to run the game goes in here
         System.out.println("Your Location: " + playerEngine.getCurrentLocation());
-
         List<String> parsedInput = textParser.getUserString(optionHandler);
-        MessageReader.printMessage(parsedInput);
+        optionHandler.run(parsedInput);
     }
 
     public void intialize() {
@@ -31,4 +32,7 @@ public class CallForFire_App {
         // TODO: Build the splash screen and credits in here, follow dev ops for more clear instruction
     }
 
+    public void instructions() {
+
+    }
 }
