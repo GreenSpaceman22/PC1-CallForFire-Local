@@ -1,5 +1,7 @@
 package com.callforfire.GameEngines;
 
+import java.util.List;
+
 public class OptionHandler {
     private boolean get;
     private boolean move;
@@ -16,6 +18,10 @@ public class OptionHandler {
 
     }
 
+    public static void setVerbType(List<String> actionNoun) {
+
+//        switch()
+    }
 
     public static void returnOptionFromJsonLocation(String location) {
         // TODO: Make this read from the JSON_Reader passing the location the of whichever direction the user picked I.E (north, south, yatta)
