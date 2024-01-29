@@ -1,4 +1,4 @@
-package src.main.java.com.callforfire.Utils.Images;
+package com.callforfire.Utils;
 
 import java.io.*;
 import java.nio.file.Files;
