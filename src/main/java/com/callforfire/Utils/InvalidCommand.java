@@ -8,6 +8,9 @@ import java.util.Scanner;
 public class InvalidCommand {
 
     // method called when the game doesn't understand the input
+    // TODO break this up into two methods:
+        // TODO one to handle invalid verbs
+        // TODO and one to handle invalid nouns
     public static void showInvalidCommand(List<String> parsedText) {
         // TODO should probably add this to a JSON
         // displays a general help text and returns
