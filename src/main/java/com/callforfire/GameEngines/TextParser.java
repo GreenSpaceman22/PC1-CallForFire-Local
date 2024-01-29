@@ -12,8 +12,9 @@ public class TextParser {
     private final List<String> actionNoun = new ArrayList<>();
     private String userInput;
     private final Prompter prompter = new Prompter(new Scanner(System.in));
-    // Methods
 
+
+    // METHODS
     // Get the action and noun of the users input, this will be the main method of this class
     public List<String> getUserString(OptionHandler optionHandler) {
         promptUser();
