@@ -11,7 +11,8 @@ public class OptionHandler {
     private boolean get;
     private boolean move;
     private boolean fire;
-    private boolean talkOrLook;
+    private boolean talk;
+    private boolean look;
     private String actionResponse; // This should be set to whatever verb the user passed based on the booleans above after reading the JSON
     private List<String> actionNoun = new TextParser().getActionNoun();
     private List<String> nouns = new getJSONObject("nouns"); // intent is to get a list of all nouns from the JSON file
@@ -30,12 +31,12 @@ public class OptionHandler {
 
     // Methods
     public void run(List<String> actionNoun) {
-        handlePlayerAction(this.isGet(), this.isMove(), this.isFire(), this.isTalkOrLook(), actionNoun);
+        handlePlayerAction(this.isGet(), this.isMove(), this.isFire(), this.isTalk(), this.isLook(), actionNoun);
     }
 
-    public void handlePlayerAction(boolean get, boolean move, boolean fire, boolean talkOrLook, List<String> actionNoun) {
+    public void handlePlayerAction(boolean get, boolean move, boolean fire, boolean talk, boolean look, List<String> actionNoun) {
         // Determine which case to execute based on boolean variables
-        int caseNumber = determineCase(get, move, fire, talkOrLook);
+        int caseNumber = determineCase(get, move, fire, talk, look);
 
         switch (caseNumber) {
             case 1:
@@ -43,6 +44,11 @@ public class OptionHandler {
                 break;
             case 2:
                 // HandleLocation
+                break;
+            case 3:
+                // HandleTalk
+            case 4:
+                handleLook(actionNoun);
                 break;
             // Add more cases as needed
             default:
@@ -52,15 +58,17 @@ public class OptionHandler {
     }
 
 
-    private static int determineCase(boolean get, boolean move, boolean fire, boolean talkOrLook) {
+    private static int determineCase(boolean get, boolean move, boolean fire, boolean talk, boolean look) {
 
         System.out.println(move);
         if (move) {
             return 1;
         } else if (get) {
             return 2;
-        } else if (talkOrLook) {
+        } else if (talk) {
             return 3;
+        } else if (look) {
+            return 4;
         } else {
             return 0; // Default case
         }
@@ -88,13 +96,16 @@ public class OptionHandler {
 
     // List<String> actionNoun passed from TextParser
     // actionNoun[0] is the verb and actionNoun[1] is the noun
-    public void doLook(List<String> actionNoun) {
+    public void handleLook(List<String> actionNoun) {
         String noun  = actionNoun.get(1);
+        if (actionNoun.size() < 2) {
+            MessageReader.printLocationMessage(getLocationDescription(), getNorth(), getEast(), getSouth(), getWest());
+        }
         // check and see if noun is in the JSON list of nouns; if not give invalid command
-        if (!nouns.contains(noun)) {
+        else if (!nouns.contains(noun)) {
             InvalidCommand.showInvalidCommand(actionNoun);
         }
-        else {
+        else if (nouns.contains(noun)){
             System.out.println("\nYou take a closer look and see that " + noun + " is here");
         }
     }
@@ -124,12 +135,20 @@ public class OptionHandler {
         this.fire = fire;
     }
 
-    public boolean isTalkOrLook() {
-        return talkOrLook;
+    public boolean isTalk() {
+        return talk;
     }
 
-    public void setTalkOrLook(boolean talkOrLook) {
-        this.talkOrLook = talkOrLook;
+    public void setTalk(boolean talk) {
+        this.talk = talk;
+    }
+
+    public boolean isLook() {
+        return look;
+    }
+
+    public void setLook(boolean look) {
+        this.look = look;
     }
 
     public static String getLocationChoice() {
