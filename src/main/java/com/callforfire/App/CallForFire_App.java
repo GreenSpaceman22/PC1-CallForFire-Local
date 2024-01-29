@@ -1,10 +1,8 @@
 package com.callforfire.App;
 
-import com.apps.util.Console;
-import com.apps.util.Prompter;
 import com.callforfire.GameEngines.OptionHandler;
 import com.callforfire.GameEngines.PlayerEngine;
-import com.callforfire.GameEngines.SupportEngines.MessageReader;
+import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
 import com.callforfire.GameEngines.TextParser;
 import com.callforfire.Utils.WelcomeTitleDisplay;
 
@@ -21,6 +19,7 @@ public class CallForFire_App {
     // Methods
     public void run() {
         intialize();
+        JSON_Reader.readLocationsJson(); // This can be removed later, for testing only
         // Game logic to run the game goes in here
         System.out.println("Your Location: " + playerEngine.getCurrentLocation());
         List<String> parsedInput = textParser.getUserString(optionHandler);

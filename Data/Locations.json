@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Firing Point",
+    "description": "You hoof your way to the firing point, the equipment is no longer there except for a broken mortar tube, and private Snuffy.",
+    "item": "Broken Mortar Tube",
+    "character": "Private Snuffy",
+    "north": "Hesco Barriers",
+    "south": "Mortar Pit",
+    "east": "TOC",
+    "west": "Vehicle Yard"
+  },
+  {
+    "name": "Vehicle Yard",
+    "description": "You jog down to the vehicle yard, you see a smashed hole in one of the trucks windows.",
+    "item": "Mortar Tube",
+    "north": "Hesco Barriers",
+    "east": "Hesco Barriers",
+    "south": "Ammo Depot",
+    "west": "Firing Point"
+  }
+]
