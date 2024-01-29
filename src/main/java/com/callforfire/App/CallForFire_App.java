@@ -23,9 +23,8 @@ public class CallForFire_App {
         intialize();
         // Game logic to run the game goes in here
         System.out.println("Your Location: " + playerEngine.getCurrentLocation());
-
         List<String> parsedInput = textParser.getUserString(optionHandler);
-        MessageReader.printMessage(parsedInput);
+        optionHandler.run(parsedInput);
     }
 
     public void intialize() {

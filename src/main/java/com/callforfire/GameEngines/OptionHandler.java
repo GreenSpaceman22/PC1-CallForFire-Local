@@ -1,5 +1,8 @@
 package com.callforfire.GameEngines;
 
+import com.apps.util.Console;
+import com.callforfire.GameEngines.SupportEngines.MessageReader;
+
 import java.util.List;
 
 public class OptionHandler {
@@ -13,14 +16,59 @@ public class OptionHandler {
     private static String character = "Joe Snuffy";
     private static String item = "broken mortar tube";
 
-    // Methods
-    public void run() {
 
+    // These temporary for testing, these should be set by the JSON_Reader later,  we can create a seperate class for handling this later maybe?
+    private String locationDescription = "You hoof your way to the firing point, the equipment is no longer there except for a broken mortar tube, and private Snuffy.";
+    private String north = "Barbed Wire";
+    private String east = "TOC";
+    private String west = "Vehicle Yard";
+    private String south = "Mortar Pit";
+
+    // Methods
+    public void run(List<String> actionNoun) {
+        handlePlayerAction(this.isGet(), this.isMove(), this.isFire(), this.isTalkOrLook(), actionNoun);
     }
 
-    public static void setVerbType(List<String> actionNoun) {
+    public void handlePlayerAction(boolean get, boolean move, boolean fire, boolean talkOrLook, List<String> actionNoun) {
+        // Determine which case to execute based on boolean variables
+        int caseNumber = determineCase(get, move, fire, talkOrLook);
 
-//        switch()
+        switch (caseNumber) {
+            case 1:
+                handleMove(locationChoice);
+                break;
+            case 2:
+                // HandleLocation
+                break;
+            // Add more cases as needed
+            default:
+                // Default case
+                break;
+        }
+    }
+
+
+    private static int determineCase(boolean get, boolean move, boolean fire, boolean talkOrLook) {
+
+        System.out.println(move);
+        if (move) {
+            return 1;
+        } else if (get) {
+            return 2;
+        } else if (talkOrLook) {
+            return 3;
+        } else {
+            return 0; // Default case
+        }
+    }
+
+    // Handle if the movement command was given
+    public void handleMove(String locationChoice) {
+        // TODO: use the JSON_Reader to determine information of the "location" argument they went to
+        // For now we will hard code the response
+
+        MessageReader.printLocationMessage(getLocationDescription(), getNorth(), getEast(), getSouth(), getWest());
+        Console.pause(2);
     }
 
     public static void returnOptionFromJsonLocation(String location) {
@@ -98,5 +146,45 @@ public class OptionHandler {
 
     public static void setItem(String item) {
         OptionHandler.item = item;
+    }
+
+    public String getLocationDescription() {
+        return locationDescription;
+    }
+
+    public void setLocationDescription(String locationDescription) {
+        this.locationDescription = locationDescription;
+    }
+
+    public String getNorth() {
+        return north;
+    }
+
+    public void setNorth(String north) {
+        this.north = north;
+    }
+
+    public String getEast() {
+        return east;
+    }
+
+    public void setEast(String east) {
+        this.east = east;
+    }
+
+    public String getWest() {
+        return west;
+    }
+
+    public void setWest(String west) {
+        this.west = west;
+    }
+
+    public String getSouth() {
+        return south;
+    }
+
+    public void setSouth(String south) {
+        this.south = south;
     }
 }
