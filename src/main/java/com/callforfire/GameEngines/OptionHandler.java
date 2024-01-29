@@ -1,6 +1,8 @@
 package com.callforfire.GameEngines;
 
 import com.callforfire.Utils.InvalidCommand;
+import com.apps.util.Console;
+import com.callforfire.GameEngines.SupportEngines.MessageReader;
 
 import java.util.List;
 
@@ -18,30 +20,6 @@ public class OptionHandler {
     private static String item = "broken mortar tube";
 
     // Methods
-
-    // One switch/case to rule them all
-    public void run() {
-        switch (actionNoun.get(0)) {
-            case "get" :
-                doGet(actionNoun);
-                break;
-            case "move" :
-                doMove(actionNoun);
-                break;
-            case "look" :
-                doLook(actionNoun);
-                break;
-            case "talk" :
-                doTalk(actionNoun);
-                break;
-            case "getItem" :
-                doGetItem(actionNoun);
-                break;
-            case "fire" :
-                doFire(actionNoun);
-                break;
-        }
-    }
 
     public static void returnOptionFromJsonLocation(String location) {
         // TODO: Make this read from the JSON_Reader passing the location the of whichever direction the user picked I.E (north, south, yatta)
