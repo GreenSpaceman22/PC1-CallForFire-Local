@@ -4,6 +4,7 @@ import com.callforfire.GameEngines.OptionHandler;
 import com.callforfire.GameEngines.PlayerEngine;
 import com.callforfire.GameEngines.SupportEngines.MessageReader;
 import com.callforfire.GameEngines.TextParser;
+import com.callforfire.Utils.WelcomeTitleDisplay;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class CallForFire_App {
 
     // Methods
     public void run() {
+        intialize();
         // Game logic to run the game goes in here
         System.out.println("Your Location: " + playerEngine.getCurrentLocation());
 
@@ -25,6 +27,7 @@ public class CallForFire_App {
     }
 
     public void intialize() {
+        WelcomeTitleDisplay.render("banner");
         // TODO: Build the splash screen and credits in here, follow dev ops for more clear instruction
     }
 
