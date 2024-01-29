@@ -45,8 +45,10 @@ public class TextParser {
 
         if("go".equalsIgnoreCase(actionNoun.get(0))) {
             optionHandler.setMove(true);
-        } else if("look".equalsIgnoreCase(actionNoun.get(0)) || "talk".equalsIgnoreCase(actionNoun.get(0))) {
-            optionHandler.setTalkOrLook(true);
+        } else if("talk".equalsIgnoreCase(actionNoun.get(0))) {
+            optionHandler.setTalk(true);
+        } else if ("look".equalsIgnoreCase(actionNoun.get(0))) {
+            optionHandler.setLook(true);
         } else if("fire".equalsIgnoreCase(actionNoun.get(0))) {
             optionHandler.setFire(true);
         } else {
