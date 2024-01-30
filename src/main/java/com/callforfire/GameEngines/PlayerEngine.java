@@ -3,7 +3,7 @@ package com.callforfire.GameEngines;
 import java.util.List;
 
 public class PlayerEngine {
-    private String currentLocation = "Mortar Pit";
+    private static String currentLocation = "Mortar Pit";
     private List<String> playerInventory;
 
 
@@ -13,12 +13,14 @@ public class PlayerEngine {
     }
 
     // Getters/Setters
-    public String getCurrentLocation() {
+
+
+    public static String getCurrentLocation() {
         return currentLocation;
     }
 
-    public void setCurrentLocation(String currentLocation) {
-        this.currentLocation = currentLocation;
+    public static void setCurrentLocation(String currentLocation) {
+        PlayerEngine.currentLocation = currentLocation;
     }
 
     public List<String> getPlayerInventory() {

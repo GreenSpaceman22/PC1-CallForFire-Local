@@ -1,6 +1,8 @@
 package com.callforfire.GameEngines.SupportEngines;
 
+import com.apps.util.Console;
 import com.callforfire.GameEngines.OptionHandler;
+import com.callforfire.GameEngines.PlayerEngine;
 
 import java.util.List;
 
@@ -16,6 +18,8 @@ public class MessageReader {
     }
 
     public static void printLocationMessage(String locationDescription, String north, String south, String east, String west) {
+        Console.clear();
+        System.out.println("Your Current Location: " + PlayerEngine.getCurrentLocation());
         // TODO: Use the arguments from the json to update this later.
         System.out.println(locationDescription);
         System.out.println("To your north is " + north + ", to your east is " + east);
