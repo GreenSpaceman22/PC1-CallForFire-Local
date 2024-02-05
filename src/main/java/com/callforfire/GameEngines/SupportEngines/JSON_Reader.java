@@ -11,14 +11,7 @@ import java.util.List;
 
 public class JSON_Reader {
 
-    public static void TitusMethod(String direction) {
-        // TODO: GET THE CURRENT LOCATION FROM JSON
-        // TODO: FIND THE DIRECTION IN THE CURRENT LOCATION FROM ACTIONNOUN,
-        // TODO: SET THE NEW CURRENT LOCATION TO THE PREVIOUS CURRENT LOCATIONS DIRECTION (I.E. NORTH)
-        // TODO: THEN READ THE JSON AGAIN AND SET LOCATION ATTRIBUTES
-    }
-
-    public static void readLocationsJson(List<String> words) {
+    public static void readLocationsJson() {
         try (Reader reader = new FileReader("Data/Locations.json")) {
             Gson gson = new Gson();
             // Convert JSON array to list of Location objects
