@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Private-Snuffy",
+    "dialogue": "Um, Sergeant? You OK? You ain't got nothin' ta help us out."
+  },
+  {
+    "name": "Cookie",
+    "dialogue": "Um, hey. The chow hall is closed right now. But. Um. After that last BOOM something went flying in here and landed at the range"
+  },
+  {
+    "name": "angry-csm",
+    "dialogue": "What in the SAM HELL are you doing in here? Daggum COMMANDER and me's got the COMMAND TENT covered. WE NEED YOU TO FIRE THE DAGGOM MORTARS, HUAH? NOW GET ON OUTTA HERE BEFORE I KICK YOU INTO NEXT WEEK!"
+  },
+  {
+    "name": "proud-csm",
+    "dialogue": "I always knew you were a leader. If you get your run time up, you might even be able to go to Ranger School someday. Here's a Certificate of Excellence for single-handedly repelling that attack. You're on KP. Get to work."
+  },
+  {
+    "name": "Specialist-Sham",
+    "dialogue": "Oh. Hey. I'm...um...recovering. Doc said so. I heard a mortar piece was near the Vehicle Yard"
+  }
+]

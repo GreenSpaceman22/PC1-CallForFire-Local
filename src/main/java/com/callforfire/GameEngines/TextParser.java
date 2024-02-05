@@ -41,6 +41,8 @@ public class TextParser {
 
     public void parseActionAndNoun(OptionHandler optionHandler) {
         // TODO: Update this to use the synonym checker and keywords, this should also set the properties of OptionHandler before we get over there I.E (isGet, isFire, isMove)
+
+
         actionNoun.addAll(this.getParsedWords());
 
         if("go".equalsIgnoreCase(actionNoun.get(0))) {
