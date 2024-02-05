@@ -1,80 +1,75 @@
 {
-  "mortarPit" : {
+  "Mortar pit" : {
     "description" : "You are in a sandy mortar pit, you have a radio.",
-    "north" : "firingPoint",
-    "west" : "kitchen",
-    "south" : "hallway",
-    "east" : "a wall"
+    "north" : "Firing point",
+    "west" : "Ammo depot",
+    "south" : "Hesco barriers",
+    "east" : "Hesco barriers",
+    "NPCs" : "Radio",
+    "items" :["Sand"]
   },
-  "firing" : {
-    "description" : "you are in the kitchen, there is a counter, refrigerator, sink, and oven.",
-    "north" : "a wall",
-    "west" : "diningRoom",
-    "south" : "a wall",
-    "east" : "livingRoom"
-  },
-  "diningRoom" : {
-    "description" : "you are in the dining room, there is a table with chairs, and two windows",
-    "north" : "a wall",
-    "west" : "a wall",
-    "south" : "familyRoom",
-    "east" : "kitchen"
-  },
-  "familyRoom" :{
-    "description" : "you are in the family room, there is a couple sofas, a fire place, and a bird cage. The birds are singing",
-    "north" : "diningRoom",
-    "west" : "a wall",
-    "south" : "a wall",
-    "east" : "hallway"
-  },
-  "hallway" : {
-    "description" : "you are in the hallway, its a little dark, and there is pictures on the wall",
-    "north" : "staircase",
-    "west" : "familyRoom",
-    "south" : "guestRoom",
-    "east" : "livingRoom"
-  },
-  "guestRoom" : {
-    "description" : "you are in the guest room, there is a window, a murphy bed, and some pictures on the wall",
-    "north" : "hallway",
-    "west" : "a wall",
-    "south" : "a wall",
-    "east" : "a wall"
-  },
-  "staircase" : {
-    "description" : "you are on the stairs, they are wood, and there is a soviet poster on the wall",
-    "north" : "a wall",
-    "west" : "a wall",
-    "south" : "hallway",
-    "east" : "landing"
-  },
-  "landing" : {
-    "description" : "you are in the landing, it connects the upstairs rooms",
-    "north" : "bathroom",
-    "west" : "staircase",
-    "south" : "office",
-    "east" : "masterBedroom"
-  },
-  "bathroom" : {
-    "description" : "you are in the bathroom it's clean",
-    "north" : "a wall",
-    "west" : "a wall",
-    "south" : "landing",
-    "east" : "a wall"
-  },
-  "office" : {
-    "description" : "you are in the office, there is a desk, a bird cage",
-    "north" : "landing",
-    "west" : "a wall",
-    "south" : "a wall",
-    "east" : "a wall"
-  },
-  "masterBedroom" : {
-    "description" : "You are in the master bedroom, there is a bed, and a window",
-    "north" : "a wall",
-    "west" : "landing",
-    "south" : "a wall",
-    "east" : "a wall"
-  }
+  "Firing point" : {
+    "description" : "You hoof your way to the firing point, the equipment is no longer there except for a broken mortar tube, and Private Snuffy. ",
+    "north" : "Hesco barriers",
+    "west" : "Vehicle yard",
+    "south" : "Mortar pit",
+    "east" : "TOC",
+    "NPCs" : "Private-Snuffy",
+    "items" : ["Broken Mortar tube"]
 
+  },
+  "Vehicle yard" : {
+    "description" : "you are in the Vehicle yard, there is various vehicles around and your mortar tube",
+    "north" : "Hesco barriers",
+    "west" : "Hesco barriers",
+    "south" : "Ammo depot",
+    "east" : "Firing point",
+    "NPCs" : "Radio",
+    "items" : ["Mortar tube"]
+  },
+  "Ammo depot" :{
+    "description" : "you are in the Ammo depot, there is a bunch of ammo crates, a stack of mortar rounds, and a bunch of un-used cheese charges",
+    "north" : "Vehicle yard",
+    "west" : "Hesco barriers",
+    "south" : "Hesco barriers",
+    "east" : "Mortar pit",
+    "NPCs" : "",
+    "items" : ["Mortar rounds", "Cheese charges"]
+  },
+  "Range" : {
+    "description" : "you are at the Range, there is your mortar base plate",
+    "north" : "TOC",
+    "west" : "Mortar pit",
+    "south" : "Hesco barriers",
+    "east" : "Quarters",
+    "NPCs" : "Radio",
+    "items" : ["Mortar base plate"]
+  },
+  "Quarters" : {
+    "description" : "you are in the Quarters, inside is Specialist Sham, and a collection of CopenHagen Wintergreen",
+    "north" : "Chow hall",
+    "west" : "Range",
+    "south" : "Hesco barriers",
+    "east" : "Hesco barriers",
+    "NPCs" : "Specialist Sham",
+    "items" : ["CopenHagen Wintergreen"]
+  },
+  "Chow hall" : {
+    "description" : "you are in the Chow hall, there are scattered chairs and tables, as well as Cookie the cook",
+    "north" : "Hesco barriers",
+    "west" : "TOC",
+    "south" : "Quarters",
+    "east" : "Hesco barriers",
+    "NPCs" : "Cookie",
+    "items" : ["Cheese"]
+  },
+  "TOC" : {
+    "description" : "you stumble in and crash through the tent flaps of the TOC, there is an Angry Command Sergeant Major",
+    "north" : "Hesco barriers",
+    "west" : "Firing point",
+    "south" : "Range",
+    "east" : "Chow hall",
+    "NPCs" : "Angry Command Sergeant Major",
+    "items" : ["Sand"]
+  }
 }
