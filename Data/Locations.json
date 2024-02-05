@@ -2,7 +2,7 @@
   "Firing Point": {
     "description": "You hoof your way to the firing point, the equipment is no longer there except for a broken mortar tube, and private Snuffy.",
     "item": "Broken Mortar Tube",
-    "character": "Private Snuffy",
+    "character": "Private-Snuffy",
     "north": "Hesco Barriers",
     "south": "Mortar Pit",
     "east": "TOC",
