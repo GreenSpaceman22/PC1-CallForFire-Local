@@ -1,6 +1,8 @@
 package com.callforfire.GameEngines;
 
+import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
 import com.callforfire.GameEngines.SupportEngines.MessageReader;
+import com.callforfire.Models.NPC;
 import com.callforfire.Utils.InvalidCommand;
 
 import java.util.ArrayList;
@@ -46,7 +48,8 @@ public class OptionHandler {
                 // Handle fire
                 break;
             case 3:
-                // HandleTalk
+                handleTalkWithNpc(actionNoun.get(1));
+                break;
             case 4:
                 handleLook(actionNoun);
                 break;
@@ -74,7 +77,7 @@ public class OptionHandler {
 
     private void handleNounChoice(List<String> actionNoun) {
         // TODO: Update this to use the JSON_Reader to check if noun is a location or item;
-        if(actionNoun.get(1).equals("north".toLowerCase())) {
+        if (actionNoun.get(1).equals("north".toLowerCase())) {
             setLocationChoice("north");
             setLocationDescription("You hoof your way to the firing point, the equipment is no longer there except for a broken mortar tube, and private Snuffy.");
             setNorth("Hesco Barriers");
@@ -109,7 +112,16 @@ public class OptionHandler {
     public void handleMove(String locationChoice, List<String> actionNoun) {
         handleNounChoice(actionNoun); // Set the next location variables
 
-        MessageReader.printLocationMessage(getLocationDescription(), getNorth(), getSouth(),  getEast(), getWest());
+        MessageReader.printLocationMessage(getLocationDescription(), getNorth(), getSouth(), getEast(), getWest());
+    }
+
+    public void handleTalkWithNpc(String npcName) {
+        NPC npcDialogue = JSON_Reader.readNpcDialogue(npcName);
+        if (npcDialogue != null) {
+            MessageReader.printNPCDialogue(npcDialogue);
+        } else {
+            MessageReader.printError();
+        }
     }
 
     public static void returnOptionFromJsonLocation(String location) {

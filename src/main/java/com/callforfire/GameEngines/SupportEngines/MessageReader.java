@@ -3,6 +3,7 @@ package com.callforfire.GameEngines.SupportEngines;
 import com.apps.util.Console;
 import com.callforfire.GameEngines.OptionHandler;
 import com.callforfire.GameEngines.PlayerEngine;
+import com.callforfire.Models.NPC;
 
 import java.util.List;
 
@@ -24,5 +25,14 @@ public class MessageReader {
         System.out.println(locationDescription);
         System.out.println("To your north is " + north + ", to your east is " + east);
         System.out.println("To your south is " + south + ", to your west is " + west);
+    }
+
+    public static void printNPCDialogue(NPC npc) {
+        System.out.println(npc.getName());
+        System.out.println(npc.getDialogue());
+    }
+
+    public static void printError() {
+        System.out.println("Sorry that command is not recognized");
     }
 }
