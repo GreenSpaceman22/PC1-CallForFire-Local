@@ -43,7 +43,7 @@ public class OptionHandler {
                 handleMove(locationChoice, actionNoun);
                 break;
             case 2:
-                // HandleLocation
+                // Handle fire
                 break;
             case 3:
                 // HandleTalk
@@ -108,8 +108,6 @@ public class OptionHandler {
     // Handle if the movement command was given
     public void handleMove(String locationChoice, List<String> actionNoun) {
         handleNounChoice(actionNoun); // Set the next location variables
-        // TODO: use the JSON_Reader to determine information of the "location" argument they went to
-        // For now we will hard code the response
 
         MessageReader.printLocationMessage(getLocationDescription(), getNorth(), getSouth(),  getEast(), getWest());
     }
