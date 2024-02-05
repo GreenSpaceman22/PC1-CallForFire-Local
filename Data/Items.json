@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Mortar Tube",
+    "description": "A long hollow tube, closed at one end, it's almost as tall as you are and pretty heavy."
+  },
+  {
+    "name": "Base Plate",
+    "description": "A flat, round, metal circle with spikes on the bottom. This anchors the mortar tube to the ground."
+  },
+  {
+    "name": "Bipod",
+    "description": "A metal contraption with two extendable legs, this keeps the mortar tube stationary."
+  },
+  {
+    "name": "Mortar Round",
+    "description": "A football shaped green object with a tail and bright yellow letting on the side.",
+    "type": ["high explosive", "white phosphorous", "smoke", "illumination", "training"]
+  },
+  {
+    "name": "Cheese Charge",
+    "description": "A 'C' shaped puffy little donut, this can be placed on the tail of a mortar round to give extra power."
+  },
+  {
+    "name": "Cheese",
+    "description": "Strong smelling and yellow, it more closely resembles plastic than something edible."
+  },
+  {
+    "name": "",
+    "description": ""
+  },
+  {
+    "name": "",
+    "description": ""
+  },
+  {
+    "name": "",
+    "description": ""
+  },
+  {
+    "name": "",
+    "description": ""
+  }
+]
