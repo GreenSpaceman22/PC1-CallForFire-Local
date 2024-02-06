@@ -54,10 +54,12 @@ public class JSON_Reader {
         Location.setWest(newLocation.get("west").getAsString());
     }
 
-    public static void readItemsJson(String myItem) throws FileNotFoundException {
+    public static String readItemDescription(String myItem) throws FileNotFoundException {
         Gson gson = new Gson();
 
-        JsonObject json = gson.fromJson(new FileReader("src/locations.json"), JsonObject.class);
-        JsonObject currentThing = json.getAsJsonObject(myItem);
+        JsonObject gsonItems = gson.fromJson(new FileReader("Data/Items.json"), JsonObject.class);
+        JsonObject jsonItem = gsonItems.getAsJsonObject(myItem);
+        String itemDescription = jsonItem.get("description").getAsString();
+        return itemDescription;
     }
 }
