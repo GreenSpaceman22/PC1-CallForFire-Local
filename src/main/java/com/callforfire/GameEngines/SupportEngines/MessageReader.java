@@ -3,6 +3,8 @@ package com.callforfire.GameEngines.SupportEngines;
 import com.apps.util.Console;
 import com.callforfire.Models.NPC;
 
+import java.util.List;
+
 public class MessageReader {
     private String itemDialogue;
 
@@ -43,5 +45,17 @@ public class MessageReader {
 
     public static void printItemAddedMessage(String itemName) {
         System.out.println("You picked up the " + itemName + " and put it in your inventory");
+    }
+
+    // Display Player Inventory
+    public static void displayPlayerInventory(List<String> inventory) {
+        if(inventory != null) {
+            System.out.println("Your Inventory: ");
+            for(String item : inventory) {
+                System.out.println(item);
+            }
+        } else {
+            System.out.println("Your inventory is empty");
+        }
     }
 }
