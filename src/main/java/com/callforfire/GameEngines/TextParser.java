@@ -53,7 +53,7 @@ public class TextParser {
             optionHandler.setLook(true);
         } else if("fire".equalsIgnoreCase(actionNoun.get(0))) {
             optionHandler.setFire(true);
-        } else {
+        } else if("get".equalsIgnoreCase(actionNoun.get(0))) {
             optionHandler.setGet(true);
         }
     }
