@@ -2,8 +2,11 @@ package com.callforfire.Utils;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -22,16 +25,24 @@ public class WelcomeTitleDisplay {
         for (String line : fileToRead) {
             System.out.println(line);
         }
+        Gson gson = new Gson();
+        try {
+            JsonObject json = gson.fromJson(new FileReader("Data/GameText.json"), JsonObject.class);
+            String welcome = json.get("intro").getAsString();
+            String nextLine = json.get("next").getAsString();
 
-        String displayTransition = prompter.prompt("\n\nPress enter to continue\n> ");
-        Console.clear();
-        if(WannaPlay.playNewGame()) {
-            String userInput = prompter.prompt("You awaken with a jolt. \nThe acrid scent of smoke and the distant thud of explosions assaulting your senses. \nYou find yourself in a mortar pit, surrounded by sandbags and the chaos of battle. \nThe crackle of your radio pierces the air. \nUrgent voices relay requests for fire support. \nYou grasp the radio, and a voice on the other end relays coordinates. \nYour comrades need your mortar fire to hold the enemy back. \nIt seems your mortar tube, base plate, and ammo are scattered. \nYou must locate and assemble your mortar to provide the much-needed support.\n The radio continues its relentless chatter. \nYou look to your team for help. \n \nPress enter to continue\n> ");
-
+            String displayTransition = prompter.prompt(nextLine);
             Console.clear();
-        }
-        else {
-            System.exit(0);
+            if(WannaPlay.playNewGame()) {
+                String userInput = prompter.prompt(welcome);
+
+                Console.clear();
+            }
+            else {
+                System.exit(0);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
 
 
