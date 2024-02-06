@@ -17,8 +17,7 @@ public class JSON_Reader {
     public static NPC readNpcDialogue(String npcName) {
         try {
             // Read JSON file into a List of NPC objects
-            Type npcListType = new TypeToken<List<NPC>>() {
-            }.getType();
+            Type npcListType = new TypeToken<List<NPC>>() {}.getType();
             List<NPC> npcList = gson.fromJson(new FileReader("Data/NPC.json"), npcListType);
 
             for (NPC npc : npcList) {

@@ -17,7 +17,6 @@ public class OptionHandler {
     private boolean help;
     private boolean inventory;
 
-
     // Methods
     public void run(List<String> actionNoun) {
         handlePlayerAction(this.isGet(), this.isMove(), this.isFire(), this.isTalk(), this.isLook(), this.isInventory(), this.isHelp(), actionNoun);
@@ -104,19 +103,23 @@ public class OptionHandler {
         return false;
     }
 
-    // List<String> actionNoun passed from TextParser
-    // actionNoun[0] is the verb and actionNoun[1] is the noun
+
     public void handleLook(List<String> actionNoun) {
-        String noun = actionNoun.get(1);
-//        if (actionNoun.size() < 2) {
-//            MessageReader.printLocationMessage(getLocationDescription(), getNorth(), getEast(), getSouth(), getWest());
-//        }
-//        // check and see if noun is in the JSON list of nouns; if not give invalid command
-//        else if (!nouns.contains(noun)) {
-//            InvalidCommand.showInvalidCommand(actionNoun);
-//        } else if (nouns.contains(noun)) {
-//            System.out.println("\nYou take a closer look and see that " + noun + " is here");
-//        }
+        if (actionNoun.size() == 1 && actionNoun.get(0).equalsIgnoreCase("look")) {
+            Location location = JSON_Reader.getLocationByName(PlayerEngine.getCurrentLocation());
+            if (location != null) {
+                MessageReader.printLocationMessage(location.getDescription(), location.getNorth(), location.getSouth(), location.getEast(), location.getWest());
+            } else {
+                MessageReader.printError();
+            }
+        } else {
+            String description = JSON_Reader.readItemDescription(actionNoun.get(1));
+            if(description != null) {
+                MessageReader.printItemDescription(description);
+            } else {
+                MessageReader.printError();
+            }
+        }
     }
 
     public void resetOptionHandler() {

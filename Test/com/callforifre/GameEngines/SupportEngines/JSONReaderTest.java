@@ -46,4 +46,11 @@ public class JSONReaderTest {
         Location location = JSON_Reader.returnLocationInformationForDirectionToMove("Firing Point", "blahblah");
         assertNull(location);
     }
+
+    @Test
+    public void readItemDescriptionShouldNotBeNullAndPrintItemDescription() {
+        String description = JSON_Reader.readItemDescription("cheese");
+        System.out.println(description);
+        assertNotNull(description);
+    }
 }

@@ -22,7 +22,7 @@
   },
   {
     "name": "Vehicle yard",
-    "description" : "you are in the Vehicle yard, there is various vehicles around and your mortar tube",
+    "description" : "you are in the Vehicle yard, there is various vehicles around and your mortar-tube",
     "north" : "Hesco barriers",
     "west" : "Hesco barriers",
     "south" : "Ammo depot",
@@ -32,7 +32,7 @@
   },
   {
     "name": "Ammo depot",
-    "description" : "you are in the Ammo depot, there is a bunch of ammo crates, a stack of mortar rounds, and a bunch of un-used cheese charges",
+    "description" : "You are in the ammo depot, there is ammo for the mortar tube here and cheese-charges",
     "north" : "Vehicle yard",
     "west" : "Hesco barriers",
     "south" : "Hesco barriers",
@@ -42,23 +42,23 @@
   },
   {
     "name": "Range",
-    "description" : "you are at the Range, there is your mortar base plate",
+    "description" : "you are at the Range, there is your mortar base-plate",
     "north" : "TOC",
     "west" : "Mortar pit",
     "south" : "Hesco barriers",
     "east" : "Quarters",
     "NPCs" : "Radio",
-    "items" : ["Mortar base plate"]
+    "items" : ["base-plate"]
   },
   {
     "name": "Quarters",
-    "description" : "you are in the Quarters, inside is Specialist Sham, and a collection of CopenHagen Wintergreen",
+    "description" : "you are in the Quarters, inside is Specialist-Sham, and a collection of CopenHagen-Wintergreen",
     "north" : "Chow hall",
     "west" : "Range",
     "south" : "Hesco barriers",
     "east" : "Hesco barriers",
     "NPCs" : "Specialist Sham",
-    "items" : ["CopenHagen Wintergreen"]
+    "items" : ["CopenHagen-Wintergreen"]
   },
   {
     "name": "Chow hall",
@@ -72,7 +72,7 @@
   },
   {
     "name":  "TOC",
-    "description" : "you stumble in and crash through the tent flaps of the TOC, there is an Angry Command Sergeant Major",
+    "description" : "you stumble in and crash through the tent flaps of the TOC, there is an Angry-csm",
     "north" : "Hesco barriers",
     "west" : "Firing point",
     "south" : "Range",

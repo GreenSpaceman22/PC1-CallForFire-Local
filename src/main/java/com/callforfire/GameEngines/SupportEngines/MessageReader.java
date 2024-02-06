@@ -22,6 +22,10 @@ public class MessageReader {
         System.out.println(npc.getDialogue());
     }
 
+    public static void printItemDescription(String description) {
+        System.out.println(description);
+    }
+
     public static void printError() {
         System.out.println("Sorry that command is not recognized");
     }
