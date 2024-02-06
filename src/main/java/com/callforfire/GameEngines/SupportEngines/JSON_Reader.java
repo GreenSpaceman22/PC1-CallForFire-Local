@@ -4,8 +4,10 @@ import com.callforfire.Models.Item;
 import com.callforfire.Models.Location;
 import com.callforfire.Models.NPC;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -99,4 +101,62 @@ public class JSON_Reader {
             return null;
         }
     }
+
+    public static String readVerbJson(List<String> userInput)  {
+        try {
+            String myVerb = "";
+            String[] verbs = new String[] {"go","talk","get","look","fire"};
+
+            Gson gson = new Gson();
+            JsonObject json = gson.fromJson(new FileReader("Data/Verbs.json"), JsonObject.class);
+
+            int iter = 0;
+            for (String word : userInput) {
+                String verb = json.get(verbs[iter]).getAsString();
+                String[] synonyms = verb.split(" ");
+                for (String synonym : synonyms) {
+                    if (word.equals(synonym)) {
+                        myVerb = verbs[iter];
+                        break;
+                    }
+                    else {
+                        return null;
+                    }
+                }
+                iter++;
+            }
+            return myVerb;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // WILL RETURN NULL IF INPUT IS INVALID
+    public static String readNounJson(List<String> userInput) {
+        try {
+            String myNoun = "";
+            Gson gson = new Gson();
+            JsonObject json = gson.fromJson(new FileReader("Data/Nouns.json"), JsonObject.class);
+
+            for (String word : userInput) {
+                String noun = json.get("nouns").getAsString();
+                String[] synonyms = noun.split(" ");
+                for (String synonym : synonyms) {
+                    if (word.equals(synonym)) {
+                        myNoun = synonym;
+                        break;
+                    }
+                    else {
+                        return null;
+                    }
+                }
+            }
+            return myNoun;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
