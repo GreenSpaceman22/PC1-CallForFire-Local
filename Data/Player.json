@@ -1,9 +1,7 @@
 {
-  "currentLocation": "Vehicle yard",
+  "currentLocation": "Firing point",
   "playerInventory": [
-    "broken-mortar-tube",
-    "cheese-charges",
-    "mortar-tube"
+    "broken-mortar-tube"
   ],
   "maxInventoryWeight": 120,
   "currentInventoryWeight": 0

@@ -37,6 +37,12 @@ public class PlayerEngine {
         return null;
     }
 
+    public void clearPlayerInventory() {
+        playerInventory.clear(); // Clear the inventory list
+        // Update player's JSON file
+        JSON_Writer.writePlayerToFile(this);
+    }
+
     // GETTERS AND SETTERS
     public String getCurrentLocation() {
         return currentLocation;
