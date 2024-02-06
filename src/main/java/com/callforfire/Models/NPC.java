@@ -5,6 +5,7 @@ public class NPC {
     private String dialogue;
 
     public NPC() {}
+
     public NPC(String name, String dialogue) {
         this.name = name;
         this.dialogue = dialogue;

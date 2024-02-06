@@ -35,6 +35,7 @@ public class CallForFire_App {
     }
 
     public void intialize() {
+        Console.clear();
         WelcomeTitleDisplay.render("banner");
         // TODO: Build the splash screen and credits in here, follow dev ops for more clear instruction
     }
