@@ -1,6 +1,7 @@
 package com.callforfire.GameEngines;
 
 import com.apps.util.Prompter;
+import com.callforfire.Utils.UtilFunctions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,16 +46,28 @@ public class TextParser {
         actionNoun.addAll(this.getParsedWords());
         parsedWords.clear();
 
+        // move, get, fire, talk, look, inventory, drop, help, quit
         if("go".equalsIgnoreCase(actionNoun.get(0))) {
             optionHandler.setMove(true);
+        } else if("get".equalsIgnoreCase(actionNoun.get(0))) {
+            optionHandler.setGet(true);
+        } else if ("fire".equalsIgnoreCase(actionNoun.get(0))) {
+            optionHandler.setFire(true);
         } else if("talk".equalsIgnoreCase(actionNoun.get(0))) {
             optionHandler.setTalk(true);
         } else if ("look".equalsIgnoreCase(actionNoun.get(0))) {
             optionHandler.setLook(true);
-        } else if("fire".equalsIgnoreCase(actionNoun.get(0))) {
-            optionHandler.setFire(true);
-        } else if("get".equalsIgnoreCase(actionNoun.get(0))) {
-            optionHandler.setGet(true);
+        }  else if ("inventory".equalsIgnoreCase(actionNoun.get(0))) {
+            optionHandler.setInventory(true);
+        } else if ("drop".equalsIgnoreCase(actionNoun.get(0))) {
+            optionHandler.setDrop(true);
+        } else if ("help".equalsIgnoreCase(actionNoun.get(0))) {
+            optionHandler.setHelp(true);
+        } else if ("quit".equalsIgnoreCase(actionNoun.get(0))) {
+            optionHandler.setQuit(true);
+        } else {
+            UtilFunctions.showInvalidCommand(parsedWords);
+            getUserString(optionHandler);
         }
     }
 

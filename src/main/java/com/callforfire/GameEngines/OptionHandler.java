@@ -5,8 +5,8 @@ import com.callforfire.GameEngines.SupportEngines.MessageReader;
 import com.callforfire.Models.Item;
 import com.callforfire.Models.Location;
 import com.callforfire.Models.NPC;
-import com.callforfire.Utils.HelpFunction;
 import com.callforfire.Utils.OptionChecker;
+import com.callforfire.Utils.UtilFunctions;
 
 import java.util.List;
 
@@ -17,18 +17,19 @@ public class OptionHandler {
     private boolean fire;
     private boolean talk;
     private boolean look;
-    private boolean help;
     private boolean inventory;
+    private boolean drop;
+    private boolean help;
+    private boolean quit;
 
     // Methods
     public void run(List<String> actionNoun) {
-        handlePlayerAction(this.isGet(), this.isMove(), this.isFire(), this.isTalk(), this.isLook(), this.isInventory(), this.isHelp(), actionNoun);
+        handlePlayerAction(this.isMove(), this.isGet(), this.isFire(), this.isTalk(), this.isLook(), this.isInventory(), this.isDrop(), this.isHelp(), this.isQuit(), actionNoun);
     }
 
-    // TODO: need to add options for drop(items), help
-    public void handlePlayerAction(boolean get, boolean move, boolean fire, boolean talk, boolean look, boolean inventory, boolean help, List<String> actionNoun) {
+    public void handlePlayerAction(boolean move, boolean get, boolean fire, boolean talk, boolean look, boolean inventory, boolean drop, boolean help, boolean quit, List<String> actionNoun) {
         // Determine which case to execute based on boolean variables
-        int caseNumber = determineCase(get, move, fire, talk, look, inventory, help);
+        int caseNumber = determineCase(move, get, fire, talk, look, inventory, drop, help, quit);
 
         switch (caseNumber) {
             case 1:
@@ -38,17 +39,22 @@ public class OptionHandler {
                 handleGetItem(actionNoun.get(1));
                 break;
             case 3:
-                handleTalkWithNpc(actionNoun.get(1));
+                // Fire Logic here
                 break;
             case 4:
+                handleTalkWithNpc(actionNoun.get(1));
+                break;
+            case 5:
                 handleLook(actionNoun);
                 break;
-            // Add more cases as needed
-            case 5:
-//                checkItemInPlayerInventory();
-                break;
             case 6:
-                HelpFunction.helpFunction();
+                UtilFunctions.helpFunction();
+            case 7:
+                // Drop Logic here
+            case 8:
+                // Help Logic here
+            case 9:
+                // Quit Logic here
             default:
                 // Default case
 //                InvalidCommand.showInvalidCommand(TextParser.getParsedWords());
@@ -56,20 +62,26 @@ public class OptionHandler {
         }
     }
 
-
-    private static int determineCase(boolean get, boolean move, boolean fire, boolean talk, boolean look, boolean inventory, boolean help) {
+    // move, get, fire, talk, look, inventory, drop, help, quit
+    private static int determineCase(boolean move, boolean get, boolean fire, boolean talk, boolean look, boolean inventory, boolean drop, boolean help, boolean quit) {
         if (move) {
             return 1;
         } else if (get) {
             return 2;
-        } else if (talk) {
+        } else if (fire) {
             return 3;
-        } else if (look) {
+        } else if (talk) {
             return 4;
-        } else if (inventory) {
+        } else if (look) {
             return 5;
-        } else if (help) {
+        } else if (inventory) {
             return 6;
+        } else if (drop) {
+            return 7;
+        } else if (help) {
+            return 8;
+        } else if (quit) {
+            return 9;
         } else {
             return 0; // Default case
         }
@@ -98,8 +110,8 @@ public class OptionHandler {
         boolean itemIsPresent = OptionChecker.checkItemIsPresentInLocation(playerEngine.getCurrentLocation(), itemName);
         boolean playerAlreadyHasItem = OptionChecker.checkItemNotInPlayerInventory(itemName);
 
-        if(!playerAlreadyHasItem) {
-            if(itemIsPresent) {
+        if (!playerAlreadyHasItem) {
+            if (itemIsPresent) {
                 playerEngine.addItemToInventory(itemName);
                 MessageReader.printItemAddedMessage(itemName);
             } else {
@@ -120,7 +132,7 @@ public class OptionHandler {
             }
         } else {
             Item item = JSON_Reader.readItemDescription(actionNoun.get(1));
-            if(item != null) {
+            if (item != null) {
                 MessageReader.printItemDescription(item.getDescription());
             } else {
                 MessageReader.printError();
@@ -128,14 +140,17 @@ public class OptionHandler {
         }
     }
 
+    // move, get, fire, talk, look, inventory, drop, help, quit
     public void resetOptionHandler() {
-        setGet(false);
         setMove(false);
-        setInventory(false);
-        setLook(false);
+        setGet(false);
         setFire(false);
         setTalk(false);
+        setLook(false);
+        setInventory(false);
+        setDrop(false);
         setHelp(false);
+        setQuit(false);
     }
 
     // Getters/Setters
@@ -193,5 +208,21 @@ public class OptionHandler {
 
     public void setInventory(boolean inventory) {
         this.inventory = inventory;
+    }
+
+    public boolean isDrop() {
+        return drop;
+    }
+
+    public void setDrop(boolean drop) {
+        this.drop = drop;
+    }
+
+    public boolean isQuit() {
+        return quit;
+    }
+
+    public void setQuit(boolean quit) {
+        this.quit = quit;
     }
 }
