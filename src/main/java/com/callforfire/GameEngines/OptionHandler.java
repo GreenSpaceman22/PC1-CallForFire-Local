@@ -2,6 +2,7 @@ package com.callforfire.GameEngines;
 
 import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
 import com.callforfire.GameEngines.SupportEngines.MessageReader;
+import com.callforfire.Models.Item;
 import com.callforfire.Models.Location;
 import com.callforfire.Models.NPC;
 import com.callforfire.Utils.HelpFunction;
@@ -42,7 +43,8 @@ public class OptionHandler {
                 break;
             // Add more cases as needed
             case 5:
-                checkItemInPlayerInventory();
+//                checkItemInPlayerInventory();
+                break;
             case 6:
                 HelpFunction.helpFunction();
             default:
@@ -71,7 +73,7 @@ public class OptionHandler {
         }
     }
 
-    public void handleMove(List<String> actionNoun) {
+    private void handleMove(List<String> actionNoun) {
         System.out.println("ActionNoun in handle move: " + actionNoun.get(1));
         Location location = JSON_Reader.returnLocationInformationForDirectionToMove(PlayerEngine.getCurrentLocation(), actionNoun.get(1));
         if (location != null) {
@@ -91,17 +93,17 @@ public class OptionHandler {
         }
     }
 
-    public boolean checkItemInPlayerInventory() {
-        // TODO: Update this to use the JSON_Reader to look at the players inventory
-        List<String> playerInventory = PlayerEngine.getPlayerInventory();
-        System.out.println("You have the following items in your inventory:");
-        for (String x : playerInventory
-        ) {
-            String y = JSON_Reader.readItemDescription(x);
-            System.out.println(x + ": " + y);
-        }
-        return false;
-    }
+//    public boolean checkItemInPlayerInventory() {
+//        // TODO: Update this to use the JSON_Reader to look at the players inventory
+//        List<String> playerInventory = PlayerEngine.getPlayerInventory();
+//        System.out.println("You have the following items in your inventory:");
+//        for (String x : playerInventory
+//        ) {
+//            String y = JSON_Reader.readItemDescription(x);
+//            System.out.println(x + ": " + y);
+//        }
+//        return false;
+//    }
 
 
     public void handleLook(List<String> actionNoun) {
@@ -113,9 +115,9 @@ public class OptionHandler {
                 MessageReader.printError();
             }
         } else {
-            String description = JSON_Reader.readItemDescription(actionNoun.get(1));
-            if(description != null) {
-                MessageReader.printItemDescription(description);
+            Item item = JSON_Reader.readItemDescription(actionNoun.get(1));
+            if(item != null) {
+                MessageReader.printItemDescription(item.getDescription());
             } else {
                 MessageReader.printError();
             }

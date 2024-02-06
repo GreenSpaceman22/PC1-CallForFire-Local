@@ -1,9 +1,9 @@
 package com.callforfire.GameEngines.SupportEngines;
 
+import com.callforfire.Models.Item;
 import com.callforfire.Models.Location;
 import com.callforfire.Models.NPC;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.FileReader;
@@ -83,11 +83,17 @@ public class JSON_Reader {
     }
 
 
-    public static String readItemDescription(String myItem) {
+    public static Item readItemDescription(String myItem) {
         try {
-            JsonObject gsonItems = gson.fromJson(new FileReader("Data/Items.json"), JsonObject.class);
-            JsonObject jsonItem = gsonItems.getAsJsonObject(myItem);
-            return jsonItem.get("description").getAsString();
+            Type itemListType = new TypeToken<List<Item>>() {}.getType();
+            List<Item> itemList = gson.fromJson(new FileReader("Data/Items.json"), itemListType);
+
+            for (Item item : itemList) {
+                if (item.getName().trim().equalsIgnoreCase(myItem.trim())) {
+                    return item;
+                }
+            }
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
             return null;

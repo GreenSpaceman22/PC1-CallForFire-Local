@@ -1,6 +1,7 @@
 package com.callforifre.GameEngines.SupportEngines;
 
 import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
+import com.callforfire.Models.Item;
 import com.callforfire.Models.Location;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,8 +50,8 @@ public class JSONReaderTest {
 
     @Test
     public void readItemDescriptionShouldNotBeNullAndPrintItemDescription() {
-        String description = JSON_Reader.readItemDescription("cheese");
-        System.out.println(description);
-        assertNotNull(description);
+        Item item = JSON_Reader.readItemDescription("cheese");
+        System.out.println("Item: " + item.getName() + ", description: " + item.getDescription());
+        assertNotNull(item);
     }
 }
