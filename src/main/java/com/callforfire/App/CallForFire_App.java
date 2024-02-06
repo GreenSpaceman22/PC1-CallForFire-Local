@@ -26,15 +26,15 @@ public class CallForFire_App {
         // This should be outside the game loop and only showed during the begining phase
         MessageReader.printLocationMessage("You are in a sandy mortar pit, you have a radio.", "Firing Point", "Hesco Barriers", "range", "Ammo Depot");
 
-//        while(!isGameOver()) {
+        while(!isGameOver()) {
+            optionHandler.resetOptionHandler(); // Ensure all our actions are set to false
             List<String> actionNoun = textParser.getUserString(optionHandler);
             optionHandler.run(actionNoun);
-            System.out.println("\n Thanks for trying the demo");
-            Console.pause(5000);
-//        }
+        }
     }
 
     public void intialize() {
+        Console.clear();
         WelcomeTitleDisplay.render("banner");
         // TODO: Build the splash screen and credits in here, follow dev ops for more clear instruction
     }

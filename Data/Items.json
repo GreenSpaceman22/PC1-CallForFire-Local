@@ -1,10 +1,10 @@
 [
   {
-    "name": "Mortar Tube",
+    "name": "Mortar-Tube",
     "description": "A long hollow tube, closed at one end, it's almost as tall as you are and pretty heavy."
   },
   {
-    "name": "Base Plate",
+    "name": "Base-Plate",
     "description": "A flat, round, metal circle with spikes on the bottom. This anchors the mortar tube to the ground."
   },
   {
@@ -12,12 +12,12 @@
     "description": "A metal contraption with two extendable legs, this keeps the mortar tube stationary."
   },
   {
-    "name": "Mortar Round",
+    "name": "ammo",
     "description": "A football shaped green object with a tail and bright yellow letting on the side.",
     "type": ["high explosive", "white phosphorous", "smoke", "illumination", "training"]
   },
   {
-    "name": "Cheese Charge",
+    "name": "Cheese-Charge",
     "description": "A 'C' shaped puffy little donut, this can be placed on the tail of a mortar round to give extra power."
   },
   {
@@ -25,8 +25,8 @@
     "description": "Strong smelling and yellow, it more closely resembles plastic than something edible."
   },
   {
-    "name": "",
-    "description": ""
+    "name": "CopenHagen-Wintergreen",
+    "description": "A nice moist can of delicious snuff, this could come in handy"
   },
   {
     "name": "",

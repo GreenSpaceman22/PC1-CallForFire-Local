@@ -2,13 +2,11 @@ package com.callforfire.GameEngines;
 
 import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
 import com.callforfire.GameEngines.SupportEngines.MessageReader;
-import com.callforfire.Models.Inventory;
+import com.callforfire.Models.Item;
+import com.callforfire.Models.Location;
 import com.callforfire.Models.NPC;
 import com.callforfire.Utils.HelpFunction;
-import com.callforfire.Utils.InvalidCommand;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class OptionHandler {
@@ -19,22 +17,6 @@ public class OptionHandler {
     private boolean look;
     private boolean help;
     private boolean inventory;
-    private String actionResponse; // This should be set to whatever verb the user passed based on the booleans above after reading the JSON
-    private List<String> actionNoun = new ArrayList<>();
-    //    private List<String> nouns = new getJSONObject("nouns"); // intent is to get a list of all nouns from the JSON file
-    private List<String> nouns = new ArrayList<>();
-    private static String locationChoice = "north"; // This should be set if move is 'True', then read the JSON with this String
-    private static String locationName = "Firing Point";
-    private static String character = "Joe Snuffy";
-    private static String item = "broken mortar tube";
-
-
-    // These temporary for testing, these should be set by the JSON_Reader later,  we can create a seperate class for handling this later maybe?
-    private String locationDescription = "You hoof your way to the firing point, the equipment is no longer there except for a broken mortar tube, and private Snuffy.";
-    private String north;
-    private String east;
-    private String west;
-    private String south;
 
     // Methods
     public void run(List<String> actionNoun) {
@@ -42,13 +24,13 @@ public class OptionHandler {
     }
 
     // TODO: need to add options for drop(items), help
-    public void handlePlayerAction(boolean get, boolean move, boolean fire, boolean talk, boolean look, boolean inventory, boolean help, List<String> actionNoun) throws FileNotFoundException {
+    public void handlePlayerAction(boolean get, boolean move, boolean fire, boolean talk, boolean look, boolean inventory, boolean help, List<String> actionNoun) {
         // Determine which case to execute based on boolean variables
         int caseNumber = determineCase(get, move, fire, talk, look, inventory, help);
 
         switch (caseNumber) {
             case 1:
-                handleMove(locationChoice, actionNoun);
+                handleMove(actionNoun);
                 break;
             case 2:
                 // Handle fire
@@ -61,12 +43,13 @@ public class OptionHandler {
                 break;
             // Add more cases as needed
             case 5:
-                checkItemInPlayerInventory();
+//                checkItemInPlayerInventory();
+                break;
             case 6:
                 HelpFunction.helpFunction();
             default:
                 // Default case
-                InvalidCommand.showInvalidCommand(TextParser.getParsedWords());
+//                InvalidCommand.showInvalidCommand(TextParser.getParsedWords());
                 break;
         }
     }
@@ -90,44 +73,15 @@ public class OptionHandler {
         }
     }
 
-    private void handleNounChoice(List<String> actionNoun) {
-        // TODO: Update this to use the JSON_Reader to check if noun is a location or item;
-        if (actionNoun.get(1).equals("north".toLowerCase())) {
-            setLocationChoice("north");
-            setLocationDescription("You hoof your way to the firing point, the equipment is no longer there except for a broken mortar tube, and private Snuffy.");
-            setNorth("Hesco Barriers");
-            setSouth("Mortar pit");
-            setWest("TOC");
-            setEast("Vehicle Yard");
-            PlayerEngine.setCurrentLocation("Firing Point");
-        } else if (actionNoun.get(1).equalsIgnoreCase("south")) {
-            setLocationDescription("You can not go to the barriers, they are there for your protection");
-        } else if (actionNoun.get(1).equalsIgnoreCase("east")) {
-            setLocationChoice("east");
-            setLocationDescription("You walk into the range, \n" +
-                    "There is your mortars base plate");
-            setNorth("TOC");
-            setWest("Mortar Pit");
-            setEast("Quarters");
-            setSouth("Hesco Barriers");
-            PlayerEngine.setCurrentLocation("Range");
-        } else if (actionNoun.get(1).equalsIgnoreCase("west")) {
-            setLocationChoice("west");
-            setLocationDescription("You enter into the Ammo Depot \n" +
-                    "There are rounds, and unused cheese charges ");
-            setNorth("Vehicle Yard");
-            setSouth("Hesco Barriers");
-            setWest("Hesco Barriers");
-            setEast("Mortar Pit");
-            PlayerEngine.setCurrentLocation("Ammo Depot");
+    private void handleMove(List<String> actionNoun) {
+        System.out.println("ActionNoun in handle move: " + actionNoun.get(1));
+        Location location = JSON_Reader.returnLocationInformationForDirectionToMove(PlayerEngine.getCurrentLocation(), actionNoun.get(1));
+        if (location != null) {
+            PlayerEngine.setCurrentLocation(location.getName());
+            MessageReader.printLocationMessage(location.getDescription(), location.getNorth(), location.getSouth(), location.getEast(), location.getWest());
+        } else {
+            MessageReader.printMoveError();
         }
-    }
-
-    // Handle if the movement command was given
-    public void handleMove(String locationChoice, List<String> actionNoun) {
-        handleNounChoice(actionNoun); // Set the next location variables
-
-        MessageReader.printLocationMessage(getLocationDescription(), getNorth(), getSouth(), getEast(), getWest());
     }
 
     public void handleTalkWithNpc(String npcName) {
@@ -139,37 +93,45 @@ public class OptionHandler {
         }
     }
 
-    public static void returnOptionFromJsonLocation(String location) {
-        // TODO: Make this read from the JSON_Reader passing the location the of whichever direction the user picked I.E (north, south, yatta)
+//    public boolean checkItemInPlayerInventory() {
+//        // TODO: Update this to use the JSON_Reader to look at the players inventory
+//        List<String> playerInventory = PlayerEngine.getPlayerInventory();
+//        System.out.println("You have the following items in your inventory:");
+//        for (String x : playerInventory
+//        ) {
+//            String y = JSON_Reader.readItemDescription(x);
+//            System.out.println(x + ": " + y);
+//        }
+//        return false;
+//    }
 
-        // The location argument needs to be whatever was read from the json in the direction the user picked
-    }
 
-    public boolean checkItemInPlayerInventory() throws FileNotFoundException {
-        // TODO: Update this to use the JSON_Reader to look at the players inventory
-        List<String> playerInventory = PlayerEngine.getPlayerInventory();
-        System.out.println("You have the following items in your inventory:");
-        for (String x: playerInventory
-             ) {
-            String y = JSON_Reader.readItemDescription(x);
-            System.out.println(x + ": " + y);
-        }
-        return false;
-    }
-
-    // List<String> actionNoun passed from TextParser
-    // actionNoun[0] is the verb and actionNoun[1] is the noun
     public void handleLook(List<String> actionNoun) {
-        String noun = actionNoun.get(1);
-        if (actionNoun.size() < 2) {
-            MessageReader.printLocationMessage(getLocationDescription(), getNorth(), getEast(), getSouth(), getWest());
+        if (actionNoun.size() == 1 && actionNoun.get(0).equalsIgnoreCase("look")) {
+            Location location = JSON_Reader.getLocationByName(PlayerEngine.getCurrentLocation());
+            if (location != null) {
+                MessageReader.printLocationMessage(location.getDescription(), location.getNorth(), location.getSouth(), location.getEast(), location.getWest());
+            } else {
+                MessageReader.printError();
+            }
+        } else {
+            Item item = JSON_Reader.readItemDescription(actionNoun.get(1));
+            if(item != null) {
+                MessageReader.printItemDescription(item.getDescription());
+            } else {
+                MessageReader.printError();
+            }
         }
-        // check and see if noun is in the JSON list of nouns; if not give invalid command
-        else if (!nouns.contains(noun)) {
-            InvalidCommand.showInvalidCommand(actionNoun);
-        } else if (nouns.contains(noun)) {
-            System.out.println("\nYou take a closer look and see that " + noun + " is here");
-        }
+    }
+
+    public void resetOptionHandler() {
+        setGet(false);
+        setMove(false);
+        setInventory(false);
+        setLook(false);
+        setFire(false);
+        setTalk(false);
+        setHelp(false);
     }
 
     // Getters/Setters
@@ -213,92 +175,19 @@ public class OptionHandler {
         this.look = look;
     }
 
-
-    private boolean isHelp(boolean help) {
-        return look;
+    public boolean isHelp() {
+        return help;
     }
 
     public void setHelp(boolean help) {
         this.help = help;
     }
 
-    private boolean isInventory(boolean inventory) {
+    public boolean isInventory() {
         return inventory;
     }
 
     public void setInventory(boolean inventory) {
         this.inventory = inventory;
-    }
-
-    public static String getLocationChoice() {
-        return locationChoice;
-    }
-
-    public static void setLocationChoice(String locationChoice) {
-        OptionHandler.locationChoice = locationChoice;
-    }
-
-    public static String getLocationName() {
-        return locationName;
-    }
-
-    public static void setLocationName(String locationName) {
-        OptionHandler.locationName = locationName;
-    }
-
-    public static String getCharacter() {
-        return character;
-    }
-
-    public static void setCharacter(String character) {
-        OptionHandler.character = character;
-    }
-
-    public static String getItem() {
-        return item;
-    }
-
-    public static void setItem(String item) {
-        OptionHandler.item = item;
-    }
-
-    public String getLocationDescription() {
-        return locationDescription;
-    }
-
-    public void setLocationDescription(String locationDescription) {
-        this.locationDescription = locationDescription;
-    }
-
-    public String getNorth() {
-        return north;
-    }
-
-    public void setNorth(String north) {
-        this.north = north;
-    }
-
-    public String getEast() {
-        return east;
-    }
-
-    public void setEast(String east) {
-        this.east = east;
-    }
-
-    public String getWest() {
-        return west;
-    }
-
-    public void setWest(String west) {
-        this.west = west;
-    }
-
-    public String getSouth() {
-        return south;
-    }
-
-    public void setSouth(String south) {
-        this.south = south;
     }
 }

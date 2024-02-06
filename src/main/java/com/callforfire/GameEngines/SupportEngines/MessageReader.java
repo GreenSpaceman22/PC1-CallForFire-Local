@@ -1,22 +1,12 @@
 package com.callforfire.GameEngines.SupportEngines;
 
 import com.apps.util.Console;
-import com.callforfire.GameEngines.OptionHandler;
 import com.callforfire.GameEngines.PlayerEngine;
 import com.callforfire.Models.NPC;
-
-import java.util.List;
 
 public class MessageReader {
     private String itemDialogue;
 
-    public static void printMessage(List<String> actionNoun) {
-        if(actionNoun.size() < 2) {
-            System.out.println("You " + actionNoun.get(0) + " somewhere");
-        } else {
-            System.out.println("You " + actionNoun.get(0) + " " + actionNoun.get(1) + " to the " + OptionHandler.getLocationName());
-        }
-    }
 
     public static void printLocationMessage(String locationDescription, String north, String south, String east, String west) {
         Console.clear();
@@ -32,7 +22,15 @@ public class MessageReader {
         System.out.println(npc.getDialogue());
     }
 
+    public static void printItemDescription(String description) {
+        System.out.println(description);
+    }
+
     public static void printError() {
         System.out.println("Sorry that command is not recognized");
+    }
+
+    public static void printMoveError() {
+        System.out.println("Sorry you can't move there");
     }
 }
