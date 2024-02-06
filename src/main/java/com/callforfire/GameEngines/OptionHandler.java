@@ -4,7 +4,7 @@ import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
 import com.callforfire.GameEngines.SupportEngines.MessageReader;
 import com.callforfire.Models.Inventory;
 import com.callforfire.Models.NPC;
-import com.callforfire.Models.PlayerInventory;
+import com.callforfire.Utils.HelpFunction;
 import com.callforfire.Utils.InvalidCommand;
 
 import java.io.FileNotFoundException;
@@ -17,6 +17,7 @@ public class OptionHandler {
     private boolean fire;
     private boolean talk;
     private boolean look;
+    private boolean help;
     private boolean inventory;
     private String actionResponse; // This should be set to whatever verb the user passed based on the booleans above after reading the JSON
     private List<String> actionNoun = new ArrayList<>();
@@ -37,14 +38,13 @@ public class OptionHandler {
 
     // Methods
     public void run(List<String> actionNoun) {
-        handlePlayerAction(this.isGet(), this.isMove(), this.isFire(), this.isTalk(), this.isLook(), actionNoun);
+        handlePlayerAction(this.isGet(), this.isMove(), this.isFire(), this.isTalk(), this.isLook(), this.isInventory(), this.isHelp(), actionNoun);
     }
 
-
     // TODO: need to add options for drop(items), help
-    public void handlePlayerAction(boolean get, boolean move, boolean fire, boolean talk, boolean look, List<String> actionNoun) {
+    public void handlePlayerAction(boolean get, boolean move, boolean fire, boolean talk, boolean look, boolean inventory, boolean help, List<String> actionNoun) throws FileNotFoundException {
         // Determine which case to execute based on boolean variables
-        int caseNumber = determineCase(get, move, fire, talk, look);
+        int caseNumber = determineCase(get, move, fire, talk, look, inventory, help);
 
         switch (caseNumber) {
             case 1:
@@ -60,15 +60,19 @@ public class OptionHandler {
                 handleLook(actionNoun);
                 break;
             // Add more cases as needed
+            case 5:
+                checkItemInPlayerInventory();
+            case 6:
+                HelpFunction.helpFunction();
             default:
                 // Default case
-                InvalidCommand.showInvalidCommand(parsed);
+                InvalidCommand.showInvalidCommand(TextParser.getParsedWords());
                 break;
         }
     }
 
 
-    private static int determineCase(boolean get, boolean move, boolean fire, boolean talk, boolean look, boolean inventory) {
+    private static int determineCase(boolean get, boolean move, boolean fire, boolean talk, boolean look, boolean inventory, boolean help) {
         if (move) {
             return 1;
         } else if (get) {
@@ -79,6 +83,8 @@ public class OptionHandler {
             return 4;
         } else if (inventory) {
             return 5;
+        } else if (help) {
+            return 6;
         } else {
             return 0; // Default case
         }
@@ -205,6 +211,23 @@ public class OptionHandler {
 
     public void setLook(boolean look) {
         this.look = look;
+    }
+
+
+    private boolean isHelp(boolean help) {
+        return look;
+    }
+
+    public void setHelp(boolean help) {
+        this.help = help;
+    }
+
+    private boolean isInventory(boolean inventory) {
+        return inventory;
+    }
+
+    public void setInventory(boolean inventory) {
+        this.inventory = inventory;
     }
 
     public static String getLocationChoice() {
