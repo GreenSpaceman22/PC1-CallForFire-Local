@@ -11,10 +11,14 @@ public class PlayerEngine {
     private static List<String> playerInventory;
     private int maxInventoryWeight = 120;
     private int currentInventoryWeight;
+    private String name = "Player1"; // TODO: undo the hardcoding here
+    private int health = 100;
+    private String location = getCurrentLocation();
 
 
 
     // Methods
+
     public static void addItemToInventory(String itemToAdd) {
         // TODO: Update this method to use the JSON_Writer to update the players inventory in the "player.gson"
     }
@@ -37,15 +41,6 @@ public class PlayerEngine {
         return maxInventoryWeight;
     }
 
-//TODO: implement this later
-//    public int getCurrentInventoryWeight() {
-//        for (Item item: playerInventory
-//             ) {
-//            Gson gson = new Gson();
-//            JsonObject json = gson.fromJson(new FileReader("Data/Items.json"), JsonObject.class);
-//        }
-//    }
-
     public static String getCurrentLocation() {
         return currentLocation;
     }
@@ -55,5 +50,19 @@ public class PlayerEngine {
         PlayerEngine.currentLocation = currentLocation;
     }
 
+    public int getHealth() {
+        return health;
+    }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

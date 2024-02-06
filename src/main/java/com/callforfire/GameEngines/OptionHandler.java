@@ -91,7 +91,7 @@ public class OptionHandler {
     }
 
     private void handleMove(List<String> actionNoun) {
-        System.out.println("ActionNoun in handle move: " + actionNoun.get(1));
+//        System.out.println("ActionNoun in handle move: " + actionNoun.get(1));
         Location location = JSON_Reader.returnLocationInformationForDirectionToMove(PlayerEngine.getCurrentLocation(), actionNoun.get(1));
         if (location != null) {
             PlayerEngine.setCurrentLocation(location.getName());

@@ -66,7 +66,7 @@ public class TextParser {
         } else if ("quit".equalsIgnoreCase(actionNoun.get(0))) {
             optionHandler.setQuit(true);
         } else {
-            UtilFunctions.showInvalidCommand(parsedWords);
+            UtilFunctions.showInvalidCommand(userInput);
             getUserString(optionHandler);
         }
     }
