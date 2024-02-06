@@ -57,7 +57,7 @@ public class TextParser {
             optionHandler.setTalk(true);
         } else if ("look".equalsIgnoreCase(actionNoun.get(0))) {
             optionHandler.setLook(true);
-        } else if ("inventory".equalsIgnoreCase(actionNoun.get(0))) {
+        }  else if ("inventory".equalsIgnoreCase(actionNoun.get(0))) {
             optionHandler.setInventory(true);
         } else if ("drop".equalsIgnoreCase(actionNoun.get(0))) {
             optionHandler.setDrop(true);

@@ -5,13 +5,15 @@ import com.callforfire.GameEngines.SupportEngines.MessageReader;
 import com.callforfire.Models.Item;
 import com.callforfire.Models.Location;
 import com.callforfire.Models.NPC;
+import com.callforfire.Utils.OptionChecker;
 import com.callforfire.Utils.UtilFunctions;
 
 import java.util.List;
 
 public class OptionHandler {
-    private boolean move;
+    PlayerEngine playerEngine = new PlayerEngine();
     private boolean get;
+    private boolean move;
     private boolean fire;
     private boolean talk;
     private boolean look;
@@ -34,10 +36,10 @@ public class OptionHandler {
                 handleMove(actionNoun);
                 break;
             case 2:
-                // handleGet()
+                handleGetItem(actionNoun.get(1));
                 break;
             case 3:
-                // handleFire;
+                // Fire Logic here
                 break;
             case 4:
                 handleTalkWithNpc(actionNoun.get(1));
@@ -45,19 +47,14 @@ public class OptionHandler {
             case 5:
                 handleLook(actionNoun);
                 break;
-            // Add more cases as needed
             case 6:
-//                checkItemInPlayerInventory();
-                break;
-            case 7:
-                // handleDrop();
-                break;
-            case 8:
                 UtilFunctions.helpFunction();
-                break;
+            case 7:
+                // Drop Logic here
+            case 8:
+                // Help Logic here
             case 9:
-                UtilFunctions.confirmAndQuitGame();
-                break;
+                // Quit Logic here
             default:
                 // Default case
 //                InvalidCommand.showInvalidCommand(TextParser.getParsedWords());
@@ -91,11 +88,10 @@ public class OptionHandler {
     }
 
     private void handleMove(List<String> actionNoun) {
-        System.out.println("ActionNoun in handle move: " + actionNoun.get(1));
-        Location location = JSON_Reader.returnLocationInformationForDirectionToMove(PlayerEngine.getCurrentLocation(), actionNoun.get(1));
+        Location location = JSON_Reader.returnLocationInformationForDirectionToMove(playerEngine.getCurrentLocation(), actionNoun.get(1));
         if (location != null) {
-            PlayerEngine.setCurrentLocation(location.getName());
-            MessageReader.printLocationMessage(location.getDescription(), location.getNorth(), location.getSouth(), location.getEast(), location.getWest());
+            playerEngine.setCurrentLocation(location.getName());
+            MessageReader.printLocationMessage(location.getDescription(), location.getNorth(), location.getSouth(), location.getEast(), location.getWest(), playerEngine.getCurrentLocation());
         } else {
             MessageReader.printMoveError();
         }
@@ -110,30 +106,33 @@ public class OptionHandler {
         }
     }
 
-//    public boolean checkItemInPlayerInventory() {
-//        // TODO: Update this to use the JSON_Reader to look at the players inventory
-//        List<String> playerInventory = PlayerEngine.getPlayerInventory();
-//        System.out.println("You have the following items in your inventory:");
-//        for (String x : playerInventory
-//        ) {
-//            String y = JSON_Reader.readItemDescription(x);
-//            System.out.println(x + ": " + y);
-//        }
-//        return false;
-//    }
+    public void handleGetItem(String itemName) {
+        boolean itemIsPresent = OptionChecker.checkItemIsPresentInLocation(playerEngine.getCurrentLocation(), itemName);
+        boolean playerAlreadyHasItem = OptionChecker.checkItemNotInPlayerInventory(itemName);
 
+        if (!playerAlreadyHasItem) {
+            if (itemIsPresent) {
+                playerEngine.addItemToInventory(itemName);
+                MessageReader.printItemAddedMessage(itemName);
+            } else {
+                MessageReader.printGetItemError();
+            }
+        } else {
+            MessageReader.printItemAlreadyPresentError(itemName);
+        }
+    }
 
     public void handleLook(List<String> actionNoun) {
         if (actionNoun.size() == 1 && actionNoun.get(0).equalsIgnoreCase("look")) {
-            Location location = JSON_Reader.getLocationByName(PlayerEngine.getCurrentLocation());
+            Location location = JSON_Reader.getLocationByName(playerEngine.getCurrentLocation());
             if (location != null) {
-                MessageReader.printLocationMessage(location.getDescription(), location.getNorth(), location.getSouth(), location.getEast(), location.getWest());
+                MessageReader.printLocationMessage(location.getDescription(), location.getNorth(), location.getSouth(), location.getEast(), location.getWest(), playerEngine.getCurrentLocation());
             } else {
                 MessageReader.printError();
             }
         } else {
             Item item = JSON_Reader.readItemDescription(actionNoun.get(1));
-            if(item != null) {
+            if (item != null) {
                 MessageReader.printItemDescription(item.getDescription());
             } else {
                 MessageReader.printError();

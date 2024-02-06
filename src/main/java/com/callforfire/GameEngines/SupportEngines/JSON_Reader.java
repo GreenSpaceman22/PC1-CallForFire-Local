@@ -1,5 +1,6 @@
 package com.callforfire.GameEngines.SupportEngines;
 
+import com.callforfire.GameEngines.PlayerEngine;
 import com.callforfire.Models.Item;
 import com.callforfire.Models.Location;
 import com.callforfire.Models.NPC;
@@ -102,6 +103,16 @@ public class JSON_Reader {
         }
     }
 
+    public static PlayerEngine readPlayerFromFile() {
+        try (FileReader reader = new FileReader("Data/Player.json")) {
+            Type playerType = PlayerEngine.class;
+            return gson.fromJson(reader, playerType);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static String readVerbJson(List<String> userInput)  {
         try {
             String myVerb = "";
@@ -158,5 +169,4 @@ public class JSON_Reader {
         }
         return null;
     }
-
 }

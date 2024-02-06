@@ -1,59 +1,78 @@
 package com.callforfire.GameEngines;
 
-import com.google.gson.JsonObject;
+import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
+import com.callforfire.GameEngines.SupportEngines.JSON_Writer;
 
-import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerEngine {
 
-    private static String currentLocation = "Mortar Pit";
-    private static List<String> playerInventory;
+    private String currentLocation = "Mortar Pit";
+    private List<String> playerInventory = new ArrayList<>();
     private int maxInventoryWeight = 120;
     private int currentInventoryWeight;
 
 
-
-    // Methods
-    public static void addItemToInventory(String itemToAdd) {
-        // TODO: Update this method to use the JSON_Writer to update the players inventory in the "player.gson"
+    // Business Methods
+    public void addItemToInventory(String itemToAdd) {
+        // Add item to inventory
+        playerInventory.add(itemToAdd);
+        // Update player's JSON file
+        JSON_Writer.writePlayerToFile(this);
     }
 
-    public static void dropItemFromInventory(String itemToDrop) {
-
+    public void dropItemFromInventory(String itemToDrop) {
+        // Remove item from inventory
+        playerInventory.remove(itemToDrop);
+        // Update player's JSON file
+        JSON_Writer.writePlayerToFile(this);
     }
 
-    // Getters/Setters
-    public static List<String> getPlayerInventory() {
-        // TODO: Update this to use the JSON_Reader and return the playser JSON inventory
+    public static List<String> getPlayerInventoryItems() {
+        PlayerEngine player = JSON_Reader.readPlayerFromFile();
+        if (player != null) {
+            return player.getPlayerInventory();
+        }
+        return null;
+    }
+
+    public void clearPlayerInventory() {
+        playerInventory.clear(); // Clear the inventory list
+        // Update player's JSON file
+        JSON_Writer.writePlayerToFile(this);
+    }
+
+    // GETTERS AND SETTERS
+    public String getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(String currentLocation) {
+        this.currentLocation = currentLocation;
+    }
+
+    public List<String> getPlayerInventory() {
         return playerInventory;
     }
 
     public void setPlayerInventory(List<String> playerInventory) {
         this.playerInventory = playerInventory;
     }
-    
+
     public int getMaxInventoryWeight() {
         return maxInventoryWeight;
     }
 
-//TODO: implement this later
-//    public int getCurrentInventoryWeight() {
-//        for (Item item: playerInventory
-//             ) {
-//            Gson gson = new Gson();
-//            JsonObject json = gson.fromJson(new FileReader("Data/Items.json"), JsonObject.class);
-//        }
-//    }
-
-    public static String getCurrentLocation() {
-        return currentLocation;
+    public void setMaxInventoryWeight(int maxInventoryWeight) {
+        this.maxInventoryWeight = maxInventoryWeight;
     }
 
-
-    public static void setCurrentLocation(String currentLocation) {
-        PlayerEngine.currentLocation = currentLocation;
+    public int getCurrentInventoryWeight() {
+        return currentInventoryWeight;
     }
 
-
+    public void setCurrentInventoryWeight(int currentInventoryWeight) {
+        this.currentInventoryWeight = currentInventoryWeight;
+    }
 }
