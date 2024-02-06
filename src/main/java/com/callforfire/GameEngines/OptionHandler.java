@@ -6,7 +6,6 @@ import com.callforfire.Models.Item;
 import com.callforfire.Models.Location;
 import com.callforfire.Models.NPC;
 import com.callforfire.Utils.OptionChecker;
-import com.callforfire.Utils.UtilFunctions;
 
 import java.util.List;
 
@@ -48,7 +47,8 @@ public class OptionHandler {
                 handleLook(actionNoun);
                 break;
             case 6:
-                UtilFunctions.helpFunction();
+                handleCheckIventory();
+                break;
             case 7:
                 // Drop Logic here
             case 8:
@@ -138,6 +138,11 @@ public class OptionHandler {
                 MessageReader.printError();
             }
         }
+    }
+
+    public void handleCheckIventory() {
+        List<String> inventory = playerEngine.getPlayerInventory();
+        MessageReader.displayPlayerInventory(inventory);
     }
 
     // move, get, fire, talk, look, inventory, drop, help, quit

@@ -1,7 +1,8 @@
 {
-  "currentLocation": "Firing point",
+  "currentLocation": "Range",
   "playerInventory": [
-    "broken-mortar-tube"
+    "broken-mortar-tube",
+    "base-plate"
   ],
   "maxInventoryWeight": 120,
   "currentInventoryWeight": 0
