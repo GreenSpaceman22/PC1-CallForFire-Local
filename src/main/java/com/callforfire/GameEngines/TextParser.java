@@ -40,10 +40,10 @@ public class TextParser {
     }
 
     public void parseActionAndNoun(OptionHandler optionHandler) {
-        // TODO: Update this to use the synonym checker and keywords, this should also set the properties of OptionHandler before we get over there I.E (isGet, isFire, isMove)
-
-
+        // These are temporary to keep the game circular until we incorporate the actual parser
+        actionNoun.clear();
         actionNoun.addAll(this.getParsedWords());
+        parsedWords.clear();
 
         if("go".equalsIgnoreCase(actionNoun.get(0))) {
             optionHandler.setMove(true);

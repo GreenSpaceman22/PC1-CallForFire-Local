@@ -27,6 +27,7 @@ public class CallForFire_App {
         MessageReader.printLocationMessage("You are in a sandy mortar pit, you have a radio.", "Firing Point", "Hesco Barriers", "range", "Ammo Depot");
 
         while(!isGameOver()) {
+            optionHandler.resetOptionHandler(); // Ensure all our actions are set to false
             List<String> actionNoun = textParser.getUserString(optionHandler);
             optionHandler.run(actionNoun);
         }

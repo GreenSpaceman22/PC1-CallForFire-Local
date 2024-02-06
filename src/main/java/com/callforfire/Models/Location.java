@@ -1,46 +1,34 @@
 package com.callforfire.Models;
 
 public class Location {
-    private static String name;
-    private static String description;
-    private static String item;
-    private static String character;
-    private static String north;
-    private static String east;
-    private static String south;
-    private static String west;
+    private String name;
+    private String description;
+    private String item;
+    private String character;
+    private String north;
+    private String east;
+    private String south;
+    private String west;
 
 
-
-    private static String currentLocation = "Mortar pit";
+    private String currentLocation = "Mortar pit";
 
     public Location(){}
-
-    public Location(String name, String locationDescription, String item, String character, String north, String east, String south, String west) {
-        Location.name = name;
-        description = locationDescription;
-        Location.item = item;
-        Location.character = character;
-        Location.north = north;
-        Location.east = east;
-        Location.south = south;
-        Location.west = west;
-    }
 
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
-        Location.name = name;
+        this.name = name;
     }
 
-    public String getLocationDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public static void setLocationDescription(String locationDescription) {
-        description = locationDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getItem() {
@@ -48,7 +36,7 @@ public class Location {
     }
 
     public void setItem(String item) {
-        Location.item = item;
+        this.item = item;
     }
 
     public String getCharacter() {
@@ -56,45 +44,46 @@ public class Location {
     }
 
     public void setCharacter(String character) {
-        Location.character = character;
+        this.character = character;
     }
 
     public String getNorth() {
         return north;
     }
 
-    public static void setNorth(String north) {
-        Location.north = north;
+    public void setNorth(String north) {
+        this.north = north;
     }
 
     public String getEast() {
         return east;
     }
 
-    public static void setEast(String east) {
-        Location.east = east;
+    public void setEast(String east) {
+        this.east = east;
     }
 
     public String getSouth() {
         return south;
     }
 
-    public static void setSouth(String south) {
-        Location.south = south;
+    public void setSouth(String south) {
+        this.south = south;
     }
 
     public String getWest() {
         return west;
     }
 
-    public static void setWest(String west) {
-        Location.west = west;
+    public void setWest(String west) {
+        this.west = west;
     }
-    public static String getCurrentLocation() {
+
+    public String getCurrentLocation() {
         return currentLocation;
     }
 
-    public static void setCurrentLocation(String currentLocation) {
-        Location.currentLocation = currentLocation;
+    public void setCurrentLocation(String currentLocation) {
+        this.currentLocation = currentLocation;
     }
 }
