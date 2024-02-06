@@ -6,8 +6,11 @@ import com.callforfire.Models.Location;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static junit.framework.TestCase.assertNull;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class JSONReaderTest {
 
@@ -53,5 +56,27 @@ public class JSONReaderTest {
         Item item = JSON_Reader.readItemDescription("cheese");
         System.out.println("Item: " + item.getName() + ", description: " + item.getDescription());
         assertNotNull(item);
+    }
+
+    @Test
+    public void verbReader_shouldReturnGo_ifWalk_passed() {
+        List<String> userInput = new ArrayList<String>();
+        userInput.add("walk");
+        userInput.add("north");
+
+        String verb = JSON_Reader.readVerbJson(userInput);
+
+        assertEquals("go", verb);
+    }
+
+    @Test
+    public void nounReader_shouldReturn_northIfNorthIsPassed() {
+        List<String> userInput = new ArrayList<String>();
+        userInput.add("walk");
+        userInput.add("north");
+
+        String noun = JSON_Reader.readNounJson(userInput);
+
+        assertEquals("north", noun);
     }
 }
