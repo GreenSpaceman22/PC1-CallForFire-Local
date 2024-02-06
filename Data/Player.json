@@ -1,0 +1,10 @@
+{
+  "currentLocation": "Vehicle yard",
+  "playerInventory": [
+    "broken-mortar-tube",
+    "cheese-charges",
+    "mortar-tube"
+  ],
+  "maxInventoryWeight": 120,
+  "currentInventoryWeight": 0
+}

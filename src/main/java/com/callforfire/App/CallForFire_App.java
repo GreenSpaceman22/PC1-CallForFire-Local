@@ -24,7 +24,7 @@ public class CallForFire_App {
         // Game logic to run the game goes in here
         System.out.println("Your Location: " + playerEngine.getCurrentLocation());
         // This should be outside the game loop and only showed during the begining phase
-        MessageReader.printLocationMessage("You are in a sandy mortar pit, you have a radio.", "Firing Point", "Hesco Barriers", "range", "Ammo Depot");
+        MessageReader.printLocationMessage("You are in a sandy mortar pit, you have a radio.", "Firing Point", "Hesco Barriers", "range", "Ammo Depot", "Mortar Pit");
 
         while(!isGameOver()) {
             optionHandler.resetOptionHandler(); // Ensure all our actions are set to false
