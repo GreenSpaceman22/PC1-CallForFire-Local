@@ -124,20 +124,19 @@ public class JSON_Reader {
             int iter = 0;
             for (String word : userInput) {
                 String verb = json.get(verbs[iter]).getAsString();
+                System.out.println(verb);
                 String[] synonyms = verb.split(" ");
                 for (String synonym : synonyms) {
                     if (word.equals(synonym)) {
                         myVerb = verbs[iter];
                         break;
                     }
-                    else {
-                        return null;
-                    }
                 }
                 iter++;
             }
             return myVerb;
         } catch (FileNotFoundException e) {
+
             e.printStackTrace();
         }
         return null;
@@ -157,9 +156,6 @@ public class JSON_Reader {
                     if (word.equals(synonym)) {
                         myNoun = synonym;
                         break;
-                    }
-                    else {
-                        return null;
                     }
                 }
             }
