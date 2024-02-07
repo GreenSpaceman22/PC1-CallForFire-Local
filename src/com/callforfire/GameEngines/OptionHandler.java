@@ -10,6 +10,7 @@ import com.callforfire.Models.Location;
 import com.callforfire.Models.NPC;
 import com.callforfire.Utils.CharacterStatusDisplay;
 import com.callforfire.Utils.OptionChecker;
+import com.callforfire.Utils.UtilFunctions;
 
 import java.util.List;
 
@@ -57,6 +58,7 @@ public class OptionHandler {
             case 7:
                 // Drop Logic here
             case 8:
+                UtilFunctions.helpFunction();
                 // Help Logic here
             case 9:
                 // Quit Logic here
