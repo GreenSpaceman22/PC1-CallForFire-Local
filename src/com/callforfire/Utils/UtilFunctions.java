@@ -1,6 +1,5 @@
 package com.callforfire.Utils;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class UtilFunctions {
@@ -41,7 +40,9 @@ public class UtilFunctions {
         System.out.println("Enter Y for yes or N for no");
         answer = in.nextLine();
         // if they confirm, quit the game
-        if (answer == "y" || answer == "Y") {
+        if (answer.equalsIgnoreCase("y".trim())) {
+            System.out.println("Goodbye");
+            pauseFunction(1000);
             System.exit(0);
         }
         else {

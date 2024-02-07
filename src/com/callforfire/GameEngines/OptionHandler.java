@@ -59,10 +59,10 @@ public class OptionHandler {
                 // Drop Logic here
             case 8:
                 UtilFunctions.helpFunction();
-
-                // Help Logic here
+                break;
             case 9:
-                // Quit Logic here
+                UtilFunctions.confirmAndQuitGame();
+                break;
             default:
                 // Default case
 //                InvalidCommand.showInvalidCommand(TextParser.getParsedWords());
