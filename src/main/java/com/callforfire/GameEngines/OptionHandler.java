@@ -88,7 +88,9 @@ public class OptionHandler {
     }
 
     private void handleMove(List<String> actionNoun) {
-        Location location = JSON_Reader.returnLocationInformationForDirectionToMove(playerEngine.getCurrentLocation(), actionNoun.get(1));
+
+        Location location = JSON_Reader.returnLocationInformationForDirectionToMove(PlayerEngine.getCurrentLocation(), actionNoun.get(1));
+
         if (location != null) {
             playerEngine.setCurrentLocation(location.getName());
             MessageReader.printLocationMessage(location.getDescription(), location.getNorth(), location.getSouth(), location.getEast(), location.getWest(), playerEngine.getCurrentLocation());
