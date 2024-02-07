@@ -1,9 +1,11 @@
 package com.callforfire.Models;
 
+import java.util.List;
+
 public class Location {
     private String name;
     private String description;
-    private String item;
+    private List<String> items;
     private String character;
     private String north;
     private String east;
@@ -31,12 +33,12 @@ public class Location {
         this.description = description;
     }
 
-    public String getItem() {
-        return item;
+    public List<String> getItems() {
+        return items;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setItems(List<String> items) {
+        this.items = items;
     }
 
     public String getCharacter() {

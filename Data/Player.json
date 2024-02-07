@@ -1,0 +1,9 @@
+{
+  "currentLocation": "Range",
+  "playerInventory": [
+    "broken-mortar-tube",
+    "base-plate"
+  ],
+  "maxInventoryWeight": 120,
+  "currentInventoryWeight": 0
+}

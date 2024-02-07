@@ -1,5 +1,6 @@
 package com.callforfire.GameEngines.SupportEngines;
 
+import com.callforfire.GameEngines.PlayerEngine;
 import com.callforfire.Models.Item;
 import com.callforfire.Models.Location;
 import com.callforfire.Models.NPC;
@@ -102,6 +103,16 @@ public class JSON_Reader {
         }
     }
 
+    public static PlayerEngine readPlayerFromFile() {
+        try (FileReader reader = new FileReader("Data/Player.json")) {
+            Type playerType = PlayerEngine.class;
+            return gson.fromJson(reader, playerType);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static String readVerbJson(List<String> userInput)  {
         try {
             String myVerb = "";
@@ -113,20 +124,19 @@ public class JSON_Reader {
             int iter = 0;
             for (String word : userInput) {
                 String verb = json.get(verbs[iter]).getAsString();
+                System.out.println(verb);
                 String[] synonyms = verb.split(" ");
                 for (String synonym : synonyms) {
                     if (word.equals(synonym)) {
                         myVerb = verbs[iter];
                         break;
                     }
-                    else {
-                        return null;
-                    }
                 }
                 iter++;
             }
             return myVerb;
         } catch (FileNotFoundException e) {
+
             e.printStackTrace();
         }
         return null;
@@ -147,9 +157,6 @@ public class JSON_Reader {
                         myNoun = synonym;
                         break;
                     }
-                    else {
-                        return null;
-                    }
                 }
             }
             return myNoun;
@@ -158,5 +165,4 @@ public class JSON_Reader {
         }
         return null;
     }
-
 }
