@@ -1,3 +1,12 @@
+/*
+ * This is one of the main game engines, this engine is fed by multiple other supporting engines.
+ *
+ * The attributes here are set by our text parser to determine what type of action our engine should take
+ *
+ * We must first determine which attribute was set in the switch case, we then make methods to take the appropriate action
+ * while using our "sub" engines to handle the job otherwise this would become bloated. The methods here should not need to be changed
+ */
+
 package com.callforfire.GameEngines;
 
 
@@ -28,10 +37,16 @@ public class OptionHandler {
     private boolean quit;
 
     // Methods
+    /*
+     * This is the main method called from the CallForFire_App
+     */
     public void run(List<String> actionNoun) {
         handlePlayerAction(this.isMove(), this.isGet(), this.isFire(), this.isTalk(), this.isLook(), this.isInventory(), this.isDrop(), this.isHelp(), this.isQuit(), actionNoun);
     }
 
+    /*
+     *  This method is the driving force of this engine, it handles each case based on what the user has input into the TextParsing Engine
+     */
     public void handlePlayerAction(boolean move, boolean get, boolean fire, boolean talk, boolean look, boolean inventory, boolean drop, boolean help, boolean quit, List<String> actionNoun) {
         // Determine which case to execute based on boolean variables
         int caseNumber = determineCase(move, get, fire, talk, look, inventory, drop, help, quit);
@@ -71,7 +86,7 @@ public class OptionHandler {
         }
     }
 
-    // move, get, fire, talk, look, inventory, drop, help, quit
+    // This is the method to determine which attribute was set from the TextParsing engine and return the number case
     private static int determineCase(boolean move, boolean get, boolean fire, boolean talk, boolean look, boolean inventory, boolean drop, boolean help, boolean quit) {
         if (move) {
             return 1;
@@ -96,52 +111,59 @@ public class OptionHandler {
         }
     }
 
+    // This is the method to handle the movement around the game
     private void handleMove(List<String> actionNoun) {
+        // Here we will use the JSON_Reader to get the information of the location we are trying to travel to, the actionNoun at index 1 should be the "direction" of where we want to go
         Location location = JSON_Reader.returnLocationInformationForDirectionToMove(playerEngine.getPlayerLocation(), actionNoun.get(1));
 
         if (location != null) {
-            Console.clear();
-            playerEngine.setCurrentLocation(location.getName());
-            charStatus.displayCharacterInfo(playerEngine.getName(), playerEngine.getHealth(), playerEngine.getPlayerLocation(), playerEngine.getPlayerInventory());
-            MessageReader.printLocationMessage(location);
+            playerEngine.setCurrentLocation(location.getName()); // Set the current location to the name of the location we are going
+            UtilFunctions.pauseFunction(1000);
+            updateLocation(location); // Use our extracted method to display the new information of where the player is now located
         } else {
-            MessageReader.printMoveError();
+            MessageReader.printMoveError(); // If the desired location doesn't exist, print the error
         }
     }
 
+    // This is the method to handle talking with an NPC
     public void handleTalkWithNpc(String npcName) {
-        NPC npcDialogue = JSON_Reader.readNpcDialogue(npcName);
+        NPC npcDialogue = JSON_Reader.readNpcDialogue(npcName); // Use the JSON_Reader to retrieve the NPC object from the json file
         if (npcDialogue != null) {
-            MessageReader.printNPCDialogue(npcDialogue);
+            MessageReader.printNPCDialogue(npcDialogue); // Pass the NPC object to the message reader to find out what the NPC has to say
         } else {
-            MessageReader.printDialogueError();
+            MessageReader.printDialogueError(); // If no NPC was found, print the error
         }
     }
 
+    // This is the method to handle getting an item from a location
     public void handleGetItem(String itemName) {
+        // Here we must check that the item is actually present at the users location and that the player does not already have that item
         boolean itemIsPresent = OptionChecker.checkItemIsPresentInLocation(playerEngine.getPlayerLocation(), itemName);
         boolean playerAlreadyHasItem = OptionChecker.checkItemNotInPlayerInventory(itemName);
 
-        if (!playerAlreadyHasItem) {
+        if (!playerAlreadyHasItem) { // If the conditions are met
             if (itemIsPresent) {
-                playerEngine.addItemToInventory(itemName);
-                JSON_Writer.modifyLocation(playerEngine.getCurrentLocation(), itemName, false);
-                MessageReader.printItemAddedMessage(itemName);
+                playerEngine.addItemToInventory(itemName); // Add the item to the players invetory using our PlayerEngine
+                JSON_Writer.modifyLocation(playerEngine.getCurrentLocation(), itemName, false); // Remove the item from the location
+                MessageReader.printItemAddedMessage(itemName); // Alert user the got the item
+                UtilFunctions.pauseFunction(1000);
+                updateLocation(JSON_Reader.getLocationByName(playerEngine.getPlayerLocation())); // Use extracted method to show the location changes
             } else {
-                MessageReader.printGetItemError();
+                MessageReader.printGetItemError(); // Alert that the items is not here
             }
         } else {
-            MessageReader.printItemAlreadyPresentError(itemName);
+            MessageReader.printItemAlreadyPresentError(itemName); // Alert the player already has the item
         }
     }
 
     public void handleDropItem(String itemName) {
         boolean playerAlreadyHasItem = OptionChecker.checkItemNotInPlayerInventory(itemName);
-
         if(playerAlreadyHasItem) {
             playerEngine.dropItemFromInventory(itemName);
             JSON_Writer.modifyLocation(playerEngine.getCurrentLocation(), itemName, true);
             MessageReader.printItemDroppedMessage(itemName, playerEngine.getCurrentLocation());
+            UtilFunctions.pauseFunction(1000);
+            updateLocation(JSON_Reader.getLocationByName(playerEngine.getPlayerLocation()));
         } else {
             MessageReader.printDropItemError(itemName);
         }
@@ -151,9 +173,7 @@ public class OptionHandler {
         if (actionNoun.size() == 1 && actionNoun.get(0).equalsIgnoreCase("look")) {
             Location location = JSON_Reader.getLocationByName(playerEngine.getPlayerLocation());
             if (location != null) {
-                Console.clear();
-                charStatus.displayCharacterInfo(playerEngine.getName(), playerEngine.getHealth(), playerEngine.getPlayerLocation(), playerEngine.getPlayerInventory());
-                MessageReader.printLocationMessage(location);
+                updateLocation(location);
             } else {
                 MessageReader.printError();
             }
@@ -165,6 +185,12 @@ public class OptionHandler {
                 MessageReader.printError();
             }
         }
+    }
+
+    private void updateLocation(Location location) {
+        Console.clear();
+        charStatus.displayCharacterInfo(playerEngine.getName(), playerEngine.getHealth(), playerEngine.getPlayerLocation(), playerEngine.getPlayerInventory());
+        MessageReader.printLocationMessage(location);
     }
 
     public void handleCheckIventory() {

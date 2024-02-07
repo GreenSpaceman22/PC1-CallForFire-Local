@@ -62,11 +62,9 @@ public class JSON_Writer {
                         // Ignore case when checking for duplicates
                         if (!containsIgnoreCase(location.getItems(), formattedItem)) {
                             location.getItems().add(formattedItem);
-                            System.out.println("Item modified successfully.");
                         }
                     } else {
                         location.getItems().removeIf(existingItem -> existingItem.trim().equalsIgnoreCase(formattedItem));
-                        System.out.println("Item modified successfully.");
                     }
                     break; // No need to continue searching
                 }
