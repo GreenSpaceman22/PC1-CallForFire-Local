@@ -1,8 +1,6 @@
 {
-  "currentLocation": "Vehicle yard",
-  "playerInventory": [
-    "mortar-tube"
-  ],
+  "currentLocation": "Mortar Pit",
+  "playerInventory": [],
   "maxInventoryWeight": 120,
   "currentInventoryWeight": 0,
   "name": "Player1",

@@ -68,6 +68,13 @@ public class MessageReader {
         System.out.println("You picked up the " + itemName + " and put it in your inventory");
     }
 
+    public static void printItemDroppedMessage(String itemName, String locationName) {
+        System.out.println("You dropped the " + itemName + " at the " + locationName);
+    }
+
+    public static void printDropItemError(String itemName) {
+        System.out.println("You do not have a " + itemName + " in your inventory");
+    }
     // Display Player Inventory
     public static void displayPlayerInventory(List<String> inventory) {
         if(inventory != null) {

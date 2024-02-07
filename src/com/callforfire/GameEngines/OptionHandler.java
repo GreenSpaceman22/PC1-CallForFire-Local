@@ -56,7 +56,8 @@ public class OptionHandler {
                 handleCheckIventory();
                 break;
             case 7:
-                // Drop Logic here
+                handleDropItem(actionNoun.get(1));
+                break;
             case 8:
                 UtilFunctions.helpFunction();
                 break;
@@ -131,6 +132,18 @@ public class OptionHandler {
             }
         } else {
             MessageReader.printItemAlreadyPresentError(itemName);
+        }
+    }
+
+    public void handleDropItem(String itemName) {
+        boolean playerAlreadyHasItem = OptionChecker.checkItemNotInPlayerInventory(itemName);
+
+        if(playerAlreadyHasItem) {
+            playerEngine.dropItemFromInventory(itemName);
+            JSON_Writer.modifyLocation(playerEngine.getCurrentLocation(), itemName, true);
+            MessageReader.printItemDroppedMessage(itemName, playerEngine.getCurrentLocation());
+        } else {
+            MessageReader.printDropItemError(itemName);
         }
     }
 
