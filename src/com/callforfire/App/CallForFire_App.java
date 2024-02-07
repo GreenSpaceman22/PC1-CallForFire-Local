@@ -3,6 +3,7 @@ package com.callforfire.App;
 import com.apps.util.Console;
 import com.callforfire.GameEngines.OptionHandler;
 import com.callforfire.GameEngines.PlayerEngine;
+import com.callforfire.GameEngines.SupportEngines.JSON_Writer;
 import com.callforfire.GameEngines.SupportEngines.MessageReader;
 import com.callforfire.GameEngines.TextParser;
 import com.callforfire.Utils.CharacterStatusDisplay;
@@ -22,15 +23,14 @@ public class CallForFire_App {
     // Methods
     public void run() {
         intialize();
-        // Game logic to run the game goes in here
-        System.out.println("Your Location: " + playerEngine.getCurrentLocation());
-        // This should be outside the game loop and only showed during the begining phase
+
+        charStatus.displayCharacterInfo(playerEngine.getName(), playerEngine.getHealth(), playerEngine.getPlayerLocation(), playerEngine.getPlayerInventory());
+
         MessageReader.printLocationMessage("You are in a sandy mortar pit, you have a radio.", "Firing Point", "Hesco Barriers", "range", "Ammo Depot", "Mortar Pit");
 
         while(!isGameOver()) {
             optionHandler.resetOptionHandler(); // Ensure all our actions are set to false
             // persistently display character information
-            charStatus.displayCharacterInfo(playerEngine.getName(), playerEngine.getHealth(), playerEngine.getCurrentLocation(), playerEngine.getPlayerInventory());
             List<String> actionNoun = textParser.getUserString(optionHandler);
             optionHandler.run(actionNoun);
         }
@@ -39,8 +39,8 @@ public class CallForFire_App {
     public void intialize() {
         Console.clear();
         playerEngine.clearPlayerInventory();
+        JSON_Writer.resetLocationsJSON();
         WelcomeTitleDisplay.render("banner");
-        // TODO: Build the splash screen and credits in here, follow dev ops for more clear instruction
     }
 
     public void instructions() {

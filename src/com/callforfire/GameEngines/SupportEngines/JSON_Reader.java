@@ -28,9 +28,6 @@ public class JSON_Reader {
                     return npc; // Exit the method after finding the NPC
                 }
             }
-
-            // If NPC with the given name is not found
-            System.out.println("NPC with name '" + npcName + "' not found.");
             return null;
         } catch (IOException e) {
             e.printStackTrace();

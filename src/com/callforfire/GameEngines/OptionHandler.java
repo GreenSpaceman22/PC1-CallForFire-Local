@@ -1,16 +1,20 @@
 package com.callforfire.GameEngines;
 
+
+import com.apps.util.Console;
 import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
 import com.callforfire.GameEngines.SupportEngines.MessageReader;
 import com.callforfire.Models.Item;
 import com.callforfire.Models.Location;
 import com.callforfire.Models.NPC;
+import com.callforfire.Utils.CharacterStatusDisplay;
 import com.callforfire.Utils.OptionChecker;
 
 import java.util.List;
 
 public class OptionHandler {
     PlayerEngine playerEngine = new PlayerEngine();
+    CharacterStatusDisplay charStatus = new CharacterStatusDisplay();
     private boolean get;
     private boolean move;
     private boolean fire;
@@ -88,12 +92,13 @@ public class OptionHandler {
     }
 
     private void handleMove(List<String> actionNoun) {
-
-        Location location = JSON_Reader.returnLocationInformationForDirectionToMove(PlayerEngine.getCurrentLocation(), actionNoun.get(1));
+        Location location = JSON_Reader.returnLocationInformationForDirectionToMove(playerEngine.getPlayerLocation(), actionNoun.get(1));
 
         if (location != null) {
+            Console.clear();
             playerEngine.setCurrentLocation(location.getName());
-            MessageReader.printLocationMessage(location.getDescription(), location.getNorth(), location.getSouth(), location.getEast(), location.getWest(), playerEngine.getCurrentLocation());
+            charStatus.displayCharacterInfo(playerEngine.getName(), playerEngine.getHealth(), playerEngine.getPlayerLocation(), playerEngine.getPlayerInventory());
+            MessageReader.printLocationMessage(location);
         } else {
             MessageReader.printMoveError();
         }
@@ -104,12 +109,12 @@ public class OptionHandler {
         if (npcDialogue != null) {
             MessageReader.printNPCDialogue(npcDialogue);
         } else {
-            MessageReader.printError();
+            MessageReader.printDialogueError();
         }
     }
 
     public void handleGetItem(String itemName) {
-        boolean itemIsPresent = OptionChecker.checkItemIsPresentInLocation(playerEngine.getCurrentLocation(), itemName);
+        boolean itemIsPresent = OptionChecker.checkItemIsPresentInLocation(playerEngine.getPlayerLocation(), itemName);
         boolean playerAlreadyHasItem = OptionChecker.checkItemNotInPlayerInventory(itemName);
 
         if (!playerAlreadyHasItem) {
@@ -126,9 +131,11 @@ public class OptionHandler {
 
     public void handleLook(List<String> actionNoun) {
         if (actionNoun.size() == 1 && actionNoun.get(0).equalsIgnoreCase("look")) {
-            Location location = JSON_Reader.getLocationByName(playerEngine.getCurrentLocation());
+            Location location = JSON_Reader.getLocationByName(playerEngine.getPlayerLocation());
             if (location != null) {
-                MessageReader.printLocationMessage(location.getDescription(), location.getNorth(), location.getSouth(), location.getEast(), location.getWest(), playerEngine.getCurrentLocation());
+                Console.clear();
+                charStatus.displayCharacterInfo(playerEngine.getName(), playerEngine.getHealth(), playerEngine.getPlayerLocation(), playerEngine.getPlayerInventory());
+                MessageReader.printLocationMessage(location);
             } else {
                 MessageReader.printError();
             }
