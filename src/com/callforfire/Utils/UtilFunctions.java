@@ -25,7 +25,7 @@ public class UtilFunctions {
         pauseFunction(500);
         System.out.println("You can also use a verb (action word) and a noun (name of the thing) to interact with the environment around you.");
         pauseFunction(500);
-        System.out.println("For example, you could tell me to 'pick up cheese' or 'look at the table' or 'talk to pvt-snuffy.\n");
+        System.out.println("For example, you could tell me to 'get cheese' or 'look mortar-tube' or 'talk private-snuffy.\n");
         pauseFunction(500);
         System.out.println("If I don't understand you, I'll let you know,");
         pauseFunction(500);
