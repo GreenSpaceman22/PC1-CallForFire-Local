@@ -32,8 +32,6 @@ public class PlayerEngine {
         JSON_Writer.writePlayerToFile(this);
     }
 
-
-
     public static List<String> getPlayerInventoryItems() {
         PlayerEngine player = JSON_Reader.readPlayerFromFile();
         if (player != null) {
@@ -48,6 +46,15 @@ public class PlayerEngine {
         JSON_Writer.writePlayerToFile(this);
     }
 
+    public String getPlayerLocation() {
+        PlayerEngine player = JSON_Reader.readPlayerFromFile();
+        if(player !=  null) {
+            return player.getCurrentLocation();
+        }
+        return null;
+    }
+
+
     // GETTERS AND SETTERS
     public String getCurrentLocation() {
         return currentLocation;
@@ -55,6 +62,7 @@ public class PlayerEngine {
 
     public void setCurrentLocation(String currentLocation) {
         this.currentLocation = currentLocation;
+        JSON_Writer.writePlayerToFile(this);
     }
 
     public List<String> getPlayerInventory() {
@@ -67,11 +75,6 @@ public class PlayerEngine {
 
     public int getMaxInventoryWeight() {
         return maxInventoryWeight;
-    }
-
-
-    public static String getCurrentLocation() {
-        return currentLocation;
     }
 
     public void setMaxInventoryWeight(int maxInventoryWeight) {

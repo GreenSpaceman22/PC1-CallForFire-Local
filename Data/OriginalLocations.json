@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Mortar pit",
+    "description" : "You are in a sandy mortar pit, you have a radio.",
+    "north" : "Firing point",
+    "west" : "Ammo depot",
+    "south" : "Hesco barriers",
+    "east" : "Hesco barriers",
+    "NPCs" : "Radio",
+    "items" : ["Sand"]
+  },
+  {
+    "name": "Firing point",
+    "description" : "You hoof your way to the firing point, the equipment is no longer there except for a broken-mortar-tube, and Private-Snuffy. ",
+    "north" : "Hesco barriers",
+    "west" : "Vehicle yard",
+    "south" : "Mortar pit",
+    "east" : "TOC",
+    "NPCs" : "Private-Snuffy",
+    "items" : ["Broken-Mortar-tube"]
+  },
+  {
+    "name": "Vehicle yard",
+    "description" : "you are in the Vehicle yard, there is various vehicles around and your mortar-tube",
+    "north" : "Hesco barriers",
+    "west" : "Hesco barriers",
+    "south" : "Ammo depot",
+    "east" : "Firing point",
+    "NPCs" : "Radio",
+    "items" : ["Mortar-tube"]
+  },
+  {
+    "name": "Ammo depot",
+    "description" : "You are in the ammo depot, there is ammo for the mortar tube here and cheese-charges",
+    "north" : "Vehicle yard",
+    "west" : "Hesco barriers",
+    "south" : "Hesco barriers",
+    "east" : "Mortar pit",
+    "NPCs" : "",
+    "items" : ["Ammo", "Cheese-charges"]
+  },
+  {
+    "name": "Range",
+    "description" : "you are at the Range, there is your mortar base-plate",
+    "north" : "TOC",
+    "west" : "Mortar pit",
+    "south" : "Hesco barriers",
+    "east" : "Quarters",
+    "NPCs" : "Radio",
+    "items" : ["base-plate"]
+  },
+  {
+    "name": "Quarters",
+    "description" : "you are in the Quarters, inside is Specialist-Sham, and a collection of CopenHagen-Wintergreen",
+    "north" : "Chow hall",
+    "west" : "Range",
+    "south" : "Hesco barriers",
+    "east" : "Hesco barriers",
+    "NPCs" : "Specialist Sham",
+    "items" : ["CopenHagen-Wintergreen"]
+  },
+  {
+    "name": "Chow hall",
+    "description" : "you are in the Chow hall, there are scattered chairs and tables, as well as Cookie the cook",
+    "north" : "Hesco barriers",
+    "west" : "TOC",
+    "south" : "Quarters",
+    "east" : "Hesco barriers",
+    "NPCs" : "Cookie",
+    "items" : ["Cheese"]
+  },
+  {
+    "name":  "TOC",
+    "description" : "you stumble in and crash through the tent flaps of the TOC, there is an Angry-csm",
+    "north" : "Hesco barriers",
+    "west" : "Firing point",
+    "south" : "Range",
+    "east" : "Chow hall",
+    "NPCs" : "Angry Command Sergeant Major",
+    "items" : ["Sand"]
+  }
+]
