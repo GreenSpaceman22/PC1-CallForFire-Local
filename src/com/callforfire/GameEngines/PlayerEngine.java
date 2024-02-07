@@ -12,6 +12,9 @@ public class PlayerEngine {
     private List<String> playerInventory = new ArrayList<>();
     private int maxInventoryWeight = 120;
     private int currentInventoryWeight;
+    private String name = "Player1"; // TODO: undo the hardcoding here
+    private int health = 100;
+    private String location = getCurrentLocation();
 
 
     // Business Methods
@@ -28,6 +31,8 @@ public class PlayerEngine {
         // Update player's JSON file
         JSON_Writer.writePlayerToFile(this);
     }
+
+
 
     public static List<String> getPlayerInventoryItems() {
         PlayerEngine player = JSON_Reader.readPlayerFromFile();
@@ -66,12 +71,29 @@ public class PlayerEngine {
 
     public void setMaxInventoryWeight(int maxInventoryWeight) {
         this.maxInventoryWeight = maxInventoryWeight;
+
     }
 
     public int getCurrentInventoryWeight() {
         return currentInventoryWeight;
     }
 
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+  
     public void setCurrentInventoryWeight(int currentInventoryWeight) {
         this.currentInventoryWeight = currentInventoryWeight;
     }

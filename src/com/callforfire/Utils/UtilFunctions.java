@@ -49,9 +49,9 @@ public class UtilFunctions {
         }
     }
 
-    public static void showInvalidCommand(List<String> parsedText) {
+    public static void showInvalidCommand(String userInput) {
         // displays a general 'didn't understand that' with suggestions
-        System.out.println("Sorry, I didn't understand your command of:\n\t" + parsedText);
+        System.out.println("Sorry, I didn't understand your command of:\n\t '" + userInput + "'");
         pauseFunction(200);
         System.out.println("\nTry rephrasing your command, or you can type 'help' for more details.");
         pauseFunction(500);
