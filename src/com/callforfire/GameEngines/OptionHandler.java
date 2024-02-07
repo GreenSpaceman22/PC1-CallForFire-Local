@@ -59,6 +59,7 @@ public class OptionHandler {
                 // Drop Logic here
             case 8:
                 UtilFunctions.helpFunction();
+
                 // Help Logic here
             case 9:
                 // Quit Logic here
