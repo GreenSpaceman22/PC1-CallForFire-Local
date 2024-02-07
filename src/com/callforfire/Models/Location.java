@@ -17,6 +17,8 @@ public class Location {
 
     public Location(){}
 
+
+    // GETTERS and SETTERS
     public String getName() {
         return name;
     }

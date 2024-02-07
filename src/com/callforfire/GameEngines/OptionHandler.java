@@ -3,6 +3,7 @@ package com.callforfire.GameEngines;
 
 import com.apps.util.Console;
 import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
+import com.callforfire.GameEngines.SupportEngines.JSON_Writer;
 import com.callforfire.GameEngines.SupportEngines.MessageReader;
 import com.callforfire.Models.Item;
 import com.callforfire.Models.Location;
@@ -120,6 +121,7 @@ public class OptionHandler {
         if (!playerAlreadyHasItem) {
             if (itemIsPresent) {
                 playerEngine.addItemToInventory(itemName);
+                JSON_Writer.modifyLocation(playerEngine.getCurrentLocation(), itemName, false);
                 MessageReader.printItemAddedMessage(itemName);
             } else {
                 MessageReader.printGetItemError();
