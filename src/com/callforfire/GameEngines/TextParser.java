@@ -1,6 +1,7 @@
 package com.callforfire.GameEngines;
 
 import com.apps.util.Prompter;
+import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
 import com.callforfire.Utils.UtilFunctions;
 
 import java.util.ArrayList;
@@ -43,7 +44,11 @@ public class TextParser {
     public void parseActionAndNoun(OptionHandler optionHandler) {
         // These are temporary to keep the game circular until we incorporate the actual parser
         actionNoun.clear();
-        actionNoun.addAll(this.getParsedWords());
+
+        String action = JSON_Reader.readVerbJson(getParsedWords());
+        String noun = JSON_Reader.readNounJson(getParsedWords());
+        actionNoun.add(action);
+        actionNoun.add(noun);
         parsedWords.clear();
 
         // move, get, fire, talk, look, inventory, drop, help, quit

@@ -1,10 +1,6 @@
 {
-  "currentLocation": "Chow hall",
-  "playerInventory": [
-    "sand",
-    "base-plate",
-    "copenhagen-wintergreen"
-  ],
+  "currentLocation": "Firing point",
+  "playerInventory": [],
   "maxInventoryWeight": 120,
   "currentInventoryWeight": 0,
   "name": "Player1",
