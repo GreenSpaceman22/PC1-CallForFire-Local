@@ -150,7 +150,7 @@ public class JSON_Reader {
     public static String readNounJson(List<String> userInput) {
         try {
             String myNoun = "";
-            String[] nouns = new String[]{"directions", "items"};
+            String[] nouns = new String[]{"directions", "items", "NPCs"};
             Gson gson = new Gson();
             JsonObject json = gson.fromJson(new FileReader("Data/Verbs.json"), JsonObject.class);
 
