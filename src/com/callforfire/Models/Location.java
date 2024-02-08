@@ -12,7 +12,6 @@ public class Location {
     private String south;
     private String west;
 
-
     private String currentLocation = "Mortar pit";
 
     public Location(){}

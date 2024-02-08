@@ -25,7 +25,9 @@ public class WelcomeTitleDisplay {
         for (String line : fileToRead) {
             System.out.println(line);
         }
+
         Gson gson = new Gson();
+
         try {
             JsonObject json = gson.fromJson(new FileReader("Data/GameText.json"), JsonObject.class);
             String welcome = json.get("intro").getAsString();
@@ -44,7 +46,5 @@ public class WelcomeTitleDisplay {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-
     }
 }

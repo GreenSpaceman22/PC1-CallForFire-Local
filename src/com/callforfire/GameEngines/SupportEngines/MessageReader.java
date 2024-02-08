@@ -18,7 +18,7 @@ public class MessageReader {
 
     // NPC MESSAGES
     public static void printNPCDialogue(NPC npc) {
-        System.out.println(npc.getName() + ": " + npc.getDialogue());
+        System.out.println(npc.getName() + ": " + npc.getRandomDialogue(npc.getName()));
     }
 
     public static void printDialogueError() {
@@ -31,7 +31,6 @@ public class MessageReader {
     }
 
     public static void printLocationMessage(String locationDescription, String north, String south, String east, String west, String currentLocation) {
-//        System.out.println("Your Current Location: " + currentLocation);
         System.out.println(locationDescription);
         System.out.println("To your north is " + north + ", to your east is " + east);
         System.out.println("To your south is " + south + ", to your west is " + west);

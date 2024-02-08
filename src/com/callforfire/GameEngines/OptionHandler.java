@@ -127,9 +127,9 @@ public class OptionHandler {
 
     // This is the method to handle talking with an NPC
     public void handleTalkWithNpc(String npcName) {
-        NPC npcDialogue = JSON_Reader.readNpcDialogue(npcName); // Use the JSON_Reader to retrieve the NPC object from the json file
-        if (npcDialogue != null) {
-            MessageReader.printNPCDialogue(npcDialogue); // Pass the NPC object to the message reader to find out what the NPC has to say
+        NPC npc = JSON_Reader.readNpcDialogue(npcName); // Use the JSON_Reader to retrieve the NPC object from the json file
+        if (npc != null) {
+            MessageReader.printNPCDialogue(npc); // Pass the NPC object to the message reader to find out what the NPC has to say
         } else {
             MessageReader.printDialogueError(); // If no NPC was found, print the error
         }

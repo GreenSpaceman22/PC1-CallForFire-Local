@@ -3,9 +3,9 @@
     "name": "Mortar pit",
     "description" : "You are in a sandy mortar pit, you have a radio.",
     "north" : "Firing point",
-    "west" : "Ammo depot",
+    "west" : "Range",
     "south" : "Hesco barriers",
-    "east" : "Hesco barriers",
+    "east" : "Ammo depot",
     "NPCs" : "Radio",
     "items" : ["Sand"]
   },
