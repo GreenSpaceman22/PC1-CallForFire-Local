@@ -62,6 +62,18 @@ public class JSONReaderTest {
     public void verbReader_shouldReturnGo_ifWalk_passed() {
         List<String> userInput = new ArrayList<String>();
         userInput.add("walk");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
         userInput.add("north");
 
         String verb = JSON_Reader.readVerbJson(userInput);

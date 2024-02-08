@@ -124,7 +124,7 @@ public class JSON_Reader {
 
             int iter = 0;
             for (String word : userInput) {
-                if (iter > userInput.size()) {
+                if (iter > verbs.length -1) {
                     iter = 0;
                 }
                 String verb = json.get(verbs[iter]).getAsString();
@@ -156,7 +156,7 @@ public class JSON_Reader {
 
             int iter = 0;
             for (String word : userInput) {
-                if (iter > userInput.size()) {
+                if (iter > nouns.length -1) {
                     iter = 0;
                 }
                 String noun = json.get(nouns[iter]).getAsString();
