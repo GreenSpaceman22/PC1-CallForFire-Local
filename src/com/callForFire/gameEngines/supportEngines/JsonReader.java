@@ -142,6 +142,7 @@ public class JsonReader {
                     iter = 0;
                 }
                 String verb = json.get(verbs[iter]).getAsString();
+                System.out.println("this is my verb synonyms: " + verb);
                 String[] synonyms = verb.split(" ");
                 for (String synonym : synonyms) {
                     if (userInput.contains(synonym.toLowerCase())) {
