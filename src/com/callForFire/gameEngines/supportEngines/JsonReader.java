@@ -1,6 +1,7 @@
 package com.callForFire.gameEngines.supportEngines;
 
 import com.callForFire.gameEngines.PlayerEngine;
+import com.callForFire.gameEngines.supportEngines.wordsearch.Nouns;
 import com.callForFire.models.Enemy;
 import com.callForFire.models.Item;
 import com.callForFire.models.Location;
@@ -136,22 +137,27 @@ public class JsonReader {
 
             int topIter = 0;
             int iter = 0;
-            while (myVerb.equals("") || topIter < 200) {
+            while (myVerb.equals("") && topIter < userInput.size()) {
                 if (iter == verbs.length) {
                     iter = 0;
                 }
-                    String verb = json.get(verbs[iter]).getAsString();
-                    String[] synonyms = verb.split(" ");
-                    for (String synonym : synonyms) {
-                        if (userInput.contains(synonym.toLowerCase())) {
-                            myVerb = verbs[iter];
-                            break;
-                        }
+                String verb = json.get(verbs[iter]).getAsString();
+                String[] synonyms = verb.split(" ");
+                for (String synonym : synonyms) {
+                    if (userInput.contains(synonym.toLowerCase())) {
+                        myVerb = verbs[iter];
+                        break;
                     }
-            iter++;
-            topIter++;
+                }
+                iter++;
+                topIter++;
             }
-            return myVerb;
+            if (myVerb.equals("")) {
+                return null;
+            }
+            else {
+                return myVerb;
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -161,32 +167,16 @@ public class JsonReader {
     // WILL RETURN NULL IF INPUT IS INVALID
     public static String readNounJson(List<String> userInput) {
         try {
-            if (userInput.size() == 1) {
-                return null;
-            }
-            String myNoun = "";
-            String[] nouns = new String[]{"nouns"};
-
-            Gson gson = new Gson();
-            JsonObject json = gson.fromJson(new FileReader("Data/Nouns.json"), JsonObject.class);
-            int topIter = 0;
-            int iter = 0;
-            while (myNoun.equals("") || topIter < 200) {
-                String noun = json.get("nouns").getAsString();
-                String[] synonyms = noun.split(" ");
-                for (String synonym : synonyms) {
-                    if (userInput.contains(synonym.toLowerCase())) {
-                        myNoun = synonym;
-                        break;
-                    }
+            Nouns nouns = gson.fromJson(new FileReader("Data/Nouns.json"), Nouns.class);
+            for (String word : userInput) {
+                if (nouns.getNouns().contains(word.toLowerCase().trim())) {
+                    return word;
                 }
-                iter++;
-                topIter++;
             }
-            return myNoun;
+            return null;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 }
