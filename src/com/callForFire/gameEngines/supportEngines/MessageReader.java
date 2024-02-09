@@ -85,4 +85,8 @@ public class MessageReader {
             System.out.println("Your inventory is empty");
         }
     }
+
+    public static void displayBattleResults(int enemyHealth) {
+        System.out.println("You hit the enemy for 25 damage, the enemy has " + enemyHealth + " health remaining");
+    }
 }

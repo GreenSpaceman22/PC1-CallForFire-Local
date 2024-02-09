@@ -92,6 +92,7 @@ public class PlayerEngine {
 
     public void setHealth(int health) {
         this.health = health;
+        JsonWriter.writePlayerToFile(this);
     }
 
     public String getName() {

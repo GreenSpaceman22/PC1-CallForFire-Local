@@ -38,6 +38,15 @@ public class OptionChecker {
         if(playerInventory.contains("base-plate")) {
             inventoryCount++;
         }
-        return false;
+
+        if(playerInventory.contains("mortar-tube")) {
+            inventoryCount++;
+        }
+
+        if(playerInventory.contains("mortar-rounds")) {
+            inventoryCount++;
+        }
+
+        return inventoryCount == 3;
     }
 }

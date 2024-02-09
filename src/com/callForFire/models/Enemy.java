@@ -2,12 +2,11 @@ package com.callForFire.models;
 
 public class Enemy {
     private int enemyHealth;
+    private String enemyName;
 
-    private String enemyType;
+    public Enemy() {
+    }
 
-    public Enemy() {}
-
-    // Getters And Setters
     public int getEnemyHealth() {
         return enemyHealth;
     }
@@ -16,11 +15,11 @@ public class Enemy {
         this.enemyHealth = enemyHealth;
     }
 
-    public String getEnemyType() {
-        return enemyType;
+    public String getEnemyName() {
+        return enemyName;
     }
 
-    public void setEnemyType(String enemyType) {
-        this.enemyType = enemyType;
+    public void setEnemyName(String enemyName) {
+        this.enemyName = enemyName;
     }
 }

@@ -49,6 +49,11 @@ public class TextParser {
             System.out.println("quiting");
         }
         actionNoun.add(noun);
+
+        for(String word : actionNoun) {
+            System.out.println(word);
+        }
+
         parsedWords.clear();
 
         // move, get, fire, talk, look, inventory, drop, help, quit

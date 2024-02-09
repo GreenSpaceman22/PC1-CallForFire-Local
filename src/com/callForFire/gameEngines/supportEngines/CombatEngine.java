@@ -1,5 +1,6 @@
 package com.callForFire.gameEngines.supportEngines;
 
+import com.callForFire.gameEngines.PlayerEngine;
 import com.callForFire.models.Enemy;
 
 import java.util.List;
@@ -41,6 +42,16 @@ public class CombatEngine {
             int randomNumber = random.nextInt(4) + 1;
             // Return true if the random number is 1, 2, or 3, indicating a hit
             return randomNumber <= 3;
+        }
+    }
+
+    public int calculateBattleDamage(boolean isPlayerAttacking, PlayerEngine playerEngine) {
+        if(isPlayerAttacking) {
+            enemy.setEnemyHealth(enemy.getEnemyHealth() - 25);
+            return enemy.getEnemyHealth();
+        } else {
+            playerEngine.setHealth(playerEngine.getHealth() - 25);
+            return playerEngine.getHealth();
         }
     }
 

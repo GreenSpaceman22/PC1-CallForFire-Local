@@ -158,8 +158,12 @@ public class OptionHandler {
     }
 
     public void handleAttackEnemy(CombatEngine combatEngine, List<String> actionNoun) {
-
         boolean attackResult = combatEngine.attackEnemy(playerEngine.getPlayerInventory().contains("CopenHagen-Wintergreen"));
+        if(attackResult) {
+          int enemyRemainingHealth = combatEngine.calculateBattleDamage(true, playerEngine);
+          MessageReader.displayBattleResults(enemyRemainingHealth);
+        }
+
     }
 
     public void handleDropItem(String itemName) {
