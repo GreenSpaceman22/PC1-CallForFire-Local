@@ -170,14 +170,19 @@ public class OptionHandler {
 
     public void handleAttackEnemy(CombatEngine combatEngine, List<String> actionNoun) {
         if(!playerEngine.getPlayerLocation().equalsIgnoreCase("firing point")) {
-            System.out.println(playerEngine.getPlayerLocation());
             MessageReader.displayInvalidLocaiton();
+            return;
+        }
+
+        boolean userHasItems = OptionChecker.checkUserHasRequiredItemsToAttack(playerEngine.getPlayerInventory());
+        if(!userHasItems) {
+            MessageReader.printNotProperItemsError();
+            return;
         }
 
         boolean attackResult = combatEngine.attackEnemy(playerEngine.getPlayerInventory().contains("CopenHagen-Wintergreen"));
 
         if(attackResult) {
-            System.out.println();
           int enemyRemainingHealth = combatEngine.calculateBattleDamage(true, playerEngine);
           MessageReader.displayBattleResults(enemyRemainingHealth, combatEngine.getEnemy().getEnemyName());
           Console.pause(2000);
@@ -187,7 +192,6 @@ public class OptionHandler {
             Console.pause(2000);
             updateLocation(JsonReader.getLocationByName(playerEngine.getPlayerLocation()));
         }
-
     }
 
     public void handleDropItem(String itemName) {

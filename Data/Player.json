@@ -1,10 +1,6 @@
 {
-  "currentLocation": "Firing point",
-  "playerInventory": [
-    "mortar-tube",
-    "base-plate",
-    "mortar-rounds"
-  ],
+  "currentLocation": "Vehicle yard",
+  "playerInventory": [],
   "maxInventoryWeight": 120,
   "currentInventoryWeight": 0,
   "name": "Player1",

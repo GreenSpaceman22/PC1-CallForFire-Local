@@ -97,4 +97,8 @@ public class MessageReader {
     public static void displayInvalidLocaiton() {
         System.out.println("You must be at the firing point before you can fire your mortars");
     }
+
+    public static void printNotProperItemsError() {
+        System.out.println("You do not have the proper items to fire at the enemy");
+    }
 }
