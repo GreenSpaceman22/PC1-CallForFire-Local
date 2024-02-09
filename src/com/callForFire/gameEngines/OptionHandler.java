@@ -158,7 +158,8 @@ public class OptionHandler {
     }
 
     public void handleAttackEnemy(CombatEngine combatEngine, List<String> actionNoun) {
-        List<String> attackResult = combatEngine.attackEnemy(actionNoun.get(1), actionNoun.get(2));
+
+        boolean attackResult = combatEngine.attackEnemy(playerEngine.getPlayerInventory().contains("CopenHagen-Wintergreen"));
     }
 
     public void handleDropItem(String itemName) {

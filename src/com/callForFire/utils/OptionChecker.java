@@ -32,4 +32,12 @@ public class OptionChecker {
         return false;
     }
 
+    public static boolean checkUserHasRequiredItemsToAttack(List<String> playerInventory) {
+        int inventoryCount = 0; // There are 3 required items to attack, we must make sure the user has them before attacking
+
+        if(playerInventory.contains("base-plate")) {
+            inventoryCount++;
+        }
+        return false;
+    }
 }

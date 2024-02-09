@@ -1,8 +1,6 @@
 {
-  "currentLocation": "TOC",
-  "playerInventory": [
-    "Broken-Mortar-tube"
-  ],
+  "currentLocation": "Range",
+  "playerInventory": [],
   "maxInventoryWeight": 120,
   "currentInventoryWeight": 0,
   "name": "Player1",

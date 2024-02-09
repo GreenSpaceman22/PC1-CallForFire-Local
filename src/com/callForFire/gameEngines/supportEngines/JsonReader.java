@@ -38,7 +38,7 @@ public class JsonReader {
 
     public static List<Enemy> returnListOfEnemies() {
         try {
-            Type enemyList = new TypeToken<List<Location>>() {}.getType();
+            Type enemyList = new TypeToken<List<Enemy>>() {}.getType();
             List<Enemy> enemies = gson.fromJson(new FileReader("Data/Enemy.json"), enemyList);
 
             if(!enemies.isEmpty()) {
