@@ -12,7 +12,7 @@
     "description": "A metal contraption with two extendable legs, this keeps the mortar tube stationary."
   },
   {
-    "name": "ammo",
+    "name": "mortar-rounds",
     "description": "A football shaped green object with a tail and bright yellow letting on the side.",
     "type": ["high explosive", "white phosphorous", "smoke", "illumination", "training"]
   },

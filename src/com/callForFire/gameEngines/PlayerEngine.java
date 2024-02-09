@@ -54,6 +54,12 @@ public class PlayerEngine {
         return null;
     }
 
+    public void cheat() {
+        addItemToInventory("mortar-tube");
+        addItemToInventory("base-plate");
+        addItemToInventory("mortar-rounds");
+    }
+
 
     // GETTERS AND SETTERS
     public String getCurrentLocation() {

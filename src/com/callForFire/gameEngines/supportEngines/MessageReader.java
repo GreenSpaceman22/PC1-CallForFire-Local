@@ -86,8 +86,12 @@ public class MessageReader {
         }
     }
 
-    public static void displayBattleResults(int enemyHealth) {
-        System.out.println("You hit the enemy for 25 damage, the enemy has " + enemyHealth + " health remaining");
+    public static void displayBattleResults(int enemyHealth, String enemyName) {
+        System.out.println("You hit the enemy " + enemyName + " for 25 damage, the enemy has " + enemyHealth + " health remaining");
+    }
+
+    public static void displayMissed() {
+        System.out.println("Your mortar round missed the enemy!");
     }
 
     public static void displayInvalidLocaiton() {

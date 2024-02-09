@@ -131,7 +131,7 @@ public class JsonReader {
     public static String readVerbJson(List<String> userInput) {
         try {
             String myVerb = "";
-            String[] verbs = new String[]{"go", "talk", "get", "look", "fire", "inventory", "drop", "help", "quit"};
+            String[] verbs = new String[]{"go", "talk", "get", "look", "fire", "inventory", "drop", "help", "quit", "cheat"};
             Gson gson = new Gson();
             JsonObject json = gson.fromJson(new FileReader("Data/Verbs.json"), JsonObject.class);
 

@@ -36,21 +36,22 @@ public class OptionHandler {
     private boolean drop;
     private boolean help;
     private boolean quit;
+    private boolean cheat;
 
     // Methods
     /*
      * This is the main method called from the callForFireApp
      */
     public void run(List<String> actionNoun, CombatEngine combatEngine) {
-        handlePlayerAction(this.isMove(), this.isGet(), this.isFire(), this.isTalk(), this.isLook(), this.isInventory(), this.isDrop(), this.isHelp(), this.isQuit(), actionNoun, combatEngine);
+        handlePlayerAction(this.isMove(), this.isGet(), this.isFire(), this.isTalk(), this.isLook(), this.isInventory(), this.isDrop(), this.isHelp(), this.isQuit(), this.isCheat(), actionNoun, combatEngine);
     }
 
     /*
      *  This method is the driving force of this engine, it handles each case based on what the user has input into the TextParsing Engine
      */
-    public void handlePlayerAction(boolean move, boolean get, boolean fire, boolean talk, boolean look, boolean inventory, boolean drop, boolean help, boolean quit, List<String> actionNoun, CombatEngine combatEngine) {
+    public void handlePlayerAction(boolean move, boolean get, boolean fire, boolean talk, boolean look, boolean inventory, boolean drop, boolean help, boolean quit, boolean  cheat, List<String> actionNoun, CombatEngine combatEngine) {
         // Determine which case to execute based on boolean variables
-        int caseNumber = determineCase(move, get, fire, talk, look, inventory, drop, help, quit);
+        int caseNumber = determineCase(move, get, fire, talk, look, inventory, drop, help, quit, cheat);
 
         switch (caseNumber) {
             case 1:
@@ -80,6 +81,9 @@ public class OptionHandler {
             case 9:
                 UtilFunctions.confirmAndQuitGame();
                 break;
+            case 10:
+                handleCheat();
+                break;
             default:
                 // Default case
 //                InvalidCommand.showInvalidCommand(TextParser.getParsedWords());
@@ -88,7 +92,7 @@ public class OptionHandler {
     }
 
     // This is the method to determine which attribute was set from the TextParsing engine and return the number case
-    private static int determineCase(boolean move, boolean get, boolean fire, boolean talk, boolean look, boolean inventory, boolean drop, boolean help, boolean quit) {
+    private static int determineCase(boolean move, boolean get, boolean fire, boolean talk, boolean look, boolean inventory, boolean drop, boolean help, boolean quit, boolean cheat) {
         if (move) {
             return 1;
         } else if (get) {
@@ -107,9 +111,16 @@ public class OptionHandler {
             return 8;
         } else if (quit) {
             return 9;
+        } else if(cheat) {
+            return 10;
         } else {
             return 0; // Default case
         }
+    }
+
+    private void handleCheat() {
+        System.out.println("Cheat confirmed");
+        playerEngine.cheat();
     }
 
     // This is the method to handle the movement around the game
@@ -158,15 +169,23 @@ public class OptionHandler {
     }
 
     public void handleAttackEnemy(CombatEngine combatEngine, List<String> actionNoun) {
-        if(!playerEngine.getPlayerLocation().equalsIgnoreCase("firing-point")) {
+        if(!playerEngine.getPlayerLocation().equalsIgnoreCase("firing point")) {
+            System.out.println(playerEngine.getPlayerLocation());
             MessageReader.displayInvalidLocaiton();
         }
 
         boolean attackResult = combatEngine.attackEnemy(playerEngine.getPlayerInventory().contains("CopenHagen-Wintergreen"));
 
         if(attackResult) {
+            System.out.println();
           int enemyRemainingHealth = combatEngine.calculateBattleDamage(true, playerEngine);
-          MessageReader.displayBattleResults(enemyRemainingHealth);
+          MessageReader.displayBattleResults(enemyRemainingHealth, combatEngine.getEnemy().getEnemyName());
+          Console.pause(2000);
+          updateLocation(JsonReader.getLocationByName(playerEngine.getPlayerLocation()));
+        } else {
+            MessageReader.displayMissed();
+            Console.pause(2000);
+            updateLocation(JsonReader.getLocationByName(playerEngine.getPlayerLocation()));
         }
 
     }
@@ -185,7 +204,7 @@ public class OptionHandler {
     }
 
     public void handleLook(List<String> actionNoun) {
-        if (actionNoun.size() == 1 && actionNoun.get(0).equalsIgnoreCase("look")) {
+        if (actionNoun.get(1) == null && actionNoun.get(0).equalsIgnoreCase("look")) {
             Location location = JsonReader.getLocationByName(playerEngine.getPlayerLocation());
             if (location != null) {
                 updateLocation(location);
@@ -224,6 +243,7 @@ public class OptionHandler {
         setDrop(false);
         setHelp(false);
         setQuit(false);
+        setCheat(false);
     }
 
     // Getters/Setters
@@ -297,5 +317,13 @@ public class OptionHandler {
 
     public void setQuit(boolean quit) {
         this.quit = quit;
+    }
+
+    public boolean isCheat() {
+        return cheat;
+    }
+
+    public void setCheat(boolean cheat) {
+        this.cheat = cheat;
     }
 }

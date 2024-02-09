@@ -29,13 +29,13 @@ public class callForFireApp {
 
         charStatus.displayCharacterInfo(playerEngine.getName(), playerEngine.getHealth(), playerEngine.getPlayerLocation(), playerEngine.getPlayerInventory());
 
-        MessageReader.printLocationMessage("You are in a sandy mortar pit, you have a radio.", "Firing Point", "Hesco Barriers", "range", "Ammo Depot", "Mortar Pit");
+        MessageReader.printLocationMessage("You are in a sandy mortar pit, you have a radio.", "Firing Point", "Hesco Barriers", "Ammo Depot", "range", "Mortar Pit");
 
         while(!isGameOver()) {
 
             optionHandler.resetOptionHandler(); // Ensure all our actions are set to false
 
-            List<String> actionNoun = textParser.getUserString(optionHandler); // Get the users desired action
+            List<String> actionNoun = textParser.getUserString(optionHandler, playerEngine); // Get the users desired action
 
             optionHandler.run(actionNoun, combatEngine); // Handle what to do with that action
 
