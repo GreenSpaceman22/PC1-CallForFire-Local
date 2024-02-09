@@ -1,6 +1,7 @@
 package com.callForFire.gameEngines.supportEngines;
 
 import com.callForFire.gameEngines.PlayerEngine;
+import com.callForFire.models.Enemy;
 import com.callForFire.models.Item;
 import com.callForFire.models.Location;
 import com.callForFire.models.NPC;
@@ -28,6 +29,22 @@ public class JsonReader {
                     return npc; // Exit the method after finding the NPC
                 }
             }
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static List<Enemy> returnListOfEnemies() {
+        try {
+            Type enemyList = new TypeToken<List<Location>>() {}.getType();
+            List<Enemy> enemies = gson.fromJson(new FileReader("Data/Enemy.json"), enemyList);
+
+            if(!enemies.isEmpty()) {
+                return enemies;
+            }
+
             return null;
         } catch (IOException e) {
             e.printStackTrace();

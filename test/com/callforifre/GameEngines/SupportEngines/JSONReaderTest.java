@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertNull;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class JSONReaderTest {
 
@@ -113,7 +114,7 @@ public class JSONReaderTest {
         userInput.add("get");
         userInput.add("Broken-Mortar-tube");
 
-        String noun = JSON_Reader.readNounJson(userInput);
+        String noun = JsonReader.readNounJson(userInput);
 
         assertEquals("Broken-Mortar-tube", noun);
     }
@@ -124,7 +125,7 @@ public class JSONReaderTest {
         userInput.add("get");
         userInput.add("Broken-Mortar-tube");
 
-        String verb = JSON_Reader.readVerbJson(userInput);
+        String verb = JsonReader.readVerbJson(userInput);
 
         assertEquals("get", verb);
     }
