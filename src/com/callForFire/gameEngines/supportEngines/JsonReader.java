@@ -137,7 +137,7 @@ public class JsonReader {
 
             int topIter = 0;
             int iter = 0;
-            while (myVerb.equals("") && topIter < userInput.size()) {
+            while (myVerb.equals("") && topIter < verbs.length * userInput.size()) {
                 if (iter == verbs.length) {
                     iter = 0;
                 }
