@@ -1,14 +1,14 @@
 [
   {
     "enemyHealth": "150",
-    "enemyType": "tanks"
+    "enemyName": "tanks"
   },
   {
     "enemyHealth": "75",
-    "enemyType": "soldiers"
+    "enemyName": "soldiers"
   },
   {
     "enemyHealth": "125",
-    "enemyType": "trucks"
+    "enemyName": "trucks"
   }
 ]
