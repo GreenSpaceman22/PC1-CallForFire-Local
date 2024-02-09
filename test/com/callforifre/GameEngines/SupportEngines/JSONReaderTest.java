@@ -112,18 +112,18 @@ public class JSONReaderTest {
     public void nounReader_shouldReturn_brokenMortarTube_ifPassed() {
         List<String> userInput = new ArrayList<String>();
         userInput.add("get");
-        userInput.add("Broken-Mortar-tube");
+        userInput.add("broken-mortar-tube");
 
         String noun = JsonReader.readNounJson(userInput);
 
-        assertEquals("Broken-Mortar-tube", noun);
+        assertEquals("broken-mortar-tube", noun);
     }
 
     @Test
     public void verbReader_shouldReturn_get() {
         List<String> userInput = new ArrayList<String>();
         userInput.add("get");
-        userInput.add("Broken-Mortar-tube");
+        userInput.add("broken-mortar-tube");
 
         String verb = JsonReader.readVerbJson(userInput);
 
