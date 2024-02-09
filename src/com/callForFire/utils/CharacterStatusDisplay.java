@@ -1,9 +1,5 @@
-package com.callforfire.Utils;
+package com.callForFire.utils;
 
-import com.callforfire.GameEngines.PlayerEngine;
-import com.callforfire.Models.Location;
-
-import java.nio.file.Path;
 import java.util.List;
 
 public class CharacterStatusDisplay {

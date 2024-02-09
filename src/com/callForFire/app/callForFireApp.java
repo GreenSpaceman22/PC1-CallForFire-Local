@@ -1,18 +1,18 @@
-package com.callforfire.App;
+package com.callForFire.app;
 
 import com.apps.util.Console;
-import com.callforfire.GameEngines.OptionHandler;
-import com.callforfire.GameEngines.PlayerEngine;
-import com.callforfire.GameEngines.SupportEngines.JSON_Writer;
-import com.callforfire.GameEngines.SupportEngines.MessageReader;
-import com.callforfire.GameEngines.TextParser;
-import com.callforfire.Utils.CharacterStatusDisplay;
-import com.callforfire.Utils.WelcomeTitleDisplay;
+import com.callForFire.gameEngines.OptionHandler;
+import com.callForFire.gameEngines.PlayerEngine;
+import com.callForFire.gameEngines.TextParser;
+import com.callForFire.gameEngines.supportEngines.JsonWriter;
+import com.callForFire.gameEngines.supportEngines.MessageReader;
+import com.callForFire.utils.CharacterStatusDisplay;
+import com.callForFire.utils.WelcomeTitleDisplay;
 
 import java.util.List;
 
 //This is where all our of our game engines and logic will run from
-public class CallForFire_App {
+public class callForFireApp {
     private final TextParser textParser = new TextParser();
     private final PlayerEngine playerEngine = new PlayerEngine();
     private final OptionHandler optionHandler = new OptionHandler();
@@ -30,17 +30,16 @@ public class CallForFire_App {
 
         while(!isGameOver()) {
             optionHandler.resetOptionHandler(); // Ensure all our actions are set to false
-            // persistently display character information
-            List<String> actionNoun = textParser.getUserString(optionHandler);
-            optionHandler.run(actionNoun);
+            List<String> actionNoun = textParser.getUserString(optionHandler); // Get the users desired action
+            optionHandler.run(actionNoun); // Handle what to do with that action
         }
     }
 
     public void intialize() {
-        Console.clear();
-        playerEngine.clearPlayerInventory();
-        JSON_Writer.resetLocationsJSON();
-        WelcomeTitleDisplay.render("banner");
+        Console.clear(); // Clear the console
+        playerEngine.clearPlayerInventory(); // Clear the players inventory
+        JsonWriter.resetLocationsJSON(); // Ensure the Locations.json is reset to the starting game configs
+        WelcomeTitleDisplay.render("banner"); // Display the welcome message
     }
 
     public void instructions() {

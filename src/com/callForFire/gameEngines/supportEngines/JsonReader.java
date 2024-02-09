@@ -1,9 +1,9 @@
-package com.callforfire.GameEngines.SupportEngines;
+package com.callForFire.gameEngines.supportEngines;
 
-import com.callforfire.GameEngines.PlayerEngine;
-import com.callforfire.Models.Item;
-import com.callforfire.Models.Location;
-import com.callforfire.Models.NPC;
+import com.callForFire.gameEngines.PlayerEngine;
+import com.callForFire.models.Item;
+import com.callForFire.models.Location;
+import com.callForFire.models.NPC;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class JSON_Reader {
+public class JsonReader {
     private static final Gson gson = new Gson();
 
     public static NPC readNpcDialogue(String npcName) {
@@ -141,25 +141,6 @@ public class JSON_Reader {
 
     // WILL RETURN NULL IF INPUT IS INVALID
     public static String readNounJson(List<String> userInput) {
-        try {
-            String myNoun = "";
-            Gson gson = new Gson();
-            JsonObject json = gson.fromJson(new FileReader("Data/Nouns.json"), JsonObject.class);
-
-            for (String word : userInput) {
-                String noun = json.get("nouns").getAsString();
-                String[] synonyms = noun.split(" ");
-                for (String synonym : synonyms) {
-                    if (word.equals(synonym)) {
-                        myNoun = synonym;
-                        break;
-                    }
-                }
-            }
-            return myNoun;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return "";
     }
 }

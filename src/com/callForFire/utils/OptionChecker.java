@@ -1,14 +1,14 @@
-package com.callforfire.Utils;
+package com.callForFire.utils;
 
-import com.callforfire.GameEngines.PlayerEngine;
-import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
-import com.callforfire.Models.Location;
+import com.callForFire.gameEngines.PlayerEngine;
+import com.callForFire.gameEngines.supportEngines.JsonReader;
+import com.callForFire.models.Location;
 
 import java.util.List;
 
 public class OptionChecker {
     public static boolean checkItemIsPresentInLocation(String currentLocation, String itemName) {
-        Location location = JSON_Reader.getLocationByName(currentLocation);
+        Location location = JsonReader.getLocationByName(currentLocation);
         if (location != null) {
             for(String item : location.getItems()) {
                 if(item.equalsIgnoreCase(itemName)) {

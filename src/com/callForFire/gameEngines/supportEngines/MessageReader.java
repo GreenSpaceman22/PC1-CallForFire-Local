@@ -1,7 +1,7 @@
-package com.callforfire.GameEngines.SupportEngines;
+package com.callForFire.gameEngines.supportEngines;
 
-import com.callforfire.Models.Location;
-import com.callforfire.Models.NPC;
+import com.callForFire.models.Location;
+import com.callForFire.models.NPC;
 
 import java.util.List;
 
@@ -56,7 +56,7 @@ public class MessageReader {
 
     // ITEM MESSAGES
     public static void printGetItemError() {
-        System.out.println("That item is not here, ensure you are spelling exactly how the items is spelt in the description");
+        System.out.println("That Item is not here, ensure you are spelling exactly how the items is spelt in the description");
     }
 
     public static void printItemAlreadyPresentError(String itemName) {

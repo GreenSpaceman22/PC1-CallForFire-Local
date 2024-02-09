@@ -1,6 +1,6 @@
-package com.callforfire.Models;
+package com.callForFire.models;
 
-import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
+import com.callForFire.gameEngines.supportEngines.JsonReader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class NPC {
     }
 
     public String getRandomDialogue(String npcName) {
-        NPC npc = JSON_Reader.readNpcDialogue(npcName);
+        NPC npc = JsonReader.readNpcDialogue(npcName);
         if (npc== null || npc.getDialogue().isEmpty()) {
             return null; // Return null if the dialogue list is empty or null
         } else  {

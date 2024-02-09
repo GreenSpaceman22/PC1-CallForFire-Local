@@ -1,7 +1,7 @@
-package com.callforfire.GameEngines;
+package com.callForFire.gameEngines;
 
 import com.apps.util.Prompter;
-import com.callforfire.Utils.UtilFunctions;
+import com.callForFire.utils.UtilFunctions;
 
 import java.util.ArrayList;
 import java.util.Arrays;

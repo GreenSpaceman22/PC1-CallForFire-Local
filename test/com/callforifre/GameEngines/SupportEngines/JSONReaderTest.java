@@ -1,8 +1,8 @@
 package com.callforifre.GameEngines.SupportEngines;
 
-import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
-import com.callforfire.Models.Item;
-import com.callforfire.Models.Location;
+import com.callForFire.gameEngines.supportEngines.JsonReader;
+import com.callForFire.models.Item;
+import com.callForFire.models.Location;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,18 +21,18 @@ public class JSONReaderTest {
     @Test
     public void jsonReaderShouldReturnSpecificNPCData() {
         // This should print the data for private snuffy
-        assertNotNull(JSON_Reader.readNpcDialogue("private-snuffy"));
+        assertNotNull(JsonReader.readNpcDialogue("private-snuffy"));
     }
 
     @Test
     public void readNpcDialogueShouldReturnNull() {
-        assertNull(JSON_Reader.readNpcDialogue("PRIVateSnuffy"));
+        assertNull(JsonReader.readNpcDialogue("PRIVateSnuffy"));
     }
 
 
     @Test
     public void readLocationInformationShouldPrintTheNewLocationsNameAndNotBeNull() {
-        Location location = JSON_Reader.returnLocationInformationForDirectionToMove("Firing Point", "west");
+        Location location = JsonReader.returnLocationInformationForDirectionToMove("Firing Point", "west");
         System.out.println(location.getName());
         assertNotNull(location);
     }
@@ -40,20 +40,20 @@ public class JSONReaderTest {
     @Test
     public void readLocationInformationShouldBeNull() {
         // To the north is hesco barriers, there is no location for there so this should be null
-        Location location = JSON_Reader.returnLocationInformationForDirectionToMove("Firing Point", "north");
+        Location location = JsonReader.returnLocationInformationForDirectionToMove("Firing Point", "north");
         assertNull(location);
     }
 
     @Test
     public void readLocationInformationShouldBeNullWithInvalidInput() {
         // BlahBlah is not a vaild direction, this should return null
-        Location location = JSON_Reader.returnLocationInformationForDirectionToMove("Firing Point", "blahblah");
+        Location location = JsonReader.returnLocationInformationForDirectionToMove("Firing Point", "blahblah");
         assertNull(location);
     }
 
     @Test
     public void readItemDescriptionShouldNotBeNullAndPrintItemDescription() {
-        Item item = JSON_Reader.readItemDescription("cheese");
+        Item item = JsonReader.readItemDescription("cheese");
         System.out.println("Item: " + item.getName() + ", description: " + item.getDescription());
         assertNotNull(item);
     }
@@ -64,7 +64,7 @@ public class JSONReaderTest {
         userInput.add("walk");
         userInput.add("north");
 
-        String verb = JSON_Reader.readVerbJson(userInput);
+        String verb = JsonReader.readVerbJson(userInput);
 
         assertEquals("go", verb);
     }
@@ -75,7 +75,7 @@ public class JSONReaderTest {
         userInput.add("walk");
         userInput.add("north");
 
-        String noun = JSON_Reader.readNounJson(userInput);
+        String noun = JsonReader.readNounJson(userInput);
 
         assertEquals("north", noun);
     }

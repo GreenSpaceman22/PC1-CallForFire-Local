@@ -1,4 +1,4 @@
-package com.callforfire.Utils;
+package com.callForFire.utils;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
