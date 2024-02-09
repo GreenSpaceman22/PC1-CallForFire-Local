@@ -15,12 +15,12 @@ public class TextParser {
 
     // METHODS
     // Get the action and noun of the users input, this will be the main method of this class
-    public List<String> getUserString(OptionHandler optionHandler) {
+    public List<String> getUserString(OptionHandler optionHandler, PlayerEngine playerEngine) {
         promptUser();
 
         parseUserInput();
 
-        parseActionAndNoun(optionHandler);
+        parseActionAndNoun(optionHandler, playerEngine);
 
         return actionNoun;
     }
@@ -38,18 +38,31 @@ public class TextParser {
         parsedWords.addAll(Arrays.asList(words));
     }
 
-    public void parseActionAndNoun(OptionHandler optionHandler) {
+    public void parseActionAndNoun(OptionHandler optionHandler, PlayerEngine playerEngine) {
+
         // These are temporary to keep the game circular until we incorporate the actual parser
         actionNoun.clear();
 
         String action = JsonReader.readVerbJson(getParsedWords());
         String noun = JsonReader.readNounJson(getParsedWords());
+
         actionNoun.add(action);
-        if (action.equals("quit")) {
-            System.out.println("quiting");
-        }
         actionNoun.add(noun);
+
+//        for(String word : actionNoun) {
+//            System.out.println(word);
+//        }
+
+//        if (action.equals("quit")) {
+//            System.out.println("quiting");
+//        }
+
         parsedWords.clear();
+
+//        if(noun == null) {
+//            UtilFunctions.showInvalidCommand(userInput);
+//            getUserString(optionHandler, playerEngine);
+//        }
 
         // move, get, fire, talk, look, inventory, drop, help, quit
         if("go".equalsIgnoreCase(actionNoun.get(0))) {
@@ -70,9 +83,11 @@ public class TextParser {
             optionHandler.setHelp(true);
         } else if ("quit".equalsIgnoreCase(actionNoun.get(0))) {
             optionHandler.setQuit(true);
-        } else {
+        } else if ("cheat".equalsIgnoreCase(actionNoun.get(0))) {
+            optionHandler.setCheat(true);
+        }else {
             UtilFunctions.showInvalidCommand(userInput);
-            getUserString(optionHandler);
+            getUserString(optionHandler, playerEngine);
         }
     }
 

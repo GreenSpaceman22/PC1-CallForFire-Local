@@ -1,23 +1,14 @@
 [
   {
-    "gridX": "C",
-    "gridY": "7",
-    "enemyHealth": "100",
-    "enemyType": "tanks",
-    "enemyLocation": ["C","7"]
+    "enemyHealth": "150",
+    "enemyName": "tanks"
   },
   {
-    "gridX": "F",
-    "gridY": "3",
-    "enemyHealth": "100",
-    "enemyType": "soldiers",
-    "enemyLocation": ["F","3"]
+    "enemyHealth": "75",
+    "enemyName": "soldiers"
   },
   {
-    "gridX": "H",
-    "gridY": "5",
-    "enemyHealth": "100",
-    "enemyType": "trucks",
-    "enemyLocation": ["F","3"]
+    "enemyHealth": "125",
+    "enemyName": "trucks"
   }
 ]
