@@ -1,6 +1,8 @@
 {
-  "currentLocation": "Chow hall",
-  "playerInventory": [],
+  "currentLocation": "TOC",
+  "playerInventory": [
+    "Broken-Mortar-tube"
+  ],
   "maxInventoryWeight": 120,
   "currentInventoryWeight": 0,
   "name": "Player1",

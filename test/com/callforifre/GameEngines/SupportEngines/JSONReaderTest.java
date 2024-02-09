@@ -61,7 +61,20 @@ public class JSONReaderTest {
     @Test
     public void verbReader_shouldReturnGo_ifWalk_passed() {
         List<String> userInput = new ArrayList<String>();
+        userInput.add("I");
         userInput.add("walk");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
         userInput.add("north");
 
         String verb = JsonReader.readVerbJson(userInput);
@@ -72,11 +85,47 @@ public class JSONReaderTest {
     @Test
     public void nounReader_shouldReturn_northIfNorthIsPassed() {
         List<String> userInput = new ArrayList<String>();
+        userInput.add("I");
         userInput.add("walk");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("to");
+        userInput.add("the");
         userInput.add("north");
 
         String noun = JsonReader.readNounJson(userInput);
 
         assertEquals("north", noun);
+    }
+
+    @Test
+    public void nounReader_shouldReturn_brokenMortarTube_ifPassed() {
+        List<String> userInput = new ArrayList<String>();
+        userInput.add("get");
+        userInput.add("Broken-Mortar-tube");
+
+        String noun = JSON_Reader.readNounJson(userInput);
+
+        assertEquals("Broken-Mortar-tube", noun);
+    }
+
+    @Test
+    public void verbReader_shouldReturn_get() {
+        List<String> userInput = new ArrayList<String>();
+        userInput.add("get");
+        userInput.add("Broken-Mortar-tube");
+
+        String verb = JSON_Reader.readVerbJson(userInput);
+
+        assertEquals("get", verb);
     }
 }

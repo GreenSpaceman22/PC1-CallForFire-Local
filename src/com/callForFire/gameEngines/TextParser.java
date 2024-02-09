@@ -1,12 +1,10 @@
 package com.callForFire.gameEngines;
 
 import com.apps.util.Prompter;
+import com.callForFire.gameEngines.supportEngines.JsonReader;
 import com.callForFire.utils.UtilFunctions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class TextParser {
     private final List<String> parsedWords = new ArrayList<>();
@@ -43,7 +41,14 @@ public class TextParser {
     public void parseActionAndNoun(OptionHandler optionHandler) {
         // These are temporary to keep the game circular until we incorporate the actual parser
         actionNoun.clear();
-        actionNoun.addAll(this.getParsedWords());
+
+        String action = JsonReader.readVerbJson(getParsedWords());
+        String noun = JsonReader.readNounJson(getParsedWords());
+        actionNoun.add(action);
+        if (action.equals("quit")) {
+            System.out.println("quiting");
+        }
+        actionNoun.add(noun);
         parsedWords.clear();
 
         // move, get, fire, talk, look, inventory, drop, help, quit
