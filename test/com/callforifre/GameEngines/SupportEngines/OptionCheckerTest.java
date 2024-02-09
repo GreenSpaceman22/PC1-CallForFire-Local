@@ -1,6 +1,6 @@
 package com.callforifre.GameEngines.SupportEngines;
 
-import com.callforfire.Utils.OptionChecker;
+import com.callForFire.utils.OptionChecker;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

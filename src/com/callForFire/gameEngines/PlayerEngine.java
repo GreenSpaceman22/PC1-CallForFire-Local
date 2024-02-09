@@ -1,7 +1,7 @@
-package com.callforfire.GameEngines;
+package com.callForFire.gameEngines;
 
-import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
-import com.callforfire.GameEngines.SupportEngines.JSON_Writer;
+import com.callForFire.gameEngines.supportEngines.JsonReader;
+import com.callForFire.gameEngines.supportEngines.JsonWriter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,21 +19,21 @@ public class PlayerEngine {
 
     // Business Methods
     public void addItemToInventory(String itemToAdd) {
-        // Add item to inventory
+        // Add Item to inventory
         playerInventory.add(itemToAdd);
         // Update player's JSON file
-        JSON_Writer.writePlayerToFile(this);
+        JsonWriter.writePlayerToFile(this);
     }
 
     public void dropItemFromInventory(String itemToDrop) {
-        // Remove item from inventory
+        // Remove Item from inventory
         playerInventory.remove(itemToDrop);
         // Update player's JSON file
-        JSON_Writer.writePlayerToFile(this);
+        JsonWriter.writePlayerToFile(this);
     }
 
     public static List<String> getPlayerInventoryItems() {
-        PlayerEngine player = JSON_Reader.readPlayerFromFile();
+        PlayerEngine player = JsonReader.readPlayerFromFile();
         if (player != null) {
             return player.getPlayerInventory();
         }
@@ -43,11 +43,11 @@ public class PlayerEngine {
     public void clearPlayerInventory() {
         playerInventory.clear(); // Clear the inventory list
         // Update player's JSON file
-        JSON_Writer.writePlayerToFile(this);
+        JsonWriter.writePlayerToFile(this);
     }
 
     public String getPlayerLocation() {
-        PlayerEngine player = JSON_Reader.readPlayerFromFile();
+        PlayerEngine player = JsonReader.readPlayerFromFile();
         if(player !=  null) {
             return player.getCurrentLocation();
         }
@@ -62,7 +62,7 @@ public class PlayerEngine {
 
     public void setCurrentLocation(String currentLocation) {
         this.currentLocation = currentLocation;
-        JSON_Writer.writePlayerToFile(this);
+        JsonWriter.writePlayerToFile(this);
     }
 
     public List<String> getPlayerInventory() {

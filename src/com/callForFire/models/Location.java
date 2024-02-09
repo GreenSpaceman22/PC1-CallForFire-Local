@@ -1,4 +1,4 @@
-package com.callforfire.Models;
+package com.callForFire.models;
 
 import java.util.List;
 
@@ -11,7 +11,6 @@ public class Location {
     private String east;
     private String south;
     private String west;
-
 
     private String currentLocation = "Mortar pit";
 

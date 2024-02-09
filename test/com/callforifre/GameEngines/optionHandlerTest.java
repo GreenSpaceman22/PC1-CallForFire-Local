@@ -1,13 +1,13 @@
 package com.callforifre.GameEngines;
 
-import com.callforfire.GameEngines.OptionHandler;
+import com.callForFire.gameEngines.OptionHandler;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OptionHandlerTest {
+public class optionHandlerTest {
     private OptionHandler optionHandler;
     List<String> actionNoun = new ArrayList<>();
 

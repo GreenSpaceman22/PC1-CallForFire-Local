@@ -1,8 +1,7 @@
-package com.callforfire.Utils;
+package com.callForFire.utils;
 
 import com.apps.util.Prompter;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class WannaPlay {

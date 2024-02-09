@@ -1,9 +1,9 @@
-package com.callforfire.GameEngines.SupportEngines;
+package com.callForFire.gameEngines.supportEngines;
 
-import com.callforfire.GameEngines.PlayerEngine;
-import com.callforfire.Models.Item;
-import com.callforfire.Models.Location;
-import com.callforfire.Models.NPC;
+import com.callForFire.gameEngines.PlayerEngine;
+import com.callForFire.models.Item;
+import com.callForFire.models.Location;
+import com.callForFire.models.NPC;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -14,14 +14,13 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class JSON_Reader {
+public class JsonReader {
     private static final Gson gson = new Gson();
 
     public static NPC readNpcDialogue(String npcName) {
         try {
             // Read JSON file into a List of NPC objects
-            Type npcListType = new TypeToken<List<NPC>>() {
-            }.getType();
+            Type npcListType = new TypeToken<List<NPC>>() {}.getType();
             List<NPC> npcList = gson.fromJson(new FileReader("Data/NPC.json"), npcListType);
 
             for (NPC npc : npcList) {
@@ -38,8 +37,7 @@ public class JSON_Reader {
 
     public static Location returnLocationInformationForDirectionToMove(String currentLocation, String direction) {
         try {
-            Type locationListType = new TypeToken<List<Location>>() {
-            }.getType();
+            Type locationListType = new TypeToken<List<Location>>() {}.getType();
             List<Location> locationList = gson.fromJson(new FileReader("Data/Locations.json"), locationListType);
 
             for (Location location : locationList) {
@@ -69,8 +67,7 @@ public class JSON_Reader {
     // Helper method to get location by name
     public static Location getLocationByName(String name) {
         try {
-            Type locationListType = new TypeToken<List<Location>>() {
-            }.getType();
+            Type locationListType = new TypeToken<List<Location>>() {}.getType();
             List<Location> locationList = gson.fromJson(new FileReader("Data/Locations.json"), locationListType);
 
             for (Location location : locationList) {
@@ -88,8 +85,7 @@ public class JSON_Reader {
 
     public static Item readItemDescription(String myItem) {
         try {
-            Type itemListType = new TypeToken<List<Item>>() {
-            }.getType();
+            Type itemListType = new TypeToken<List<Item>>() {}.getType();
             List<Item> itemList = gson.fromJson(new FileReader("Data/Items.json"), itemListType);
 
             for (Item item : itemList) {

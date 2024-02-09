@@ -1,4 +1,4 @@
-package com.callforfire.Utils;
+package com.callForFire.utils;
 
 import java.util.Scanner;
 
