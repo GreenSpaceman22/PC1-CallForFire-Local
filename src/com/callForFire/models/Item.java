@@ -1,4 +1,4 @@
-package com.callforfire.Models;
+package com.callForFire.models;
 
 public class Item {
 

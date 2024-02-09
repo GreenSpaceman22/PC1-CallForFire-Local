@@ -1,8 +1,8 @@
-package com.callforfire.GameEngines;
+package com.callForFire.gameEngines;
 
 import com.apps.util.Prompter;
-import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
-import com.callforfire.Utils.UtilFunctions;
+import com.callForFire.gameEngines.supportEngines.JsonReader;
+import com.callForFire.utils.UtilFunctions;
 
 import java.util.*;
 
@@ -42,8 +42,8 @@ public class TextParser {
         // These are temporary to keep the game circular until we incorporate the actual parser
         actionNoun.clear();
 
-        String action = JSON_Reader.readVerbJson(getParsedWords());
-        String noun = JSON_Reader.readNounJson(getParsedWords());
+        String action = JsonReader.readVerbJson(getParsedWords());
+        String noun = JsonReader.readNounJson(getParsedWords());
         actionNoun.add(action);
         if (action.equals("quit")) {
             System.out.println("quiting");

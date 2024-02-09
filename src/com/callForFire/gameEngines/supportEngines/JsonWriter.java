@@ -1,7 +1,7 @@
-package com.callforfire.GameEngines.SupportEngines;
+package com.callForFire.gameEngines.supportEngines;
 
-import com.callforfire.GameEngines.PlayerEngine;
-import com.callforfire.Models.Location;
+import com.callForFire.gameEngines.PlayerEngine;
+import com.callForFire.models.Location;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -10,7 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class JSON_Writer {
+public class JsonWriter {
     private static final String UNEDITED_JSON_FILE = "Data/OriginalLocations.json";
     private static final String EDITED_JSON_FILE = "Data/Locations.json";
     private static final String PLAYER_FILE_PATH = "Data/Player.json";
