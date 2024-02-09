@@ -121,8 +121,9 @@ public class JSON_Reader {
             Gson gson = new Gson();
             JsonObject json = gson.fromJson(new FileReader("Data/Verbs.json"), JsonObject.class);
 
+            int topIter = 0;
             int iter = 0;
-            while (myVerb.equals("") || iter < 200) {
+            while (myVerb.equals("") || topIter < 200) {
                 if (iter == verbs.length) {
                     iter = 0;
                 }
@@ -134,7 +135,8 @@ public class JSON_Reader {
                             break;
                         }
                     }
-                iter++;
+            iter++;
+            topIter++;
             }
             return myVerb;
         } catch (FileNotFoundException e) {
@@ -146,14 +148,17 @@ public class JSON_Reader {
     // WILL RETURN NULL IF INPUT IS INVALID
     public static String readNounJson(List<String> userInput) {
         try {
+            if (userInput.size() == 1) {
+                return null;
+            }
             String myNoun = "";
             String[] nouns = new String[]{"nouns"};
 
             Gson gson = new Gson();
             JsonObject json = gson.fromJson(new FileReader("Data/Nouns.json"), JsonObject.class);
-
+            int topIter = 0;
             int iter = 0;
-            while (myNoun.equals("") || iter < 200) {
+            while (myNoun.equals("") || topIter < 200) {
                 String noun = json.get("nouns").getAsString();
                 String[] synonyms = noun.split(" ");
                 for (String synonym : synonyms) {
@@ -163,6 +168,7 @@ public class JSON_Reader {
                     }
                 }
                 iter++;
+                topIter++;
             }
             return myNoun;
         } catch (FileNotFoundException e) {

@@ -4,10 +4,7 @@ import com.apps.util.Prompter;
 import com.callforfire.GameEngines.SupportEngines.JSON_Reader;
 import com.callforfire.Utils.UtilFunctions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class TextParser {
     private final List<String> parsedWords = new ArrayList<>();
@@ -48,6 +45,9 @@ public class TextParser {
         String action = JSON_Reader.readVerbJson(getParsedWords());
         String noun = JSON_Reader.readNounJson(getParsedWords());
         actionNoun.add(action);
+        if (action.equals("quit")) {
+            System.out.println("quiting");
+        }
         actionNoun.add(noun);
         parsedWords.clear();
 
