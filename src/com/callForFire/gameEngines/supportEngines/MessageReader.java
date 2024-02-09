@@ -85,4 +85,20 @@ public class MessageReader {
             System.out.println("Your inventory is empty");
         }
     }
+
+    public static void displayBattleResults(int enemyHealth, String enemyName) {
+        System.out.println("You hit the enemy " + enemyName + " for 25 damage, the enemy has " + enemyHealth + " health remaining");
+    }
+
+    public static void displayMissed() {
+        System.out.println("Your mortar round missed the enemy!");
+    }
+
+    public static void displayInvalidLocaiton() {
+        System.out.println("You must be at the firing point before you can fire your mortars");
+    }
+
+    public static void printNotProperItemsError() {
+        System.out.println("You do not have the proper items to fire at the enemy");
+    }
 }

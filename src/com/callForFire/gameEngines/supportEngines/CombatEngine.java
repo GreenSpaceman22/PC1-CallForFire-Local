@@ -1,8 +1,8 @@
 package com.callForFire.gameEngines.supportEngines;
 
+import com.callForFire.gameEngines.PlayerEngine;
 import com.callForFire.models.Enemy;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -27,35 +27,32 @@ public class CombatEngine {
         }
     }
 
-    public List<String> attackEnemy(String x, String y) {
-        List<String> result = new ArrayList<>();
+    public boolean attackEnemy(boolean hasCopenhagen) {
+        Random random = new Random();
 
-        // Map letters A-J to numerical values 1-10
-        int xCoord = x.toUpperCase().charAt(0) - 'A' + 1;
-
-        // Calculate the relative position of the attack compared to the enemy's position
-        int xDifference = xCoord - Integer.parseInt(enemy.getGridX());
-        int yDifference = Integer.parseInt(y) - Integer.parseInt(enemy.getGridY());
-
-        // Determine if the attack is high or low
-        if (yDifference < 0) {
-            result.add("High");
-        } else if (yDifference > 0) {
-            result.add("Low");
+        // If hasCopenhagen is true, user has 1-2 chance of hitting the enemy
+        if (hasCopenhagen) {
+            // Generate a random number between 1 and 3
+            int randomNumber = random.nextInt(3) + 1;
+            // Return true if the random number is 1 or 2, indicating a hit
+            return randomNumber <= 2;
         } else {
-            result.add("Same");
+            // If hasCopenhagen is false, user has 1-3 chance of hitting the enemy
+            // Generate a random number between 1 and 4
+            int randomNumber = random.nextInt(4) + 1;
+            // Return true if the random number is 1, 2, or 3, indicating a hit
+            return randomNumber <= 3;
         }
+    }
 
-        // Determine if the attack is left or right
-        if (xDifference < 0) {
-            result.add("Left");
-        } else if (xDifference > 0) {
-            result.add("Right");
+    public int calculateBattleDamage(boolean isPlayerAttacking, PlayerEngine playerEngine) {
+        if(isPlayerAttacking) {
+            enemy.setEnemyHealth(enemy.getEnemyHealth() - 25);
+            return enemy.getEnemyHealth();
         } else {
-            result.add("Same");
+            playerEngine.setHealth(playerEngine.getHealth() - 25);
+            return playerEngine.getHealth();
         }
-
-        return result;
     }
 
     public Enemy getEnemy() {

@@ -1,10 +1,12 @@
 package com.callForFire.models;
 
+import java.util.List;
+
 public class Item {
 
     private String name;
     private String description;
-
+    private List<String> type;
     public Item() {}
     public Item(String name, String description) {
         this.name = name;
@@ -25,5 +27,13 @@ public class Item {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<String> getType() {
+        return type;
+    }
+
+    public void setType(List<String> type) {
+        this.type = type;
     }
 }

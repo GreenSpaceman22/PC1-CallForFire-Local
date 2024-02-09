@@ -1,4 +1,4 @@
 
 {
-  "nouns" : ["firing-point", "vehicle-yard", "chow-hall", "toc", "mortar-pit", "ammo-depot", "range", "quarters", "hesco-barriers", "north", "south", "east", "west", "sand", "broken-mortar-tube", "mortar-tube", "mortar-rounds", "cheese-charges", "base-plate", "copenhagen-wintergreen", "cheese", "private-snuffy", "cookie", "angry-csm", "proud-csm", "specialist-sham"]
+  "nouns" : ["firing-point", "vehicle-yard", "chow-hall", "toc", "mortar-pit", "ammo-depot", "range", "quarters", "hesco-barriers", "north", "south", "east", "west", "sand", "broken-mortar-tube", "mortar-tube", "mortar-rounds", "cheese-charges", "base-plate", "copenhagen-wintergreen", "cheese", "private-snuffy", "cookie", "angry-csm", "proud-csm", "specialist-sham", "enemy", "tank", "truck","bad guys", "soldier", "soldiers"]
 }
