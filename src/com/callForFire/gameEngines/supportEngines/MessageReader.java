@@ -89,4 +89,8 @@ public class MessageReader {
     public static void displayBattleResults(int enemyHealth) {
         System.out.println("You hit the enemy for 25 damage, the enemy has " + enemyHealth + " health remaining");
     }
+
+    public static void displayInvalidLocaiton() {
+        System.out.println("You must be at the firing point before you can fire your mortars");
+    }
 }

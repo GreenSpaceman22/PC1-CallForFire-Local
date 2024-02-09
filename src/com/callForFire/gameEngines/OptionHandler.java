@@ -158,7 +158,12 @@ public class OptionHandler {
     }
 
     public void handleAttackEnemy(CombatEngine combatEngine, List<String> actionNoun) {
+        if(!playerEngine.getPlayerLocation().equalsIgnoreCase("firing-point")) {
+            MessageReader.displayInvalidLocaiton();
+        }
+
         boolean attackResult = combatEngine.attackEnemy(playerEngine.getPlayerInventory().contains("CopenHagen-Wintergreen"));
+
         if(attackResult) {
           int enemyRemainingHealth = combatEngine.calculateBattleDamage(true, playerEngine);
           MessageReader.displayBattleResults(enemyRemainingHealth);
