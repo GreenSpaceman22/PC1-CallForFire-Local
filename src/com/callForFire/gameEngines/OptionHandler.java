@@ -11,6 +11,7 @@ package com.callForFire.gameEngines;
 
 
 import com.apps.util.Console;
+import com.callForFire.gameEngines.supportEngines.CombatEngine;
 import com.callForFire.gameEngines.supportEngines.JsonReader;
 import com.callForFire.gameEngines.supportEngines.JsonWriter;
 import com.callForFire.gameEngines.supportEngines.MessageReader;
@@ -40,14 +41,14 @@ public class OptionHandler {
     /*
      * This is the main method called from the callForFireApp
      */
-    public void run(List<String> actionNoun) {
-        handlePlayerAction(this.isMove(), this.isGet(), this.isFire(), this.isTalk(), this.isLook(), this.isInventory(), this.isDrop(), this.isHelp(), this.isQuit(), actionNoun);
+    public void run(List<String> actionNoun, CombatEngine combatEngine) {
+        handlePlayerAction(this.isMove(), this.isGet(), this.isFire(), this.isTalk(), this.isLook(), this.isInventory(), this.isDrop(), this.isHelp(), this.isQuit(), actionNoun, combatEngine);
     }
 
     /*
      *  This method is the driving force of this engine, it handles each case based on what the user has input into the TextParsing Engine
      */
-    public void handlePlayerAction(boolean move, boolean get, boolean fire, boolean talk, boolean look, boolean inventory, boolean drop, boolean help, boolean quit, List<String> actionNoun) {
+    public void handlePlayerAction(boolean move, boolean get, boolean fire, boolean talk, boolean look, boolean inventory, boolean drop, boolean help, boolean quit, List<String> actionNoun, CombatEngine combatEngine) {
         // Determine which case to execute based on boolean variables
         int caseNumber = determineCase(move, get, fire, talk, look, inventory, drop, help, quit);
 
@@ -59,7 +60,7 @@ public class OptionHandler {
                 handleGetItem(actionNoun.get(1));
                 break;
             case 3:
-                // Fire Logic here
+                handleAttackEnemy(combatEngine, actionNoun);
                 break;
             case 4:
                 handleTalkWithNpc(actionNoun.get(1));
@@ -154,6 +155,10 @@ public class OptionHandler {
         } else {
             MessageReader.printItemAlreadyPresentError(itemName); // Alert the player already has the Item
         }
+    }
+
+    public void handleAttackEnemy(CombatEngine combatEngine, List<String> actionNoun) {
+        List<String> attackResult = combatEngine.attackEnemy(actionNoun.get(1), actionNoun.get(2));
     }
 
     public void handleDropItem(String itemName) {

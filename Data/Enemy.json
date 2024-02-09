@@ -1,0 +1,23 @@
+[
+  {
+    "gridX": "C",
+    "gridY": "7",
+    "enemyHealth": "100",
+    "enemyType": "tanks",
+    "enemyLocation": ["C","7"]
+  },
+  {
+    "gridX": "F",
+    "gridY": "3",
+    "enemyHealth": "100",
+    "enemyType": "soldiers",
+    "enemyLocation": ["F","3"]
+  },
+  {
+    "gridX": "H",
+    "gridY": "5",
+    "enemyHealth": "100",
+    "enemyType": "trucks",
+    "enemyLocation": ["F","3"]
+  }
+]

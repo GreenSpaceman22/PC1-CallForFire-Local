@@ -4,6 +4,7 @@ import com.apps.util.Console;
 import com.callForFire.gameEngines.OptionHandler;
 import com.callForFire.gameEngines.PlayerEngine;
 import com.callForFire.gameEngines.TextParser;
+import com.callForFire.gameEngines.supportEngines.CombatEngine;
 import com.callForFire.gameEngines.supportEngines.JsonWriter;
 import com.callForFire.gameEngines.supportEngines.MessageReader;
 import com.callForFire.utils.CharacterStatusDisplay;
@@ -13,6 +14,7 @@ import java.util.List;
 
 //This is where all our of our game engines and logic will run from
 public class callForFireApp {
+    private final CombatEngine combatEngine = new CombatEngine();
     private final TextParser textParser = new TextParser();
     private final PlayerEngine playerEngine = new PlayerEngine();
     private final OptionHandler optionHandler = new OptionHandler();
@@ -31,7 +33,7 @@ public class callForFireApp {
         while(!isGameOver()) {
             optionHandler.resetOptionHandler(); // Ensure all our actions are set to false
             List<String> actionNoun = textParser.getUserString(optionHandler); // Get the users desired action
-            optionHandler.run(actionNoun); // Handle what to do with that action
+            optionHandler.run(actionNoun, combatEngine); // Handle what to do with that action
         }
     }
 
