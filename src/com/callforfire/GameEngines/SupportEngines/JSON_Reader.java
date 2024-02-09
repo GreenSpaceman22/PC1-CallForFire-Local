@@ -20,7 +20,8 @@ public class JSON_Reader {
     public static NPC readNpcDialogue(String npcName) {
         try {
             // Read JSON file into a List of NPC objects
-            Type npcListType = new TypeToken<List<NPC>>() {}.getType();
+            Type npcListType = new TypeToken<List<NPC>>() {
+            }.getType();
             List<NPC> npcList = gson.fromJson(new FileReader("Data/NPC.json"), npcListType);
 
             for (NPC npc : npcList) {
@@ -37,7 +38,8 @@ public class JSON_Reader {
 
     public static Location returnLocationInformationForDirectionToMove(String currentLocation, String direction) {
         try {
-            Type locationListType = new TypeToken<List<Location>>() {}.getType();
+            Type locationListType = new TypeToken<List<Location>>() {
+            }.getType();
             List<Location> locationList = gson.fromJson(new FileReader("Data/Locations.json"), locationListType);
 
             for (Location location : locationList) {
@@ -67,7 +69,8 @@ public class JSON_Reader {
     // Helper method to get location by name
     public static Location getLocationByName(String name) {
         try {
-            Type locationListType = new TypeToken<List<Location>>() {}.getType();
+            Type locationListType = new TypeToken<List<Location>>() {
+            }.getType();
             List<Location> locationList = gson.fromJson(new FileReader("Data/Locations.json"), locationListType);
 
             for (Location location : locationList) {
@@ -85,7 +88,8 @@ public class JSON_Reader {
 
     public static Item readItemDescription(String myItem) {
         try {
-            Type itemListType = new TypeToken<List<Item>>() {}.getType();
+            Type itemListType = new TypeToken<List<Item>>() {
+            }.getType();
             List<Item> itemList = gson.fromJson(new FileReader("Data/Items.json"), itemListType);
 
             for (Item item : itemList) {
@@ -110,30 +114,32 @@ public class JSON_Reader {
         }
     }
 
-    public static String readVerbJson(List<String> userInput)  {
+    public static String readVerbJson(List<String> userInput) {
         try {
             String myVerb = "";
-            String[] verbs = new String[] {"go","talk","get","look","fire"};
-
+            String[] verbs = new String[]{"go", "talk", "get", "look", "fire", "inventory", "drop", "help", "quit"};
             Gson gson = new Gson();
             JsonObject json = gson.fromJson(new FileReader("Data/Verbs.json"), JsonObject.class);
 
+            int topIter = 0;
             int iter = 0;
-            for (String word : userInput) {
-                String verb = json.get(verbs[iter]).getAsString();
-                System.out.println(verb);
-                String[] synonyms = verb.split(" ");
-                for (String synonym : synonyms) {
-                    if (word.equals(synonym)) {
-                        myVerb = verbs[iter];
-                        break;
-                    }
+            while (myVerb.equals("") || topIter < 200) {
+                if (iter == verbs.length) {
+                    iter = 0;
                 }
-                iter++;
+                    String verb = json.get(verbs[iter]).getAsString();
+                    String[] synonyms = verb.split(" ");
+                    for (String synonym : synonyms) {
+                        if (userInput.contains(synonym.toLowerCase())) {
+                            myVerb = verbs[iter];
+                            break;
+                        }
+                    }
+            iter++;
+            topIter++;
             }
             return myVerb;
         } catch (FileNotFoundException e) {
-
             e.printStackTrace();
         }
         return null;
@@ -142,19 +148,27 @@ public class JSON_Reader {
     // WILL RETURN NULL IF INPUT IS INVALID
     public static String readNounJson(List<String> userInput) {
         try {
+            if (userInput.size() == 1) {
+                return null;
+            }
             String myNoun = "";
+            String[] nouns = new String[]{"nouns"};
+
             Gson gson = new Gson();
             JsonObject json = gson.fromJson(new FileReader("Data/Nouns.json"), JsonObject.class);
-
-            for (String word : userInput) {
+            int topIter = 0;
+            int iter = 0;
+            while (myNoun.equals("") || topIter < 200) {
                 String noun = json.get("nouns").getAsString();
                 String[] synonyms = noun.split(" ");
                 for (String synonym : synonyms) {
-                    if (word.equals(synonym)) {
+                    if (userInput.contains(synonym.toLowerCase())) {
                         myNoun = synonym;
                         break;
                     }
                 }
+                iter++;
+                topIter++;
             }
             return myNoun;
         } catch (FileNotFoundException e) {
