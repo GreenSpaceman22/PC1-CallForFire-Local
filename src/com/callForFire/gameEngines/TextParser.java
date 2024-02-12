@@ -40,22 +40,13 @@ public class TextParser {
 
     public void parseActionAndNoun(OptionHandler optionHandler, PlayerEngine playerEngine) {
 
-        // These are temporary to keep the game circular until we incorporate the actual parser
-        actionNoun.clear();
+        actionNoun.clear(); // Ensure the action noun is clear before we set it again
 
         String action = JsonReader.readVerbJson(getParsedWords());
         String noun = JsonReader.readNounJson(getParsedWords());
 
         actionNoun.add(action);
         actionNoun.add(noun);
-
-//        for(String word : actionNoun) {
-//            System.out.println(word);
-//        }
-
-//        if (action.equals("quit")) {
-//            System.out.println("quiting");
-//        }
 
         parsedWords.clear();
 

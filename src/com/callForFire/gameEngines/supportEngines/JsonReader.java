@@ -60,6 +60,9 @@ public class JsonReader {
 
             for (Location location : locationList) {
                 if (location.getName().trim().equalsIgnoreCase(currentLocation.trim().toLowerCase())) {
+                   if(direction == null) {
+                       return null;
+                   }
                     // Check the direction to move
                     switch (direction.toLowerCase().trim()) {
                         case "north":

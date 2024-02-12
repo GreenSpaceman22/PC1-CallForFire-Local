@@ -63,7 +63,6 @@ public class callForFireApp {
         boolean enemyAttackWasSuccesful = combatEngine.enemyAttacksPlayer();
         if (enemyAttackWasSuccesful) {
             int healthRemaining = combatEngine.calculateBattleDamage(false, playerEngine);
-            System.out.println("Health Remaining: " + healthRemaining);
             MessageReader.displayDamageDoneToPlayer(healthRemaining);
             Console.pause(1000);
         } else {
