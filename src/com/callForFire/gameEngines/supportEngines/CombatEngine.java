@@ -31,6 +31,7 @@ public class CombatEngine {
     public boolean attackEnemy(boolean hasCopenhagen) {
         Random random = new Random();
         AudioPlayer.fireMortar();
+        AudioPlayer.unmute();
         // If hasCopenhagen is true, user has 1-2 chance of hitting the enemy
         if (hasCopenhagen) {
             // Generate a random number between 1 and 3
@@ -47,6 +48,8 @@ public class CombatEngine {
     }
 
     public boolean enemyAttacksPlayer() {
+        AudioPlayer.enemyFires();
+        AudioPlayer.unmute();
         Random random = new Random();
         // Generate a random number between 1 and 4
         int randomNumber = random.nextInt(5) + 1;
@@ -57,9 +60,15 @@ public class CombatEngine {
     public int calculateBattleDamage(boolean isPlayerAttacking, PlayerEngine playerEngine) {
         if(isPlayerAttacking) {
             enemy.setEnemyHealth(enemy.getEnemyHealth() - 25);
+            if (enemy.getEnemyHealth() <= 0) {
+                System.out.println("YOU HAVE DEFEATED THE ENEMY");
+            }
             return enemy.getEnemyHealth();
         } else {
             playerEngine.setHealth(playerEngine.getHealth() - 25);
+            if (playerEngine.getHealth() <= 0) {
+                System.out.println("YOU HAVE DIED");
+            }
             return playerEngine.getHealth();
         }
     }

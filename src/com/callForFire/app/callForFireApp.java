@@ -90,12 +90,12 @@ public class callForFireApp {
 
     public void intialize() {
         Console.clear(); // Clear the console
+        AudioPlayer.unmute();
         playerEngine.clearPlayerInventory(); // Clear the players inventory
         playerEngine.setCurrentLocation("Mortar Pit");
         playerEngine.setHealth(100);
         JsonWriter.resetLocationsJSON(); // Ensure the Locations.json is reset to the starting game configs
         WelcomeTitleDisplay.render("banner"); // Display the welcome message
-        AudioPlayer.unmute();
     }
 
     public void instructions() {
