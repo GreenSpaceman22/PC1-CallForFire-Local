@@ -15,12 +15,13 @@ public class AudioPlayer {
             "afplay Data/audio/hq-explosion-6288.mp3 &";
     private static final String mute = "cmd /c start /B Data/audio/mute.mp3\n" +
             "afplay Data/audio/mute.mp3 &";
+    private static final String enemyFire = "cmd /c start /B Data/audio/huge-explosion-in-distance-100604.mp3\n" +
+            "afplay Data/audio/huge-explosion-in-distance-100604.mp3 &";
 
     public static void unmute() {
         isMuted = false;
         if (execute == null) {
             try {
-                thread = new Thread(() -> {
                     try {
                         execute = Runtime.getRuntime().exec(audioCmd);
                         execute.waitFor();
@@ -28,8 +29,6 @@ public class AudioPlayer {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                });
-                thread.start();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -65,11 +64,23 @@ public class AudioPlayer {
             try {
                 execute = Runtime.getRuntime().exec(mortarFire);
                 execute.waitFor();
+                unmute();
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
 
+    }
+    public static void enemyFires() {
+        if (!isMuted) {
+            try {
+                execute = Runtime.getRuntime().exec(enemyFire);
+                execute.waitFor();
+                unmute();
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static boolean isIsMuted() {
