@@ -12,7 +12,6 @@ public class TextParser {
     private String userInput;
     private final Prompter prompter = new Prompter(new Scanner(System.in));
 
-
     // METHODS
     // Get the action and noun of the users input, this will be the main method of this class
     public List<String> getUserString(OptionHandler optionHandler, PlayerEngine playerEngine) {
@@ -49,11 +48,6 @@ public class TextParser {
         actionNoun.add(noun);
 
         parsedWords.clear();
-
-//        if(noun == null) {
-//            UtilFunctions.showInvalidCommand(userInput);
-//            getUserString(optionHandler, playerEngine);
-//        }
 
         // move, get, fire, talk, look, inventory, drop, help, quit
         if("go".equalsIgnoreCase(actionNoun.get(0))) {

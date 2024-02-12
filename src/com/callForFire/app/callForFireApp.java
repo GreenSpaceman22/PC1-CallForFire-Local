@@ -5,6 +5,7 @@ import com.callForFire.gameEngines.OptionHandler;
 import com.callForFire.gameEngines.PlayerEngine;
 import com.callForFire.gameEngines.TextParser;
 import com.callForFire.gameEngines.supportEngines.CombatEngine;
+import com.callForFire.gameEngines.supportEngines.JsonReader;
 import com.callForFire.gameEngines.supportEngines.JsonWriter;
 import com.callForFire.gameEngines.supportEngines.MessageReader;
 import com.callForFire.utils.CharacterStatusDisplay;
@@ -12,6 +13,7 @@ import com.callForFire.utils.OptionChecker;
 import com.callForFire.utils.WelcomeTitleDisplay;
 
 import java.util.List;
+import java.util.Objects;
 
 //This is where all our of our game engines and logic will run from
 public class callForFireApp {
@@ -72,6 +74,7 @@ public class callForFireApp {
         Console.pause(1000);
         Console.clear();
         charStatus.displayCharacterInfo(playerEngine.getName(), playerEngine.getHealth(), playerEngine.getPlayerLocation(), PlayerEngine.getPlayerInventoryItems());
+        MessageReader.printLocationMessage(Objects.requireNonNull(JsonReader.getLocationByName(playerEngine.getPlayerLocation())));
     }
 
     public void intialize() {
