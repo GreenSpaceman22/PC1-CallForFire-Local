@@ -23,9 +23,9 @@
     "name": "Vehicle yard",
     "description" : "You are in the Vehicle yard, there is various vehicles around.",
     "north" : "Hesco barriers",
-    "west" : "Hesco barriers",
+    "west" : "Firing point",
     "south" : "Ammo depot",
-    "east" : "Firing point",
+    "east" : "Hesco barriers",
     "NPCs" : "Radio",
     "items" : ["Mortar-tube"]
   },

@@ -18,17 +18,31 @@ public class PlayerEngine {
 
     // Business Methods
     public void addItemToInventory(String itemToAdd) {
-        // Add Item to inventory
-        playerInventory.add(itemToAdd);
-        // Update player's JSON file
-        JsonWriter.writePlayerToFile(this);
+        PlayerEngine player = JsonReader.readPlayerFromFile();
+
+        if(player != null) {
+            this.playerInventory = player.getPlayerInventory();
+            // Add Item to inventory
+            playerInventory.add(itemToAdd);
+            this.health = player.getHealth();
+            this.currentLocation = player.getCurrentLocation();
+            // Update player's JSON file
+            JsonWriter.writePlayerToFile(this);
+        }
     }
 
     public void dropItemFromInventory(String itemToDrop) {
-        // Remove Item from inventory
-        playerInventory.remove(itemToDrop);
-        // Update player's JSON file
-        JsonWriter.writePlayerToFile(this);
+        PlayerEngine player = JsonReader.readPlayerFromFile();
+
+        if(player != null) {
+            this.playerInventory = player.getPlayerInventory();
+            // Add Item to inventory
+            playerInventory.remove(itemToDrop);
+            this.health = player.getHealth();
+            this.currentLocation = player.getCurrentLocation();
+            // Update player's JSON file
+            JsonWriter.writePlayerToFile(this);
+        }
     }
 
     public static List<String> getPlayerInventoryItems() {
@@ -67,10 +81,12 @@ public class PlayerEngine {
 
     public void setCurrentLocation(String currentLocation) {
         PlayerEngine player = JsonReader.readPlayerFromFile();
-        this.health = player.getHealth();
-        this.currentLocation = currentLocation;
-        this.playerInventory = player.getPlayerInventory();
-        JsonWriter.writePlayerToFile(this);
+        if(player != null) {
+            this.health = player.getHealth();
+            this.currentLocation = currentLocation;
+            this.playerInventory = player.getPlayerInventory();
+            JsonWriter.writePlayerToFile(this);
+        }
     }
 
     public List<String> getPlayerInventory() {
