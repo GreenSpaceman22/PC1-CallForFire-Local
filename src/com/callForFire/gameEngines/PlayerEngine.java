@@ -8,13 +8,12 @@ import java.util.List;
 
 public class PlayerEngine {
 
-    private String currentLocation = "Mortar Pit";
+    private String currentLocation;
     private List<String> playerInventory = new ArrayList<>();
     private int maxInventoryWeight = 120;
     private int currentInventoryWeight;
     private String name = "Player1"; // TODO: undo the hardcoding here
-    private int health = 100;
-    private String location = getCurrentLocation();
+    private int health;
 
 
     // Business Methods
@@ -67,7 +66,10 @@ public class PlayerEngine {
     }
 
     public void setCurrentLocation(String currentLocation) {
+        PlayerEngine player = JsonReader.readPlayerFromFile();
+        this.health = player.getHealth();
         this.currentLocation = currentLocation;
+        this.playerInventory = player.getPlayerInventory();
         JsonWriter.writePlayerToFile(this);
     }
 
@@ -93,12 +95,23 @@ public class PlayerEngine {
     }
 
     public int getHealth() {
+        PlayerEngine player = JsonReader.readPlayerFromFile();
+        if(player != null) {
+            return player.health;
+        }
         return health;
     }
 
     public void setHealth(int health) {
-        this.health = health;
-        JsonWriter.writePlayerToFile(this);
+        PlayerEngine player = JsonReader.readPlayerFromFile();
+        if(player != null) {
+            this.health = health;
+            System.out.println("Health: " + health);
+            this.currentLocation = player.getCurrentLocation();
+            this.playerInventory = player.getPlayerInventory();
+            JsonWriter.writePlayerToFile(this);
+            System.out.println("Saved player!");
+        }
     }
 
     public String getName() {

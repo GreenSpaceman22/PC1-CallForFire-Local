@@ -225,7 +225,7 @@ public class OptionHandler {
         }
     }
 
-    private void updateLocation(Location location) {
+    public void updateLocation(Location location) {
         Console.clear();
         charStatus.displayCharacterInfo(playerEngine.getName(), playerEngine.getHealth(), playerEngine.getPlayerLocation(), playerEngine.getPlayerInventory());
         MessageReader.printLocationMessage(location);
