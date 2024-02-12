@@ -11,6 +11,7 @@ import com.callForFire.gameEngines.supportEngines.MessageReader;
 import com.callForFire.utils.CharacterStatusDisplay;
 import com.callForFire.utils.OptionChecker;
 import com.callForFire.utils.WelcomeTitleDisplay;
+import com.callForFire.utils.audio.AudioPlayer;
 
 import java.util.List;
 import java.util.Objects;
@@ -84,6 +85,7 @@ public class callForFireApp {
         playerEngine.setHealth(100);
         JsonWriter.resetLocationsJSON(); // Ensure the Locations.json is reset to the starting game configs
         WelcomeTitleDisplay.render("banner"); // Display the welcome message
+        AudioPlayer.unmute();
     }
 
     public void instructions() {

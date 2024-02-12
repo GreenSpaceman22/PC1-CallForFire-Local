@@ -8,5 +8,7 @@
   "drop" : "drop ditch deposit",
   "help" : "help assistance assist",
   "quit" : "quit disengage",
-  "cheat": "cheat"
+  "cheat": "cheat",
+  "mute" : "mute",
+  "unmute" : "unmute"
 }
