@@ -1,8 +1,12 @@
 {
   "currentLocation": "Mortar Pit",
-  "playerInventory": [],
+  "playerInventory": [
+    "mortar-tube",
+    "base-plate",
+    "mortar-rounds"
+  ],
   "maxInventoryWeight": 120,
   "currentInventoryWeight": 0,
   "name": "Player1",
-  "health": 100
+  "health": 75
 }
