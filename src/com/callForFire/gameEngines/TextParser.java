@@ -50,8 +50,15 @@ public class TextParser {
 
         actionNoun.add(action);
         actionNoun.add(noun);
-        if (action.equals("mute")) {
+        if ("mute".equals(action)) {
             AudioPlayer.mute();
+            parsedWords.clear();
+            getUserString(optionHandler, playerEngine);
+        }
+        else if ("unmute".equals(action)) {
+            AudioPlayer.unmute();
+            parsedWords.clear();
+            getUserString(optionHandler, playerEngine);
         }
 
         parsedWords.clear();
