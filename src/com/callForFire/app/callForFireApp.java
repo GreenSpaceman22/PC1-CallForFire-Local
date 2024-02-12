@@ -20,6 +20,7 @@ public class callForFireApp {
     private final PlayerEngine playerEngine = new PlayerEngine();
     private final OptionHandler optionHandler = new OptionHandler();
     private final CharacterStatusDisplay charStatus = new CharacterStatusDisplay();
+    private boolean playerHasRequiredItems = false;
     private boolean isGameOver = false;
     private boolean playerWonGame;
 
@@ -39,10 +40,10 @@ public class callForFireApp {
 
             optionHandler.run(actionNoun, combatEngine); // Handle what to do with that action
 
+            checkPlayerHasRequiredItems(); // Check and set if the player has the required item's
 
-            boolean playerHasRequiredItems = OptionChecker.checkUserHasRequiredItemsToAttack(playerEngine.getPlayerInventory()); // Once the user has the required items, the enemy starts attacking
-            if(playerHasRequiredItems) {
-                // TODO: Add enemy attack logic
+            if(isPlayerHasRequiredItems()) {
+                handleEnemyAttack();
             }
 
             if(playerEngine.getHealth() <= 0) {
@@ -56,15 +57,53 @@ public class callForFireApp {
         }
     }
 
+    private void handleEnemyAttack() {
+        MessageReader.displayIncomingMessage(playerEngine.getPlayerLocation(), combatEngine.getEnemy().getEnemyName());
+        Console.pause(1000);
+        boolean enemyAttackWasSuccesful = combatEngine.enemyAttacksPlayer();
+        if (enemyAttackWasSuccesful) {
+            int healthRemaining = combatEngine.calculateBattleDamage(false, playerEngine);
+            MessageReader.displayDamageDoneToPlayer(healthRemaining);
+            Console.pause(1000);
+        } else {
+            MessageReader.displayEnemyMissed();
+            Console.pause(1000);
+        }
+        Console.pause(1000);
+        Console.clear();
+        charStatus.displayCharacterInfo(playerEngine.getName(), playerEngine.getHealth(), playerEngine.getPlayerLocation(), PlayerEngine.getPlayerInventoryItems());
+    }
+
     public void intialize() {
         Console.clear(); // Clear the console
         playerEngine.clearPlayerInventory(); // Clear the players inventory
+        playerEngine.setCurrentLocation("Mortar Pit");
+        playerEngine.setHealth(100);
         JsonWriter.resetLocationsJSON(); // Ensure the Locations.json is reset to the starting game configs
         WelcomeTitleDisplay.render("banner"); // Display the welcome message
     }
 
     public void instructions() {
 
+    }
+
+    public void checkPlayerHasRequiredItems() {
+        List<String> playerInventory = PlayerEngine.getPlayerInventoryItems();
+        if(!playerInventory.isEmpty()) {
+            boolean playerHasRequiredItems = OptionChecker.checkUserHasRequiredItemsToAttack(PlayerEngine.getPlayerInventoryItems());
+            if(playerHasRequiredItems) {
+                setPlayerHasRequiredItems(true);
+            }
+        }
+    }
+
+    // Getters and Setters
+    public boolean isPlayerHasRequiredItems() {
+        return playerHasRequiredItems;
+    }
+
+    public void setPlayerHasRequiredItems(boolean playerHasRequiredItems) {
+        this.playerHasRequiredItems = playerHasRequiredItems;
     }
 
     public boolean isGameOver() {

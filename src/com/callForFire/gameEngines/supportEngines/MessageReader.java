@@ -1,5 +1,6 @@
 package com.callForFire.gameEngines.supportEngines;
 
+import com.apps.util.Console;
 import com.callForFire.models.Location;
 import com.callForFire.models.NPC;
 
@@ -74,6 +75,7 @@ public class MessageReader {
     public static void printDropItemError(String itemName) {
         System.out.println("You do not have a " + itemName + " in your inventory");
     }
+
     // Display Player Inventory
     public static void displayPlayerInventory(List<String> inventory) {
         if(inventory != null) {
@@ -86,6 +88,7 @@ public class MessageReader {
         }
     }
 
+    // Battle Messages
     public static void displayBattleResults(int enemyHealth, String enemyName) {
         System.out.println("You hit the enemy " + enemyName + " for 25 damage, the enemy has " + enemyHealth + " health remaining");
     }
@@ -100,5 +103,23 @@ public class MessageReader {
 
     public static void printNotProperItemsError() {
         System.out.println("You do not have the proper items to fire at the enemy");
+    }
+
+    public static void displayIncomingMessage(String playerLocation, String enemyName) {
+        System.out.println("Private Snuffy has reported he has seen a " + enemyName);
+        if(!playerLocation.equalsIgnoreCase("firing point")) {
+            System.out.println("Get to the firing point and destroy them before its to late!");
+        }
+        Console.pause(1000);
+        System.out.println("INCOMING!!! Enemy rounds incoming!");
+    }
+
+    public static void displayEnemyMissed() {
+        System.out.println("The enemy has shot at you but missed! Hurry and return fire!");
+        Console.pause(2000);
+    }
+
+    public static void displayDamageDoneToPlayer(int healthRemaining) {
+        System.out.println("The enemy has hit you for 25 damage, you have " + healthRemaining + " health remaining!");
     }
 }

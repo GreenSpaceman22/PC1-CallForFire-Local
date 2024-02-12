@@ -60,6 +60,9 @@ public class JsonReader {
 
             for (Location location : locationList) {
                 if (location.getName().trim().equalsIgnoreCase(currentLocation.trim().toLowerCase())) {
+                   if(direction == null) {
+                       return null;
+                   }
                     // Check the direction to move
                     switch (direction.toLowerCase().trim()) {
                         case "north":
@@ -142,7 +145,6 @@ public class JsonReader {
                     iter = 0;
                 }
                 String verb = json.get(verbs[iter]).getAsString();
-                System.out.println("this is my verb synonyms: " + verb);
                 String[] synonyms = verb.split(" ");
                 for (String synonym : synonyms) {
                     if (userInput.contains(synonym.toLowerCase())) {

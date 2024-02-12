@@ -4,6 +4,5 @@
   "maxInventoryWeight": 120,
   "currentInventoryWeight": 0,
   "name": "Player1",
-  "health": 100,
-  "location": "Mortar Pit"
+  "health": 100
 }
