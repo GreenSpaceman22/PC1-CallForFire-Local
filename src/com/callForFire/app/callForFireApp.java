@@ -58,6 +58,16 @@ public class callForFireApp {
                 setPlayerWonGame(true);
             }
         }
+
+        if(playerWonGame) {
+            System.out.println("YOU HAVE WON, CONGRATULATIONS!");
+            Console.pause(3000);
+        } else {
+            System.out.println("YOU LOST, TRY AGAIN NEXT TIME!");
+            Console.pause(3000);
+        }
+
+
     }
 
     private void handleEnemyAttack() {
