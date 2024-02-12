@@ -106,11 +106,9 @@ public class PlayerEngine {
         PlayerEngine player = JsonReader.readPlayerFromFile();
         if(player != null) {
             this.health = health;
-            System.out.println("Health: " + health);
             this.currentLocation = player.getCurrentLocation();
             this.playerInventory = player.getPlayerInventory();
             JsonWriter.writePlayerToFile(this);
-            System.out.println("Saved player!");
         }
     }
 

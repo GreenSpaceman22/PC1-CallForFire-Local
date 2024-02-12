@@ -37,8 +37,6 @@ public class JsonWriter {
             try (FileWriter writer = new FileWriter(EDITED_JSON_FILE)) {
                 gson.toJson(uneditedLocations, writer);
             }
-
-            System.out.println("Edited JSON file has been reset to match the unedited one.");
         } catch (IOException e) {
             e.printStackTrace();
         }
