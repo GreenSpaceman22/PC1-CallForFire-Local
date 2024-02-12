@@ -3,8 +3,12 @@ package com.callForFire.gameEngines;
 import com.apps.util.Prompter;
 import com.callForFire.gameEngines.supportEngines.JsonReader;
 import com.callForFire.utils.UtilFunctions;
+import com.callForFire.utils.audio.AudioPlayer;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 public class TextParser {
     private final List<String> parsedWords = new ArrayList<>();
@@ -46,6 +50,16 @@ public class TextParser {
 
         actionNoun.add(action);
         actionNoun.add(noun);
+        if ("mute".equals(action)) {
+            AudioPlayer.mute();
+            parsedWords.clear();
+            getUserString(optionHandler, playerEngine);
+        }
+        else if ("unmute".equals(action)) {
+            AudioPlayer.unmute();
+            parsedWords.clear();
+            getUserString(optionHandler, playerEngine);
+        }
 
         parsedWords.clear();
 
