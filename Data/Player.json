@@ -1,5 +1,5 @@
 {
-  "currentLocation": "Mortar Pit",
+  "currentLocation": "Firing point",
   "playerInventory": [
     "mortar-tube",
     "base-plate",
@@ -8,5 +8,5 @@
   "maxInventoryWeight": 120,
   "currentInventoryWeight": 0,
   "name": "Player1",
-  "health": 75
+  "health": 0
 }

@@ -48,9 +48,9 @@ public class CombatEngine {
     public boolean enemyAttacksPlayer() {
         Random random = new Random();
         // Generate a random number between 1 and 4
-        int randomNumber = random.nextInt(4) + 1;
+        int randomNumber = random.nextInt(5) + 1;
         // Return true if the random number is 1, 2, or 3, indicating a hit
-        return randomNumber <= 3;
+        return randomNumber <= 2;
     }
 
     public int calculateBattleDamage(boolean isPlayerAttacking, PlayerEngine playerEngine) {
