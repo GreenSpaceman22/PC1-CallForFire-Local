@@ -1,12 +1,8 @@
 {
   "currentLocation": "Firing point",
-  "playerInventory": [
-    "mortar-tube",
-    "base-plate",
-    "mortar-rounds"
-  ],
+  "playerInventory": [],
   "maxInventoryWeight": 120,
   "currentInventoryWeight": 0,
   "name": "Player1",
-  "health": 0
+  "health": 100
 }
