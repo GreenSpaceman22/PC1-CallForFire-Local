@@ -64,7 +64,7 @@ public class AudioPlayer {
             try {
                 execute = Runtime.getRuntime().exec(mortarFire);
                 execute.waitFor();
-                unmute();
+                AudioPlayer.unmute();
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
@@ -76,7 +76,7 @@ public class AudioPlayer {
             try {
                 execute = Runtime.getRuntime().exec(enemyFire);
                 execute.waitFor();
-                unmute();
+                AudioPlayer.unmute();
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
