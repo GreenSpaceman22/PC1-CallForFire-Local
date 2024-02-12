@@ -20,6 +20,9 @@ public class JsonReader {
     private static final Gson gson = new Gson();
 
     public static NPC readNpcDialogue(String npcName) {
+        if(npcName == null) {
+            return null;
+        }
         try {
             // Read JSON file into a List of NPC objects
             Type npcListType = new TypeToken<List<NPC>>() {}.getType();
