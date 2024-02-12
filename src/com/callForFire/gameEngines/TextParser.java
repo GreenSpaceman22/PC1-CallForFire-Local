@@ -3,15 +3,18 @@ package com.callForFire.gameEngines;
 import com.apps.util.Prompter;
 import com.callForFire.gameEngines.supportEngines.JsonReader;
 import com.callForFire.utils.UtilFunctions;
+import com.callForFire.utils.audio.AudioPlayer;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 public class TextParser {
     private final List<String> parsedWords = new ArrayList<>();
     private final List<String> actionNoun = new ArrayList<>();
     private String userInput;
     private final Prompter prompter = new Prompter(new Scanner(System.in));
-
 
     // METHODS
     // Get the action and noun of the users input, this will be the main method of this class
@@ -47,13 +50,18 @@ public class TextParser {
 
         actionNoun.add(action);
         actionNoun.add(noun);
+        if ("mute".equals(action)) {
+            AudioPlayer.mute();
+            parsedWords.clear();
+            getUserString(optionHandler, playerEngine);
+        }
+        else if ("unmute".equals(action)) {
+            AudioPlayer.unmute();
+            parsedWords.clear();
+            getUserString(optionHandler, playerEngine);
+        }
 
         parsedWords.clear();
-
-//        if(noun == null) {
-//            UtilFunctions.showInvalidCommand(userInput);
-//            getUserString(optionHandler, playerEngine);
-//        }
 
         // move, get, fire, talk, look, inventory, drop, help, quit
         if("go".equalsIgnoreCase(actionNoun.get(0))) {

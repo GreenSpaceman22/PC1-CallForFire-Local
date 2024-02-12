@@ -211,6 +211,8 @@ public class OptionHandler {
         if (actionNoun.get(1) == null && actionNoun.get(0).equalsIgnoreCase("look")) {
             Location location = JsonReader.getLocationByName(playerEngine.getPlayerLocation());
             if (location != null) {
+                System.out.println("If you are trying to look at an object, ensure you spell it how you see it on screen, including hyphens!");
+                Console.pause(2000);
                 updateLocation(location);
             } else {
                 MessageReader.printError();

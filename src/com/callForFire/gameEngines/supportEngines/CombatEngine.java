@@ -2,6 +2,7 @@ package com.callForFire.gameEngines.supportEngines;
 
 import com.callForFire.gameEngines.PlayerEngine;
 import com.callForFire.models.Enemy;
+import com.callForFire.utils.audio.AudioPlayer;
 
 import java.util.List;
 import java.util.Random;
@@ -29,7 +30,7 @@ public class CombatEngine {
 
     public boolean attackEnemy(boolean hasCopenhagen) {
         Random random = new Random();
-
+        AudioPlayer.fireMortar();
         // If hasCopenhagen is true, user has 1-2 chance of hitting the enemy
         if (hasCopenhagen) {
             // Generate a random number between 1 and 3
@@ -48,9 +49,9 @@ public class CombatEngine {
     public boolean enemyAttacksPlayer() {
         Random random = new Random();
         // Generate a random number between 1 and 4
-        int randomNumber = random.nextInt(4) + 1;
+        int randomNumber = random.nextInt(5) + 1;
         // Return true if the random number is 1, 2, or 3, indicating a hit
-        return randomNumber <= 3;
+        return randomNumber <= 2;
     }
 
     public int calculateBattleDamage(boolean isPlayerAttacking, PlayerEngine playerEngine) {
